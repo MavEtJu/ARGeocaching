@@ -14,6 +14,10 @@
 		E867AE6120DDDF3D004C0544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E867AE6020DDDF3D004C0544 /* Assets.xcassets */; };
 		E867AE6420DDDF3D004C0544 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E867AE6220DDDF3D004C0544 /* LaunchScreen.storyboard */; };
 		E867AE6720DDDF3D004C0544 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E867AE6620DDDF3D004C0544 /* main.m */; };
+		E8A8D7B420E0B973000595E9 /* SCNFloorTile.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7B320E0B973000595E9 /* SCNFloorTile.m */; };
+		E8A8D7B820E0BC2D000595E9 /* SCNRoof.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7B720E0BC2D000595E9 /* SCNRoof.m */; };
+		E8A8D7BB20E0CA46000595E9 /* Materials.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7BA20E0CA46000595E9 /* Materials.m */; };
+		E8A8D7BF20E0FDB0000595E9 /* Geometries.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7BE20E0FDB0000595E9 /* Geometries.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,16 @@
 		E867AE6320DDDF3D004C0544 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E867AE6520DDDF3D004C0544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E867AE6620DDDF3D004C0544 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E8A8D7B220E0B973000595E9 /* SCNFloorTile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCNFloorTile.h; sourceTree = "<group>"; };
+		E8A8D7B320E0B973000595E9 /* SCNFloorTile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCNFloorTile.m; sourceTree = "<group>"; };
+		E8A8D7B520E0B991000595E9 /* Nodes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Nodes.h; sourceTree = "<group>"; };
+		E8A8D7B620E0BC2D000595E9 /* SCNRoof.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCNRoof.h; sourceTree = "<group>"; };
+		E8A8D7B720E0BC2D000595E9 /* SCNRoof.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCNRoof.m; sourceTree = "<group>"; };
+		E8A8D7B920E0CA46000595E9 /* Materials.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Materials.h; sourceTree = "<group>"; };
+		E8A8D7BA20E0CA46000595E9 /* Materials.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Materials.m; sourceTree = "<group>"; };
+		E8A8D7BC20E0CE03000595E9 /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		E8A8D7BD20E0FDB0000595E9 /* Geometries.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geometries.h; sourceTree = "<group>"; };
+		E8A8D7BE20E0FDB0000595E9 /* Geometries.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Geometries.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,13 +79,31 @@
 				E867AE5820DDDF39004C0544 /* art.scnassets */,
 				E867AE5A20DDDF39004C0544 /* ViewController.h */,
 				E867AE5B20DDDF39004C0544 /* ViewController.m */,
+				E8A8D7B920E0CA46000595E9 /* Materials.h */,
+				E8A8D7BA20E0CA46000595E9 /* Materials.m */,
+				E8A8D7BD20E0FDB0000595E9 /* Geometries.h */,
+				E8A8D7BE20E0FDB0000595E9 /* Geometries.m */,
+				E8A8D7B120E0B94D000595E9 /* Nodes */,
 				E867AE5D20DDDF3A004C0544 /* Main.storyboard */,
 				E867AE6020DDDF3D004C0544 /* Assets.xcassets */,
 				E867AE6220DDDF3D004C0544 /* LaunchScreen.storyboard */,
 				E867AE6520DDDF3D004C0544 /* Info.plist */,
 				E867AE6620DDDF3D004C0544 /* main.m */,
+				E8A8D7BC20E0CE03000595E9 /* main.h */,
 			);
 			path = ARGeocaching;
+			sourceTree = "<group>";
+		};
+		E8A8D7B120E0B94D000595E9 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				E8A8D7B520E0B991000595E9 /* Nodes.h */,
+				E8A8D7B220E0B973000595E9 /* SCNFloorTile.h */,
+				E8A8D7B320E0B973000595E9 /* SCNFloorTile.m */,
+				E8A8D7B620E0BC2D000595E9 /* SCNRoof.h */,
+				E8A8D7B720E0BC2D000595E9 /* SCNRoof.m */,
+			);
+			path = Nodes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,9 +177,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8A8D7B820E0BC2D000595E9 /* SCNRoof.m in Sources */,
+				E8A8D7BF20E0FDB0000595E9 /* Geometries.m in Sources */,
 				E867AE5C20DDDF3A004C0544 /* ViewController.m in Sources */,
+				E8A8D7BB20E0CA46000595E9 /* Materials.m in Sources */,
 				E867AE6720DDDF3D004C0544 /* main.m in Sources */,
 				E867AE5720DDDF39004C0544 /* AppDelegate.m in Sources */,
+				E8A8D7B420E0B973000595E9 /* SCNFloorTile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

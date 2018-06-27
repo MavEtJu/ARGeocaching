@@ -11,6 +11,12 @@
 @interface ViewController () <ARSCNViewDelegate>
 
 @property (nonatomic, strong) IBOutlet ARSCNView *sceneView;
+@property (nonatomic, retain) NSOperationQueue *queue;
+
+@property (nonatomic)         float boxLength;
+@property (nonatomic)         float boxWidth;
+@property (nonatomic)         float boxHeight;
+@property (nonatomic)         float floorHeight;
 
 @end
 
@@ -20,92 +26,79 @@
 {
     [super viewDidLoad];
 
+    self.queue = [[NSOperationQueue alloc] init];
+
     NSArray *field = @[
         //          111111111122222222223333333333444444444455555555556
         //0123456789012345678901234567890123456789012345678901234567890
         @"                                                             ", // 35
-        @" +---W-WWW-------------------------------------------------+ ", // 34
-        @" |p.......................................................p| ", // 33
-        @" |.........................................................| ", // 32
-        @" |.........................................................| ", // 31
-        @" w.........................................................| ", // 30
-        @" w.........................................................| ", // 29
-        @" w.........................................................| ", // 28
-        @" w.........................................................| ", // 27
-        @" |.........................................................| ", // 26
-        @" |.........................................................| ", // 25
-        @" |.........................................................| ", // 24
-        @" |.........................................................| ", // 23
-        @" w.........................................................| ", // 22
-        @" w.........................................................| ", // 21
-        @" w.........................................................| ", // 20
-        @" w.........................................................| ", // 19
-        @" |.........................................................| ", // 18
-        @" |.........................................................| ", // 17
-        @" |.........................................................| ", // 16
-        @" |.........................................................| ", // 15
-        @" w.........................................................| ", // 14
-        @" w.........................................................| ", // 13
-        @" w.........................................................| ", // 12
-        @" w.........................................................| ", // 11
-        @" |.........+-+.............................................| ", // 10
-        @" |.........|.|.............................................| ", //  9
-        @" |.........|.|.............................................| ", //  8
-        @" |.........|.|.............................................| ", //  7
-        @" w.........|.|.............................................| ", //  6
-        @" w.........|.|.............................................| ", //  5
-        @" w.........|.|.............................................| ", //  4
-        @" w.........|.|.............................................| ", //  3
-        @" |.........|.|............................................p| ", //  2
-        @" +-p.....p-+-+---------------------------------------------+ ", //  1
+        @" +---WWWW----WWWW----WWWW------------WWWW----WWWW----WWWW--+ ", // 34
+        @" |p...........................x.x.........................p| ", // 33
+        @" |............................x.x..........................| ", // 32
+        @" |............................x.x..........................| ", // 31
+        @" w............................x.x..........................w ", // 30
+        @" w............................xxx..........................w ", // 29
+        @" w.........................................................w ", // 28
+        @" w.........................................................w ", // 27
+        @" |................xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...........| ", // 26
+        @" |................x............................x...........| ", // 25
+        @" |................xxxxxxxxxxxxxxxxxxxxxxx......x...........| ", // 24
+        @" |......................................x......x...........| ", // 23
+        @" w......................................x......x...........w ", // 22
+        @" w......................................x......x...........w ", // 21
+        @" w......................................x......x...........w ", // 20
+        @" w......................................x......x...........w ", // 19
+        @" |......................................x......x...........| ", // 18
+        @" +xxxxxxxxxxxxxxxxxxxxxxxxxxx...........x......x...........| ", // 17
+        @" |xxxxxxxxxxxxxxxxxxxxxxxxxxx...........x......x...........| ", // 16
+        @" |......................................x......x...........| ", // 15
+        @" w......................................x......x...........w ", // 14
+        @" w......................................x......x...........w ", // 13
+        @" w......................................x......x...........w ", // 12
+        @" w......................................x......x...........w ", // 11
+        @" |.........xxx..........................x......x...........| ", // 10
+        @" |.........x.x..........................x......x...........| ", //  9
+        @" |.........x.x..........................xxxxxxxx...........| ", //  8
+        @" |.........x.x.............................................| ", //  7
+        @" w.........x.x.............................................w ", //  6
+        @" w.........x.x.............................................w ", //  5
+        @" w.........x.x.............................................w ", //  4
+        @" w.........x.x.............................................w ", //  3
+        @" |.........x.x............................................p| ", //  2
+        @" +-p.....p-+-+-------WWWW----WWWW----WWWW----WWWW----WWWW--+ ", //  1
         @"                                                             ", //  0
         ];
 
     // Container to hold all of the 3D geometry
     SCNScene *scene = [SCNScene new];
 
-    float boxLength = 0.5;          // half a meter
-    float boxWidth = boxLength;
-    float boxHeight = 3.0;          // 2 meters
-    float floorHeight = 0.1;        // 10 centimeters
-
-    // Materials
-    SCNMaterial *bricksWhite12 = [SCNMaterial material];
-    bricksWhite12.diffuse.contents = [UIImage imageNamed:@"Bricks - White - 12"];
-    SCNMaterial *bricksWhite4 = [SCNMaterial material];
-    bricksWhite4.diffuse.contents = [UIImage imageNamed:@"Bricks - White - 4"];
-    SCNMaterial *pillarStone = [SCNMaterial material];
-    pillarStone.diffuse.contents = [UIImage imageNamed:@"Pillar - Stone"];
-    SCNMaterial *floorStone = [SCNMaterial material];
-    floorStone.diffuse.contents = [UIImage imageNamed:@"Floor"];
-    SCNMaterial *windowTransparent = [SCNMaterial material];
-    windowTransparent.diffuse.contents = [UIImage imageNamed:@"Window - Transparent"];
-    windowTransparent.transparency = 0.1;
-    SCNMaterial *roofStone = [SCNMaterial material];
-    roofStone.diffuse.contents = [UIImage imageNamed:@"Roof - Transparent"];
-    roofStone.transparency = 0.1;
+    self.boxLength = 0.5;          // half a meter
+    self.boxWidth = self.boxLength;
+    self.boxHeight = 3.0;          // 2 meters
+    self.floorHeight = 0.1;        // 10 centimeters
 
     // The 3D cube geometry we want to draw
-    SCNBox *floorTile = [SCNBox boxWithWidth:boxWidth height:floorHeight length:boxLength chamferRadius:0.0];
-    floorTile.materials = @[floorStone];
-    SCNBox *roofTile = [SCNBox boxWithWidth:boxWidth height:floorHeight length:boxLength chamferRadius:0.0];
-    roofTile.materials = @[roofStone];
+//    SCNBox *floorTileObject = [SCNBox boxWithWidth:boxWidth height:floorHeight length:boxLength chamferRadius:0.0];
+//    floorTileObject.materials = @[];
+//    SCNBox *roofTileObject = [SCNBox boxWithWidth:boxWidth height:floorHeight length:boxLength chamferRadius:0.0];
+//    roofTileObject.materials = @[[Materials get:MATERIAL_SEMITRANSPARENT]];
 
-    SCNBox *wallBox = [SCNBox boxWithWidth:boxWidth height:boxHeight length:boxLength chamferRadius:0];
-    wallBox.materials = @[bricksWhite12];
+    SCNBox *brickWallObject = [SCNBox boxWithWidth:self.boxWidth height:self.boxHeight length:self.boxLength chamferRadius:0];
+    brickWallObject.materials = @[[Materials get:MATERIAL_BRICKS_WHITE12]];
 
-    SCNBox *wallWindow = [SCNBox boxWithWidth:boxWidth height:boxHeight / 3 length:boxLength chamferRadius:0];
-    wallWindow.materials = @[bricksWhite4];
-    SCNBox *wallWindowGlassBT = [SCNBox boxWithWidth:boxWidth / 6 height:boxHeight / 3 length:boxLength chamferRadius:0];
-    wallWindowGlassBT.materials = @[windowTransparent];
-    SCNBox *wallWindowGlassLR = [SCNBox boxWithWidth:boxWidth height:boxHeight / 3 length:boxLength / 6 chamferRadius:0];
-    wallWindowGlassLR.materials = @[windowTransparent];
+    SCNBox *wallWindowObject = [SCNBox boxWithWidth:self.boxWidth height:self.boxHeight / 3 length:self.boxLength chamferRadius:0];
+    wallWindowObject.materials = @[[Materials get:MATERIAL_BRICKS_WHITE4]];
 
-    SCNBox *insideBox = [SCNBox boxWithWidth:boxWidth height:boxHeight length:boxLength chamferRadius:0];
-    insideBox.firstMaterial.diffuse.contents = [UIColor grayColor];
+    SCNBox *wallWindowGlassBTObject = [SCNBox boxWithWidth:self.boxWidth / 6 height:self.boxHeight / 3 length:self.boxLength chamferRadius:0];
+    wallWindowGlassBTObject.materials = @[[Materials get:MATERIAL_GLASS]];
+    SCNBox *wallWindowGlassLRObject = [SCNBox boxWithWidth:self.boxWidth height:self.boxHeight / 3 length:self.boxLength / 6 chamferRadius:0];
+    wallWindowGlassLRObject.materials = @[[Materials get:MATERIAL_GLASS]];
 
-    SCNTube *pillar = [SCNTube tubeWithInnerRadius:boxLength / 2 outerRadius:3 * boxLength / 4 height:boxHeight];
-    pillar.materials = @[pillarStone];
+    SCNBox *insideWallObject = [SCNBox boxWithWidth:self.boxWidth height:self.boxHeight length:self.boxLength chamferRadius:0];
+    insideWallObject.materials = @[[Materials get:MATERIAL_WALLPAPER]];
+
+    SCNTube *pillarObject = [SCNTube tubeWithInnerRadius:self.boxLength / 2 outerRadius:3 * self.boxLength / 4 height:self.boxHeight];
+    pillarObject.materials = @[[Materials get:MATERIAL_PILLAR_STONE]];
 
     for (float y = 0; y < [field count]; y++) {
         for (float x = 0; x < [[field objectAtIndex:y] length]; x++) {
@@ -113,22 +106,22 @@
             unichar c = [line characterAtIndex:x];
 
 #define ORIGINX 6
-//#define ORIGINY -6
-#define ORIGINY 30
+#define ORIGINY -6
+//#define ORIGINY 30
 
-#define Y       (- y * boxLength + ORIGINY * boxLength)
-#define X       (x * boxWidth - ORIGINX * boxWidth)
-#define Z(z)    ((z))
+#define _Y       (- y * self.boxLength + ORIGINY * self.boxLength)
+#define _X       (x * self.boxWidth - ORIGINX * self.boxWidth)
+#define _Z(z)    ((z))
 
 #define FLOOR { \
-    SCNNode *boxNode = [SCNNode nodeWithGeometry:floorTile]; \
-    boxNode.position = SCNVector3Make(X, Z(-boxHeight / 2 - floorHeight), Y); \
+    SCNNode *boxNode = [[SCNFloorTile alloc] init]; \
+    boxNode.position = SCNVector3Make(_X, _Z(-self.boxHeight / 2), _Y); \
     [scene.rootNode addChildNode:boxNode]; \
 }
 
 #define ROOF { \
-    SCNNode *boxNode = [SCNNode nodeWithGeometry:roofTile]; \
-    boxNode.position = SCNVector3Make(X, Z(boxHeight / 2), Y); \
+    SCNNode *boxNode = [[SCNRoof alloc] init]; \
+    boxNode.position = SCNVector3Make(_X, _Z(self.boxHeight / 2), _Y); \
     [scene.rootNode addChildNode:boxNode]; \
 }
 
@@ -145,49 +138,56 @@
                 case '-':
                 case '|': {
                     FLOOR ROOF
-                    SCNNode *node = [SCNNode nodeWithGeometry:wallBox];
-                    node.position = SCNVector3Make(X, Z(0), Y);
+                    SCNNode *node = [SCNNode nodeWithGeometry:brickWallObject];
+                    node.position = SCNVector3Make(_X, _Z(0), _Y);
                     [scene.rootNode addChildNode:node];
                     break;
                 }
 
                 case 'w': {
                     ROOF FLOOR
-                    SCNNode *node = [SCNNode nodeWithGeometry:wallWindow];
-                    node.position = SCNVector3Make(X, Z(wallWindow.height), Y);
+                    SCNNode *node = [SCNNode nodeWithGeometry:wallWindowObject];
+                    node.position = SCNVector3Make(_X, _Z(wallWindowObject.height), _Y);
                     [scene.rootNode addChildNode:node];
 
-                    node = [SCNNode nodeWithGeometry:wallWindowGlassBT];
-                    node.position = SCNVector3Make(X, Z(0), Y);
+                    node = [SCNNode nodeWithGeometry:wallWindowGlassBTObject];
+                    node.position = SCNVector3Make(_X, _Z(0), _Y);
                     [scene.rootNode addChildNode:node];
 
-                    node = [SCNNode nodeWithGeometry:wallWindow];
-                    node.position = SCNVector3Make(X, Z(-wallWindow.height), Y);
+                    node = [SCNNode nodeWithGeometry:wallWindowObject];
+                    node.position = SCNVector3Make(_X, _Z(-wallWindowObject.height), _Y);
                     [scene.rootNode addChildNode:node];
                     break;
                 }
 
                 case 'W': {
                     ROOF FLOOR
-                    SCNNode *node = [SCNNode nodeWithGeometry:wallWindow];
-                    node.position = SCNVector3Make(X, Z(wallWindow.height), Y);
+                    SCNNode *node = [SCNNode nodeWithGeometry:wallWindowObject];
+                    node.position = SCNVector3Make(_X, _Z(wallWindowObject.height), _Y);
                     [scene.rootNode addChildNode:node];
 
-                    node = [SCNNode nodeWithGeometry:wallWindowGlassLR];
-                    node.position = SCNVector3Make(X, Z(0), Y);
+                    node = [SCNNode nodeWithGeometry:wallWindowGlassLRObject];
+                    node.position = SCNVector3Make(_X, _Z(0), _Y);
                     [scene.rootNode addChildNode:node];
 
-                    node = [SCNNode nodeWithGeometry:wallWindow];
-                    node.position = SCNVector3Make(X, Z(-wallWindow.height), Y);
+                    node = [SCNNode nodeWithGeometry:wallWindowObject];
+                    node.position = SCNVector3Make(_X, _Z(-wallWindowObject.height), _Y);
                     [scene.rootNode addChildNode:node];
                     break;
                 }
 
                 case 'p': {
-                    FLOOR
-                    ROOF
-                    SCNNode *node = [SCNNode nodeWithGeometry:pillar];
-                    node.position = SCNVector3Make(X, Z(0), Y);
+                    FLOOR ROOF
+                    SCNNode *node = [SCNNode nodeWithGeometry:pillarObject];
+                    node.position = SCNVector3Make(_X, _Z(0), _Y);
+                    [scene.rootNode addChildNode:node];
+                    break;
+                }
+
+                case 'x': {
+                    FLOOR ROOF
+                    SCNNode *node = [SCNNode nodeWithGeometry:insideWallObject];
+                    node.position = SCNVector3Make(_X, _Z(0), _Y);
                     [scene.rootNode addChildNode:node];
                     break;
                 }
@@ -230,33 +230,34 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - ARSCNViewDelegate
-
-/*
-// Override to create and configure nodes for anchors added to the view's session.
-- (SCNNode *)renderer:(id<SCNSceneRenderer>)renderer nodeForAnchor:(ARAnchor *)anchor
+- (void)tap:(UITapGestureRecognizer *)gesture
 {
-    SCNNode *node = [SCNNode new];
- 
-    // Add geometry to the node...
- 
-    return node;
-}
-*/
-
-- (void)session:(ARSession *)session didFailWithError:(NSError *)error
-{
-    // Present an error message to the user
+    NSLog(@"tap");
 }
 
-- (void)sessionWasInterrupted:(ARSession *)session
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    // Inform the user that the session has been interrupted, for example, by presenting an overlay
-}
-
-- (void)sessionInterruptionEnded:(ARSession *)session
-{
-    // Reset tracking and/or remove existing anchors if consistent tracking is required
+//    self.vectors = [[NSMutableArray alloc] init];
+    NSArray <SCNHitTestResult *> *res = [self.sceneView hitTest:[[touches anyObject] locationInView:self.sceneView] options:@{SCNHitTestFirstFoundOnlyKey:@YES}];
+    if (res.count != 0) {
+        SCNHitTestResult *result = res.lastObject;
+        SCNNode *block = result.node;
+        if ([[block class] isEqual:[SCNRoof class]] == NO)
+            return;
+        SCNNode *n = [SCNNode nodeWithGeometry:[SCNBox boxWithWidth:0.5 height:0.5 length:0.5 chamferRadius:0]];
+        n.geometry.firstMaterial.diffuse.contents = [UIColor greenColor];
+        n.position = result.worldCoordinates;
+        [self.sceneView.scene.rootNode addChildNode:n];
+        [self.queue addOperationWithBlock:^{
+            while (1) {
+                [NSThread sleepForTimeInterval:0.1];
+                NSLog(@"%f", n.position.y);
+                n.position = SCNVector3Make(n.position.x, n.position.y - 0.1, n.position.z);
+                if (n.position.y < -self.boxHeight)
+                    break;
+            }
+        }];
+    }
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "main.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +17,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    materials = [[Materials alloc] init];
+    geometries = [[Geometries alloc] init];
     // Override point for customization after application launch.
     return YES;
 }
