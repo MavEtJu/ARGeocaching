@@ -28,6 +28,15 @@
 
     self.queue = [[NSOperationQueue alloc] init];
 
+    [self loadFloor];
+
+    self.sceneView.autoenablesDefaultLighting = NO;
+    self.sceneView.delegate = self;
+    self.sceneView.showsStatistics = YES;
+}
+
+- (void)loadFloor
+{
     NSArray *field = @[
         //          111111111122222222223333333333444444444455555555556
         //0123456789012345678901234567890123456789012345678901234567890
@@ -198,10 +207,6 @@
             }
         }
     }
-
-    self.sceneView.autoenablesDefaultLighting = NO;
-    self.sceneView.delegate = self;
-    self.sceneView.showsStatistics = YES;
 
     // Set the scene to the view
     self.sceneView.scene = scene;
