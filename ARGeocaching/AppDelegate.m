@@ -6,7 +6,6 @@
 //  Copyright © 2018 Edwin Groothuis. All rights reserved.
 //
 
-#import "AppDelegate.h"
 #import "main.h"
 
 @interface AppDelegate ()
@@ -17,8 +16,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    materials = [[Materials alloc] init];
-    geometries = [[Geometries alloc] init];
+    objectManager = [[ObjectManager alloc] init];
+    [objectManager loadFile:@"Mining.json"];
     // Override point for customization after application launch.
     return YES;
 }

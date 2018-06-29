@@ -6,13 +6,7 @@
 //  Copyright © 2018 Edwin Groothuis. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <ARKit/ARKit.h>
-#import <SceneKit/SceneKit.h>
-#import <ModelIO/ModelIO.h>
-#import "Materials.h"
-#import "Geometries.h"
-#import "Nodes.h"
+//#import <ModelIO/ModelIO.h>
 
 @interface ViewController : UIViewController <UIGestureRecognizerDelegate>
 

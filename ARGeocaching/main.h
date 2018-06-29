@@ -6,13 +6,15 @@
 //  Copyright © 2018 Edwin Groothuis. All rights reserved.
 //
 
-#ifndef main_h
-#define main_h
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <ARKit/ARKit.h>
+#import <SceneKit/SceneKit.h>
 
-#import "Materials.h"
-#import "Geometries.h"
+#import "MaterialObject.h"
+#import "GeometryObject.h"
+#import "NodeObject.h"
+#import "ObjectManager.h"
 
-extern Materials *materials;
-extern Geometries *geometries;
-
-#endif /* main_h */
+#import "AppDelegate.h"
+#import "ViewController.h"

@@ -1,0 +1,20 @@
+//
+//  ObjectManager.h
+//  ARGeocaching
+//
+//  Created by Edwin Groothuis on 29/6/18.
+//  Copyright © 2018 Edwin Groothuis. All rights reserved.
+//
+
+@interface ObjectManager : NSObject
+
+@property (nonatomic, retain) NSArray<MaterialObject *> *materials;
+@property (nonatomic, retain) NSArray<GeometryObject *> *geometries;
+@property (nonatomic, retain) NSArray<NodeObject *> *nodes;
+
+- (void)loadFile:(NSString *)filename;
++ (void)position:(SCNNode *)node x:(float)x y:(float)y z:(float)z;
+
+@end
+
+extern ObjectManager *objectManager;
