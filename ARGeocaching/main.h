@@ -13,7 +13,10 @@
 
 #import "MaterialObject.h"
 #import "GeometryObject.h"
+#import "BoxObject.h"
+#import "TubeObject.h"
 #import "NodeObject.h"
+#import "LightObject.h"
 #import "ObjectManager.h"
 
 #import "AppDelegate.h"

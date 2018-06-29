@@ -9,7 +9,9 @@
 @interface ObjectManager : NSObject
 
 @property (nonatomic, retain) NSArray<MaterialObject *> *materials;
-@property (nonatomic, retain) NSArray<GeometryObject *> *geometries;
+@property (nonatomic, retain) NSArray<BoxObject *> *boxes;
+@property (nonatomic, retain) NSArray<TubeObject *> *tubes;
+@property (nonatomic, retain) NSArray<LightObject *> *lights;
 @property (nonatomic, retain) NSArray<NodeObject *> *nodes;
 
 - (void)loadFile:(NSString *)filename;

@@ -40,17 +40,6 @@
  * y: up or down. Positive is up.
  * z: forward or backwards away from you. Positive is forward.
  */
-- (void)position:(SCNNode *)node x:(float)x y:(float)y z:(float)z
-{
-#define ORIGINX 0
-#define ORIGINZ 0
-#define ORIGINY 0
-
-//    NSAssert([[node.geometry class] isKindOfClass:[SCNBox class]] == YES, @"Invalid class");
-
-    SCNBox *g = (SCNBox *)node.geometry;
-    node.position = SCNVector3Make((x + ORIGINX + node.scale.x * g.width / 2), (y + ORIGINY + node.scale.y * g.height / 2), -(z + ORIGINZ + node.scale.z * g.length / 2));
-}
 
 - (void)loadFloor
 {
@@ -60,137 +49,9 @@
     [objectManager.nodes enumerateObjectsUsingBlock:^(NodeObject * _Nonnull node, NSUInteger idx, BOOL * _Nonnull stop) {
         [scene.rootNode addChildNode:node.node];
     }];
-
-    SCNBox *boxGeometry = [SCNBox
-                           boxWithWidth:0.1
-                           height:0.1
-                           length:0.1
-                           chamferRadius:0.0];
-
-    // The node that wraps the geometry so we can add it to the scene
-    SCNNode *boxNode = [SCNNode nodeWithGeometry:boxGeometry];
-    boxNode.position = SCNVector3Make(0, 0, -0.5);
-//    [scene.rootNode addChildNode: boxNode];
-
-    SCNNode *n = [SCNNode nodeWithGeometry:[SCNBox boxWithWidth:0.5 height:0.5 length:0.5 chamferRadius:0]];
-    [self position:n x:0 y:0 z:3.5];
-    [scene.rootNode addChildNode:n];
-
-    self.sceneView.scene = scene;
-    return;
-
-//    for (int x = 0; x < 10; x++) {
-//        for (int z = 0; z < 10; z++) {
-//            if (z / 3 == 1 && x / 3 == 1)
-//                continue;
-//            SCNNode *boxNode = [[SCNFloorTile alloc] init];
-//            [self position:boxNode x:x y:0 z:z];
-//            [scene.rootNode addChildNode:boxNode];
-//        }
-//    }
-//
-//    SCNNode *boxNode;
-//
-//    // Outside of the cage.
-//    boxNode = [[SCNMetalWallRedRight alloc] init];
-//    boxNode.scale = SCNVector3Make(3, 3, 1);
-//    [self position:boxNode x:3 y:0.1 z:6];
-//    [scene.rootNode addChildNode:boxNode];
-//
-//    boxNode = [[SCNMetalWallRedArrowForward alloc] init];
-//    boxNode.scale = SCNVector3Make(1, 3, 3);
-//    [self position:boxNode x:3 y:0.1 z:3];
-//    [scene.rootNode addChildNode:boxNode];
-//
-//    boxNode = [[SCNMetalWallRedArrowForward alloc] init];
-//    boxNode.scale = SCNVector3Make(1, 3, 3);
-//    [self position:boxNode x:6 y:0.1 z:3];
-//    [scene.rootNode addChildNode:boxNode];
-//
-//    // Inside of the cage.
-//    boxNode = [[SCNMetalRasterRight alloc] init];
-//    boxNode.scale = SCNVector3Make(2.6, 2.6, 1);
-//    [self position:boxNode x:3.2 y:0.1 z:5.8];
-//    [scene.rootNode addChildNode:boxNode];
-//
-//    boxNode = [[SCNMetalRasterForward alloc] init];
-//    boxNode.scale = SCNVector3Make(1, 2.6, 2.6);
-//    [self position:boxNode x:3.2 y:0.1 z:3.2];
-//    [scene.rootNode addChildNode:boxNode];
-//
-//    boxNode = [[SCNMetalRasterForward alloc] init];
-//    boxNode.scale = SCNVector3Make(1, 2.6, 2.6);
-//    [self position:boxNode x:5.8 y:0.1 z:3.2];
-//    [scene.rootNode addChildNode:boxNode];
-//
-//    boxNode = [[SCNMetalWallSilverHorizontal alloc] init];
-//    boxNode.scale = SCNVector3Make(2.7, 1, 2.7);
-//    [self position:boxNode x:3.2 y:0 z:3.2];
-//    [scene.rootNode addChildNode:boxNode];
-//
-//    boxNode = [[SCNMetalWallSilverHorizontal alloc] init];
-//    boxNode.scale = SCNVector3Make(2.7, 1, 2.7);
-//    [self position:boxNode x:3.2 y:2.7 z:3.2];
-//    [scene.rootNode addChildNode:boxNode];
-
-    /* Lights around the cage */
-    SCNLight *oLight = [SCNLight light];
-    oLight.type = SCNLightTypeOmni;
-    oLight.color = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
-
-    SCNNode *oLightNode;
-    oLightNode = [SCNNode node];
-    oLightNode.light = oLight;
-    [self position:oLightNode x:1.5 y:1.1 z:1.5];
-    [scene.rootNode addChildNode:oLightNode];
-
-    oLightNode = [SCNNode node];
-    oLightNode.light = oLight;
-    [self position:oLightNode x:8.5 y:1.1 z:8.5];
-    [scene.rootNode addChildNode:oLightNode];
-
-    oLightNode = [SCNNode node];
-    oLightNode.light = oLight;
-    [self position:oLightNode x:8.5 y:1.1 z:1.5];
-    [scene.rootNode addChildNode:oLightNode];
-
-    oLightNode = [SCNNode node];
-    oLightNode.light = oLight;
-    [self position:oLightNode x:1.5 y:1.1 z:8.5];
-    [scene.rootNode addChildNode:oLightNode];
-
-    // Inside the cage
-    oLight = [SCNLight light];
-    oLight.type = SCNLightTypeOmni;
-    oLight.color = [UIColor colorWithRed:1.0 green:0.664 blue:0.0 alpha:1.0];
-
-    oLightNode = [SCNNode node];
-    oLightNode.light = oLight;
-    [self position:oLightNode x:4.5 y:1.1 z:4.5];
-    [scene.rootNode addChildNode:oLightNode];
-
-    /* Light */
-    SCNLight *sLight = [SCNLight light];
-//    dLight.type = SCNLightTypeDirectional;
-    sLight.type = SCNLightTypeSpot;
-    sLight.color = [UIColor colorWithRed:0.8 green:0.0 blue:0.0 alpha:1.0];
-    sLight.castsShadow = TRUE;
-    sLight.zNear = 50;
-    sLight.zFar = 120;
-    sLight.spotInnerAngle = 60;
-    sLight.spotOuterAngle = 90;
-
-    SCNNode *sLightNode = [SCNNode node];
-    sLightNode.light = sLight;
-    [self position:sLightNode x:4.5 y:1.5 z:4.5];
-//    [scene.rootNode addChildNode:sLightNode];
-
-    /* Little green box */
-//    SCNNode *n = [SCNNode nodeWithGeometry:[SCNBox boxWithWidth:0.5 height:0.5 length:0.5 chamferRadius:0]];
-//    n.geometry.materials = @[[Materials get:MATERIAL_SEMITRANSPARENT]];
-//    [self position:n x:0 y:1.5 z:0];
-//    [scene.rootNode addChildNode:n];
-
+    [objectManager.lights enumerateObjectsUsingBlock:^(LightObject * _Nonnull light, NSUInteger idx, BOOL * _Nonnull stop) {
+        [scene.rootNode addChildNode:light.node];
+    }];
 
     // Set the scene to the view
     self.sceneView.scene = scene;

@@ -23,14 +23,20 @@
     NSAssert1(json != nil, @"%@", error);
 
     NSArray<NSDictionary *> *materials = [json objectForKey:@"materials"];
-    NSArray<NSDictionary *> *geometries = [json objectForKey:@"geometries"];
+    NSArray<NSDictionary *> *boxes = [json objectForKey:@"boxes"];
+    NSArray<NSDictionary *> *tubes = [json objectForKey:@"tubes"];
     NSArray<NSDictionary *> *nodes = [json objectForKey:@"nodes"];
+    NSArray<NSDictionary *> *lights = [json objectForKey:@"lights"];
 
     NSMutableArray<MaterialObject *> *allMaterials = [NSMutableArray arrayWithCapacity:10];
-    NSMutableArray<GeometryObject *> *allGeometries = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray<BoxObject *> *allBoxes = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray<TubeObject *> *allTubes = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray<NodeObject *> *allNodes = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray<LightObject *> *allLights = [NSMutableArray arrayWithCapacity:10];
 
     [materials enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull material, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([[material objectForKey:@"disabled"] boolValue] == YES)
+            return;
         MaterialObject *mo = [[MaterialObject alloc] init];
         mo.name = [material objectForKey:@"name"];
         mo.sImage = [material objectForKey:@"image"];
@@ -40,17 +46,34 @@
     }];
     self.materials = allMaterials;
 
-    [geometries enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull geometry, NSUInteger idx, BOOL * _Nonnull stop) {
-        GeometryObject *go = [[GeometryObject alloc] init];
-        go.name = [geometry objectForKey:@"name"];
-        go.sMaterial = [geometry objectForKey:@"material"];
-        go.sMaterials = [geometry objectForKey:@"materials"];
-        [go finish];
-        [allGeometries addObject:go];
+    [boxes enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull box, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([[box objectForKey:@"disabled"] boolValue] == YES)
+            return;
+        BoxObject *bo = [[BoxObject alloc] init];
+        bo.name = [box objectForKey:@"name"];
+        bo.sMaterial = [box objectForKey:@"material"];
+        bo.sMaterials = [box objectForKey:@"materials"];
+        [bo finish];
+        [allBoxes addObject:bo];
     }];
-    self.geometries = allGeometries;
+    self.boxes = allBoxes;
+
+    [tubes enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull tube, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([[tube objectForKey:@"disabled"] boolValue] == YES)
+            return;
+        TubeObject *to = [[TubeObject alloc] init];
+        to.name = [tube objectForKey:@"name"];
+        to.sMaterial = [tube objectForKey:@"material"];
+        to.sMaterials = [tube objectForKey:@"materials"];
+        to.sRadius = [tube objectForKey:@"radius"];
+        [to finish];
+        [allTubes addObject:to];
+    }];
+    self.tubes = allTubes;
 
     [nodes enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull node, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([[node objectForKey:@"disabled"] boolValue] == YES)
+            return;
         if ([node objectForKey:@"position"] != nil) {
             NodeObject *no = [[NodeObject alloc] init];
             no.name = [node objectForKey:@"name"];
@@ -72,9 +95,35 @@
     }];
     self.nodes = allNodes;
 
+    [lights enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull light, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([[light objectForKey:@"disabled"] boolValue] == YES)
+            return;
+        if ([light objectForKey:@"position"] != nil) {
+            LightObject *lo = [[LightObject alloc] init];
+            lo.name = [light objectForKey:@"name"];
+            lo.sColour = [light objectForKey:@"colour"];
+            lo.sType = [light objectForKey:@"type"];
+            lo.sPosition = [light objectForKey:@"position"];
+            [lo finish];
+            [allLights addObject:lo];
+        }
+        [[light objectForKey:@"positions"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            LightObject *lo = [[LightObject alloc] init];
+            lo.name = [light objectForKey:@"name"];
+            lo.sColour = [light objectForKey:@"colour"];
+            lo.sType = [light objectForKey:@"type"];
+            lo.sPosition = [[light objectForKey:@"positions"] objectAtIndex:idx];
+            [lo finish];
+            [allLights addObject:lo];
+        }];
+    }];
+    self.lights = allLights;
+
     NSLog(@"Loaded %ld materials", [self.materials count]);
-    NSLog(@"Loaded %ld geometries", [self.geometries count]);
+    NSLog(@"Loaded %ld boxes", [self.boxes count]);
+    NSLog(@"Loaded %ld tubes", [self.tubes count]);
     NSLog(@"Loaded %ld nodes", [self.nodes count]);
+    NSLog(@"Loaded %ld lights", [self.lights count]);
 }
 
 /*
@@ -88,8 +137,18 @@
 #define ORIGINZ 1
 #define ORIGINY -2
 
-    SCNBox *g = (SCNBox *)node.geometry;
-    node.position = SCNVector3Make((x + ORIGINX + node.scale.x * g.width / 2), (y + ORIGINY + node.scale.y * g.height / 2), -(z + ORIGINZ + node.scale.z * g.length / 2));
+    if (node.geometry == nil) {
+        node.position = SCNVector3Make((x + ORIGINX), (y + ORIGINY), -(z + ORIGINZ));
+    } else if ([node.geometry isKindOfClass:[SCNBox class]] == YES) {
+//        [node.geometry isKindOfClass:[SCNLight class]] == YES) {
+        SCNBox *g = (SCNBox *)node.geometry;
+        node.position = SCNVector3Make((x + ORIGINX + node.scale.x * g.width / 2), (y + ORIGINY + node.scale.y * g.height / 2), -(z + ORIGINZ + node.scale.z * g.length / 2));
+    } else if ([node.geometry isKindOfClass:[SCNTube class]] == YES) {
+        SCNTube *g = (SCNTube *)node.geometry;
+        node.position = SCNVector3Make((x + ORIGINX), (y + ORIGINY + node.scale.y * g.height / 2), -(z + ORIGINZ));
+    } else {
+        NSAssert1(NO, @"Unknown class: %@", [node.geometry class]);
+    }
 }
 
 @end

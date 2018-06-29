@@ -17,7 +17,13 @@
 - (void)finish
 {
     __block GeometryObject *geometry = nil;
-    [objectManager.geometries enumerateObjectsUsingBlock:^(GeometryObject * _Nonnull go, NSUInteger idx, BOOL * _Nonnull stop) {
+    [objectManager.tubes enumerateObjectsUsingBlock:^(GeometryObject * _Nonnull go, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([go.name isEqualToString:self.sGeometry] == YES) {
+            *stop = YES;
+            geometry = go;
+        }
+    }];
+    [objectManager.boxes enumerateObjectsUsingBlock:^(GeometryObject * _Nonnull go, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([go.name isEqualToString:self.sGeometry] == YES) {
             *stop = YES;
             geometry = go;

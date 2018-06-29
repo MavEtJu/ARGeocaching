@@ -20,6 +20,4 @@
 @property (nonatomic, retain) NSString *sMaterial;
 @property (nonatomic, retain) NSArray<NSString *> *sMaterials;
 
-- (void)finish;
-
 @end
