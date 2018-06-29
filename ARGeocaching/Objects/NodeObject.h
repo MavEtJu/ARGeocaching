@@ -15,6 +15,7 @@
 @property (nonatomic, retain) SCNGeometry *geometry;
 @property (nonatomic, retain) NSValue *scale;
 @property (nonatomic, retain) NSValue *position;
+@property (nonatomic, retain) GroupObject *group;
 
 // Read from the configuration
 @property (nonatomic, retain) NSString *name;

@@ -16,6 +16,7 @@
 @property (nonatomic, retain) UIColor *colour;
 @property (nonatomic        ) SCNLightType type;
 @property (nonatomic, retain) NSValue *position;
+@property (nonatomic, retain) GroupObject *group;
 
 // Read from the configuration
 @property (nonatomic, retain) NSString *name;

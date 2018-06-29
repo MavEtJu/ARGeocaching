@@ -11,12 +11,17 @@
 #import <ARKit/ARKit.h>
 #import <SceneKit/SceneKit.h>
 
+@class NodeObject;
+@class LightObject;
+@class GroupObject;
+
 #import "MaterialObject.h"
 #import "GeometryObject.h"
 #import "BoxObject.h"
 #import "TubeObject.h"
 #import "NodeObject.h"
 #import "LightObject.h"
+#import "GroupObject.h"
 #import "ObjectManager.h"
 
 #import "AppDelegate.h"

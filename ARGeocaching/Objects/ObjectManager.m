@@ -33,6 +33,7 @@
     NSMutableArray<TubeObject *> *allTubes = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray<NodeObject *> *allNodes = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray<LightObject *> *allLights = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray<GroupObject *> *allGroups = [NSMutableArray arrayWithCapacity:10];
 
     [materials enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull material, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[material objectForKey:@"disabled"] boolValue] == YES)
@@ -82,6 +83,10 @@
             no.sPosition = [node objectForKey:@"position"];
             [no finish];
             [allNodes addObject:no];
+
+            NSString *group = [node objectForKey:@"group"];
+            if (group != nil)
+                [self addToGroup:group node:no groups:allGroups];
         }
         [[node objectForKey:@"positions"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NodeObject *no = [[NodeObject alloc] init];
@@ -91,6 +96,10 @@
             no.sPosition = [[node objectForKey:@"positions"] objectAtIndex:idx];
             [no finish];
             [allNodes addObject:no];
+
+            NSString *group = [node objectForKey:@"group"];
+            if (group != nil)
+                [self addToGroup:group node:no groups:allGroups];
         }];
     }];
     self.nodes = allNodes;
@@ -106,6 +115,10 @@
             lo.sPosition = [light objectForKey:@"position"];
             [lo finish];
             [allLights addObject:lo];
+
+            NSString *group = [light objectForKey:@"group"];
+            if (group != nil)
+                [self addToGroup:group node:lo groups:allGroups];
         }
         [[light objectForKey:@"positions"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             LightObject *lo = [[LightObject alloc] init];
@@ -115,15 +128,40 @@
             lo.sPosition = [[light objectForKey:@"positions"] objectAtIndex:idx];
             [lo finish];
             [allLights addObject:lo];
+
+            NSString *group = [light objectForKey:@"group"];
+            if (group != nil)
+                [self addToGroup:group node:lo groups:allGroups];
         }];
     }];
     self.lights = allLights;
+
+    self.groups = allGroups;
 
     NSLog(@"Loaded %ld materials", [self.materials count]);
     NSLog(@"Loaded %ld boxes", [self.boxes count]);
     NSLog(@"Loaded %ld tubes", [self.tubes count]);
     NSLog(@"Loaded %ld nodes", [self.nodes count]);
     NSLog(@"Loaded %ld lights", [self.lights count]);
+    NSLog(@"Loaded %ld groups", [self.groups count]);
+}
+
+- (void)addToGroup:(NSString *)name node:(id)node groups:(NSMutableArray<GroupObject *> *)groups
+{
+    __block GroupObject *group = nil;
+    [groups enumerateObjectsUsingBlock:^(GroupObject * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([g.name isEqualToString:name] == YES) {
+            *stop = YES;
+            group = g;
+        }
+    }];
+    if (group == nil) {
+        group = [[GroupObject alloc] init];
+        group.name = name;
+        [groups addObject:group];
+    }
+    [group.nodes addObject:node];
+    ((NodeObject *)node).group = group;
 }
 
 /*

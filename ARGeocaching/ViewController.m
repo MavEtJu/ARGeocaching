@@ -94,6 +94,12 @@
         SCNNode *block = result.node;
 //        if ([[block class] isEqual:[SCNFloorTile class]] == NO)
 //            return;
+
+
+        [[objectManager.groups firstObject].nodes enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
+            n.node.hidden = !n.node.hidden;
+        }];
+
         SCNNode *n = [SCNNode nodeWithGeometry:[SCNBox boxWithWidth:0.5 height:0.5 length:0.5 chamferRadius:0]];
         n.geometry.firstMaterial.diffuse.contents = [UIColor greenColor];
         n.position = result.worldCoordinates;

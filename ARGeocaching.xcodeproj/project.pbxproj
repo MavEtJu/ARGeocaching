@@ -22,6 +22,7 @@
 		E8A8D7D520E5FFD0000595E9 /* TubeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7D420E5FFD0000595E9 /* TubeObject.m */; };
 		E8A8D7D820E6010A000595E9 /* GeometryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7D720E6010A000595E9 /* GeometryObject.m */; };
 		E8A8D7DB20E609B5000595E9 /* LightObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7DA20E609B5000595E9 /* LightObject.m */; };
+		E8C389C120E61D8A00C13379 /* GroupObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C389C020E61D8A00C13379 /* GroupObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,8 @@
 		E8A8D7D720E6010A000595E9 /* GeometryObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeometryObject.m; sourceTree = "<group>"; };
 		E8A8D7D920E609B5000595E9 /* LightObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightObject.h; sourceTree = "<group>"; };
 		E8A8D7DA20E609B5000595E9 /* LightObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LightObject.m; sourceTree = "<group>"; };
+		E8C389BF20E61D8A00C13379 /* GroupObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupObject.h; sourceTree = "<group>"; };
+		E8C389C020E61D8A00C13379 /* GroupObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,8 @@
 			children = (
 				E8A8D7C620E5AF36000595E9 /* ObjectManager.h */,
 				E8A8D7C720E5AF36000595E9 /* ObjectManager.m */,
+				E8C389BF20E61D8A00C13379 /* GroupObject.h */,
+				E8C389C020E61D8A00C13379 /* GroupObject.m */,
 				E8A8D7C920E5AF48000595E9 /* MaterialObject.h */,
 				E8A8D7CA20E5AF49000595E9 /* MaterialObject.m */,
 				E8A8D7D620E6010A000595E9 /* GeometryObject.h */,
@@ -199,6 +204,7 @@
 				E8A8D7D120E5AF68000595E9 /* NodeObject.m in Sources */,
 				E8A8D7CB20E5AF49000595E9 /* MaterialObject.m in Sources */,
 				E8A8D7C820E5AF36000595E9 /* ObjectManager.m in Sources */,
+				E8C389C120E61D8A00C13379 /* GroupObject.m in Sources */,
 				E867AE6720DDDF3D004C0544 /* main.m in Sources */,
 				E8A8D7D520E5FFD0000595E9 /* TubeObject.m in Sources */,
 				E867AE5720DDDF39004C0544 /* AppDelegate.m in Sources */,
