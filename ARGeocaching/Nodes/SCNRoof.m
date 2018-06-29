@@ -15,13 +15,13 @@
 
 @implementation SCNRoof
 
-- (instancetype)init
-{
-    self = [super init];
-
-    self.geometry = [Geometries get:GEOMETRY_ROOFTILE];
-
-    return self;
-}
+//- (instancetype)init
+//{
+//    self = [super init];
+//
+//    self.geometry = [Geometries get:GEOMETRY_ROOFTILE];
+//
+//    return self;
+//}
 
 @end

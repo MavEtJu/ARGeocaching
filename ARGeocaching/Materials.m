@@ -47,6 +47,11 @@
     MATERIAL_TRANSPARENCY(MATERIAL_GLASS, @"Glass", 0.1)
     MATERIAL_TRANSPARENCY(MATERIAL_SEMITRANSPARENT, @"Roof - Transparent", 0.1)
     MATERIAL(MATERIAL_WALLPAPER, @"Wallpaper")
+    MATERIAL(MATERIAL_METALRED, @"Metal Red")
+    MATERIAL(MATERIAL_METALRED_ARROW, @"Metal Red Arrow")
+    MATERIAL(MATERIAL_METALSILVER, @"Metal Silver")
+    MATERIAL(MATERIAL_WHITE, @"White")
+    MATERIAL(MATERIAL_RASTER, @"Raster")
 
     NSAssert([materials count] == MATERIAL_MAX, @"Not enough materials");
 

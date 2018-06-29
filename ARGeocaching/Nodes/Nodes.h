@@ -11,5 +11,6 @@
 
 #import "SCNFloorTile.h"
 #import "SCNRoof.h"
+#import "SCNMetalWalls.h"
 
 #endif /* Nodes_h */

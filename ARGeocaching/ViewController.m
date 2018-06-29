@@ -35,178 +35,141 @@
     self.sceneView.showsStatistics = YES;
 }
 
+/*
+ * x: left or right from you. Positive is right.
+ * y: up or down. Positive is up.
+ * z: forward or backwards away from you. Positive is forward.
+ */
+- (void)position:(SCNNode *)node x:(float)x y:(float)y z:(float)z
+{
+#define ORIGINX -5
+#define ORIGINZ 1
+#define ORIGINZ -4.5
+#define ORIGINY -2       // height
+
+//    NSAssert([[node.geometry class] isKindOfClass:[SCNBox class]] == YES, @"Invalid class");
+
+    SCNBox *g = (SCNBox *)node.geometry;
+    node.position = SCNVector3Make((x + ORIGINX + node.scale.x * g.width / 2), (y + ORIGINY + node.scale.y * g.height / 2), -(z + ORIGINZ + node.scale.z * g.length / 2));
+}
+
 - (void)loadFloor
 {
-    NSArray *field = @[
-        //          111111111122222222223333333333444444444455555555556
-        //0123456789012345678901234567890123456789012345678901234567890
-        @"                                                             ", // 35
-        @" +---WWWW----WWWW----WWWW------------WWWW----WWWW----WWWW--+ ", // 34
-        @" |p...........................x.x.........................p| ", // 33
-        @" |............................x.x..........................| ", // 32
-        @" |............................x.x..........................| ", // 31
-        @" w............................x.x..........................w ", // 30
-        @" w............................xxx..........................w ", // 29
-        @" w.........................................................w ", // 28
-        @" w.........................................................w ", // 27
-        @" |................xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...........| ", // 26
-        @" |................x............................x...........| ", // 25
-        @" |................xxxxxxxxxxxxxxxxxxxxxxx......x...........| ", // 24
-        @" |......................................x......x...........| ", // 23
-        @" w......................................x......x...........w ", // 22
-        @" w......................................x......x...........w ", // 21
-        @" w......................................x......x...........w ", // 20
-        @" w......................................x......x...........w ", // 19
-        @" |......................................x......x...........| ", // 18
-        @" +xxxxxxxxxxxxxxxxxxxxxxxxxxx...........x......x...........| ", // 17
-        @" |xxxxxxxxxxxxxxxxxxxxxxxxxxx...........x......x...........| ", // 16
-        @" |......................................x......x...........| ", // 15
-        @" w......................................x......x...........w ", // 14
-        @" w......................................x......x...........w ", // 13
-        @" w......................................x......x...........w ", // 12
-        @" w......................................x......x...........w ", // 11
-        @" |.........xxx..........................x......x...........| ", // 10
-        @" |.........x.x..........................x......x...........| ", //  9
-        @" |.........x.x..........................xxxxxxxx...........| ", //  8
-        @" |.........x.x.............................................| ", //  7
-        @" w.........x.x.............................................w ", //  6
-        @" w.........x.x.............................................w ", //  5
-        @" w.........x.x.............................................w ", //  4
-        @" w.........x.x.............................................w ", //  3
-        @" |.........x.x............................................p| ", //  2
-        @" +-p.....p-+-+-------WWWW----WWWW----WWWW----WWWW----WWWW--+ ", //  1
-        @"                                                             ", //  0
-        ];
-
     // Container to hold all of the 3D geometry
     SCNScene *scene = [SCNScene new];
 
-    self.boxLength = 0.5;          // half a meter
-    self.boxWidth = self.boxLength;
-    self.boxHeight = 3.0;          // 2 meters
-    self.floorHeight = 0.1;        // 10 centimeters
-
-    // The 3D cube geometry we want to draw
-//    SCNBox *floorTileObject = [SCNBox boxWithWidth:boxWidth height:floorHeight length:boxLength chamferRadius:0.0];
-//    floorTileObject.materials = @[];
-//    SCNBox *roofTileObject = [SCNBox boxWithWidth:boxWidth height:floorHeight length:boxLength chamferRadius:0.0];
-//    roofTileObject.materials = @[[Materials get:MATERIAL_SEMITRANSPARENT]];
-
-    SCNBox *brickWallObject = [SCNBox boxWithWidth:self.boxWidth height:self.boxHeight length:self.boxLength chamferRadius:0];
-    brickWallObject.materials = @[[Materials get:MATERIAL_BRICKS_WHITE12]];
-
-    SCNBox *wallWindowObject = [SCNBox boxWithWidth:self.boxWidth height:self.boxHeight / 3 length:self.boxLength chamferRadius:0];
-    wallWindowObject.materials = @[[Materials get:MATERIAL_BRICKS_WHITE4]];
-
-    SCNBox *wallWindowGlassBTObject = [SCNBox boxWithWidth:self.boxWidth / 6 height:self.boxHeight / 3 length:self.boxLength chamferRadius:0];
-    wallWindowGlassBTObject.materials = @[[Materials get:MATERIAL_GLASS]];
-    SCNBox *wallWindowGlassLRObject = [SCNBox boxWithWidth:self.boxWidth height:self.boxHeight / 3 length:self.boxLength / 6 chamferRadius:0];
-    wallWindowGlassLRObject.materials = @[[Materials get:MATERIAL_GLASS]];
-
-    SCNBox *insideWallObject = [SCNBox boxWithWidth:self.boxWidth height:self.boxHeight length:self.boxLength chamferRadius:0];
-    insideWallObject.materials = @[[Materials get:MATERIAL_WALLPAPER]];
-
-    SCNTube *pillarObject = [SCNTube tubeWithInnerRadius:self.boxLength / 2 outerRadius:3 * self.boxLength / 4 height:self.boxHeight];
-    pillarObject.materials = @[[Materials get:MATERIAL_PILLAR_STONE]];
-
-    for (float y = 0; y < [field count]; y++) {
-        for (float x = 0; x < [[field objectAtIndex:y] length]; x++) {
-            NSString *line = [field objectAtIndex:[field count] - y - 1];
-            unichar c = [line characterAtIndex:x];
-
-#define ORIGINX 6
-#define ORIGINY -6
-//#define ORIGINY 30
-
-#define _Y       (- y * self.boxLength + ORIGINY * self.boxLength)
-#define _X       (x * self.boxWidth - ORIGINX * self.boxWidth)
-#define _Z(z)    ((z))
-
-#define FLOOR { \
-    SCNNode *boxNode = [[SCNFloorTile alloc] init]; \
-    boxNode.position = SCNVector3Make(_X, _Z(-self.boxHeight / 2), _Y); \
-    [scene.rootNode addChildNode:boxNode]; \
-}
-
-#define ROOF { \
-    SCNNode *boxNode = [[SCNRoof alloc] init]; \
-    boxNode.position = SCNVector3Make(_X, _Z(self.boxHeight / 2), _Y); \
-    [scene.rootNode addChildNode:boxNode]; \
-}
-
-            switch (c) {
-                case ' ':
-                    FLOOR
-                    break;
-
-                case '.':
-                    FLOOR ROOF
-                    break;
-
-                case '+':
-                case '-':
-                case '|': {
-                    FLOOR ROOF
-                    SCNNode *node = [SCNNode nodeWithGeometry:brickWallObject];
-                    node.position = SCNVector3Make(_X, _Z(0), _Y);
-                    [scene.rootNode addChildNode:node];
-                    break;
-                }
-
-                case 'w': {
-                    ROOF FLOOR
-                    SCNNode *node = [SCNNode nodeWithGeometry:wallWindowObject];
-                    node.position = SCNVector3Make(_X, _Z(wallWindowObject.height), _Y);
-                    [scene.rootNode addChildNode:node];
-
-                    node = [SCNNode nodeWithGeometry:wallWindowGlassBTObject];
-                    node.position = SCNVector3Make(_X, _Z(0), _Y);
-                    [scene.rootNode addChildNode:node];
-
-                    node = [SCNNode nodeWithGeometry:wallWindowObject];
-                    node.position = SCNVector3Make(_X, _Z(-wallWindowObject.height), _Y);
-                    [scene.rootNode addChildNode:node];
-                    break;
-                }
-
-                case 'W': {
-                    ROOF FLOOR
-                    SCNNode *node = [SCNNode nodeWithGeometry:wallWindowObject];
-                    node.position = SCNVector3Make(_X, _Z(wallWindowObject.height), _Y);
-                    [scene.rootNode addChildNode:node];
-
-                    node = [SCNNode nodeWithGeometry:wallWindowGlassLRObject];
-                    node.position = SCNVector3Make(_X, _Z(0), _Y);
-                    [scene.rootNode addChildNode:node];
-
-                    node = [SCNNode nodeWithGeometry:wallWindowObject];
-                    node.position = SCNVector3Make(_X, _Z(-wallWindowObject.height), _Y);
-                    [scene.rootNode addChildNode:node];
-                    break;
-                }
-
-                case 'p': {
-                    FLOOR ROOF
-                    SCNNode *node = [SCNNode nodeWithGeometry:pillarObject];
-                    node.position = SCNVector3Make(_X, _Z(0), _Y);
-                    [scene.rootNode addChildNode:node];
-                    break;
-                }
-
-                case 'x': {
-                    FLOOR ROOF
-                    SCNNode *node = [SCNNode nodeWithGeometry:insideWallObject];
-                    node.position = SCNVector3Make(_X, _Z(0), _Y);
-                    [scene.rootNode addChildNode:node];
-                    break;
-                }
-
-                default:
-                    NSLog(@"Not found: '%c'", c);
-                    break;
-            }
+    for (int x = 0; x < 10; x++) {
+        for (int z = 0; z < 10; z++) {
+            if (z / 3 == 1 && x / 3 == 1)
+                continue;
+            SCNNode *boxNode = [[SCNFloorTile alloc] init];
+            [self position:boxNode x:x y:0 z:z];
+            [scene.rootNode addChildNode:boxNode];
         }
     }
+
+    SCNNode *boxNode;
+
+    // Outside of the cage.
+    boxNode = [[SCNMetalWallRedRight alloc] init];
+    boxNode.scale = SCNVector3Make(3, 3, 1);
+    [self position:boxNode x:3 y:0.1 z:6];
+    [scene.rootNode addChildNode:boxNode];
+
+    boxNode = [[SCNMetalWallRedArrowForward alloc] init];
+    boxNode.scale = SCNVector3Make(1, 3, 3);
+    [self position:boxNode x:3 y:0.1 z:3];
+    [scene.rootNode addChildNode:boxNode];
+
+    boxNode = [[SCNMetalWallRedArrowForward alloc] init];
+    boxNode.scale = SCNVector3Make(1, 3, 3);
+    [self position:boxNode x:6 y:0.1 z:3];
+    [scene.rootNode addChildNode:boxNode];
+
+    // Inside of the cage.
+    boxNode = [[SCNMetalRasterRight alloc] init];
+    boxNode.scale = SCNVector3Make(2.6, 2.6, 1);
+    [self position:boxNode x:3.2 y:0.1 z:5.8];
+    [scene.rootNode addChildNode:boxNode];
+
+    boxNode = [[SCNMetalRasterForward alloc] init];
+    boxNode.scale = SCNVector3Make(1, 2.6, 2.6);
+    [self position:boxNode x:3.2 y:0.1 z:3.2];
+    [scene.rootNode addChildNode:boxNode];
+
+    boxNode = [[SCNMetalRasterForward alloc] init];
+    boxNode.scale = SCNVector3Make(1, 2.6, 2.6);
+    [self position:boxNode x:5.8 y:0.1 z:3.2];
+    [scene.rootNode addChildNode:boxNode];
+
+    boxNode = [[SCNMetalWallSilverHorizontal alloc] init];
+    boxNode.scale = SCNVector3Make(2.7, 1, 2.7);
+    [self position:boxNode x:3.2 y:0 z:3.2];
+    [scene.rootNode addChildNode:boxNode];
+
+    boxNode = [[SCNMetalWallSilverHorizontal alloc] init];
+    boxNode.scale = SCNVector3Make(2.7, 1, 2.7);
+    [self position:boxNode x:3.2 y:2.7 z:3.2];
+    [scene.rootNode addChildNode:boxNode];
+
+    /* Lights around the cage */
+    SCNLight *oLight = [SCNLight light];
+    oLight.type = SCNLightTypeOmni;
+    oLight.color = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+
+    SCNNode *oLightNode;
+    oLightNode = [SCNNode node];
+    oLightNode.light = oLight;
+    [self position:oLightNode x:1.5 y:1.1 z:1.5];
+    [scene.rootNode addChildNode:oLightNode];
+
+    oLightNode = [SCNNode node];
+    oLightNode.light = oLight;
+    [self position:oLightNode x:8.5 y:1.1 z:8.5];
+    [scene.rootNode addChildNode:oLightNode];
+
+    oLightNode = [SCNNode node];
+    oLightNode.light = oLight;
+    [self position:oLightNode x:8.5 y:1.1 z:1.5];
+    [scene.rootNode addChildNode:oLightNode];
+
+    oLightNode = [SCNNode node];
+    oLightNode.light = oLight;
+    [self position:oLightNode x:1.5 y:1.1 z:8.5];
+    [scene.rootNode addChildNode:oLightNode];
+
+    // Inside the cage
+    oLight = [SCNLight light];
+    oLight.type = SCNLightTypeOmni;
+    oLight.color = [UIColor colorWithRed:1.0 green:0.664 blue:0.0 alpha:1.0];
+
+    oLightNode = [SCNNode node];
+    oLightNode.light = oLight;
+    [self position:oLightNode x:4.5 y:1.1 z:4.5];
+    [scene.rootNode addChildNode:oLightNode];
+
+    /* Light */
+    SCNLight *sLight = [SCNLight light];
+//    dLight.type = SCNLightTypeDirectional;
+    sLight.type = SCNLightTypeSpot;
+    sLight.color = [UIColor colorWithRed:0.8 green:0.0 blue:0.0 alpha:1.0];
+    sLight.castsShadow = TRUE;
+    sLight.zNear = 50;
+    sLight.zFar = 120;
+    sLight.spotInnerAngle = 60;
+    sLight.spotOuterAngle = 90;
+
+    SCNNode *sLightNode = [SCNNode node];
+    sLightNode.light = sLight;
+    [self position:sLightNode x:4.5 y:1.5 z:4.5];
+//    [scene.rootNode addChildNode:sLightNode];
+
+    /* Little green box */
+    SCNNode *n = [SCNNode nodeWithGeometry:[SCNBox boxWithWidth:0.5 height:0.5 length:0.5 chamferRadius:0]];
+    n.geometry.materials = @[[Materials get:MATERIAL_SEMITRANSPARENT]];
+    [self position:n x:0 y:1.5 z:0];
+    [scene.rootNode addChildNode:n];
+
 
     // Set the scene to the view
     self.sceneView.scene = scene;
@@ -217,7 +180,7 @@
     [super viewWillAppear:animated];
     
     ARWorldTrackingConfiguration *configuration = [ARWorldTrackingConfiguration new];
-    configuration.lightEstimationEnabled = YES;
+    configuration.lightEstimationEnabled = NO;
 
     [self.sceneView.session runWithConfiguration:configuration];
 }
@@ -247,7 +210,7 @@
     if (res.count != 0) {
         SCNHitTestResult *result = res.lastObject;
         SCNNode *block = result.node;
-        if ([[block class] isEqual:[SCNRoof class]] == NO)
+        if ([[block class] isEqual:[SCNFloorTile class]] == NO)
             return;
         SCNNode *n = [SCNNode nodeWithGeometry:[SCNBox boxWithWidth:0.5 height:0.5 length:0.5 chamferRadius:0]];
         n.geometry.firstMaterial.diffuse.contents = [UIColor greenColor];

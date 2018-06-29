@@ -18,6 +18,8 @@
 		E8A8D7B820E0BC2D000595E9 /* SCNRoof.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7B720E0BC2D000595E9 /* SCNRoof.m */; };
 		E8A8D7BB20E0CA46000595E9 /* Materials.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7BA20E0CA46000595E9 /* Materials.m */; };
 		E8A8D7BF20E0FDB0000595E9 /* Geometries.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7BE20E0FDB0000595E9 /* Geometries.m */; };
+		E8A8D7C220E4778A000595E9 /* SCNMetalWalls.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7C120E4778A000595E9 /* SCNMetalWalls.m */; };
+		E8A8D7C420E5A65A000595E9 /* Mining.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8A8D7C320E5A659000595E9 /* Mining.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,9 @@
 		E8A8D7BC20E0CE03000595E9 /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		E8A8D7BD20E0FDB0000595E9 /* Geometries.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geometries.h; sourceTree = "<group>"; };
 		E8A8D7BE20E0FDB0000595E9 /* Geometries.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Geometries.m; sourceTree = "<group>"; };
+		E8A8D7C020E4778A000595E9 /* SCNMetalWalls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCNMetalWalls.h; sourceTree = "<group>"; };
+		E8A8D7C120E4778A000595E9 /* SCNMetalWalls.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCNMetalWalls.m; sourceTree = "<group>"; };
+		E8A8D7C320E5A659000595E9 /* Mining.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Mining.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +84,7 @@
 				E867AE5820DDDF39004C0544 /* art.scnassets */,
 				E867AE5A20DDDF39004C0544 /* ViewController.h */,
 				E867AE5B20DDDF39004C0544 /* ViewController.m */,
+				E8A8D7C320E5A659000595E9 /* Mining.txt */,
 				E8A8D7B920E0CA46000595E9 /* Materials.h */,
 				E8A8D7BA20E0CA46000595E9 /* Materials.m */,
 				E8A8D7BD20E0FDB0000595E9 /* Geometries.h */,
@@ -102,6 +108,8 @@
 				E8A8D7B320E0B973000595E9 /* SCNFloorTile.m */,
 				E8A8D7B620E0BC2D000595E9 /* SCNRoof.h */,
 				E8A8D7B720E0BC2D000595E9 /* SCNRoof.m */,
+				E8A8D7C020E4778A000595E9 /* SCNMetalWalls.h */,
+				E8A8D7C120E4778A000595E9 /* SCNMetalWalls.m */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -166,6 +174,7 @@
 				E867AE5920DDDF39004C0544 /* art.scnassets in Resources */,
 				E867AE6420DDDF3D004C0544 /* LaunchScreen.storyboard in Resources */,
 				E867AE6120DDDF3D004C0544 /* Assets.xcassets in Resources */,
+				E8A8D7C420E5A65A000595E9 /* Mining.txt in Resources */,
 				E867AE5F20DDDF3A004C0544 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -181,6 +190,7 @@
 				E8A8D7BF20E0FDB0000595E9 /* Geometries.m in Sources */,
 				E867AE5C20DDDF3A004C0544 /* ViewController.m in Sources */,
 				E8A8D7BB20E0CA46000595E9 /* Materials.m in Sources */,
+				E8A8D7C220E4778A000595E9 /* SCNMetalWalls.m in Sources */,
 				E867AE6720DDDF3D004C0544 /* main.m in Sources */,
 				E867AE5720DDDF39004C0544 /* AppDelegate.m in Sources */,
 				E8A8D7B420E0B973000595E9 /* SCNFloorTile.m in Sources */,
