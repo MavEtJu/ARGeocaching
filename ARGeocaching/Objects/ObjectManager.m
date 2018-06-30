@@ -81,6 +81,7 @@
             no.sGeometry = [node objectForKey:@"geometry"];
             no.sScale = [node objectForKey:@"size"];
             no.sPosition = [node objectForKey:@"position"];
+            no.sID = [node objectForKey:@"id"];
             [no finish];
             [allNodes addObject:no];
 
@@ -94,6 +95,7 @@
             no.sGeometry = [node objectForKey:@"geometry"];
             no.sScale = [[node objectForKey:@"sizes"] objectAtIndex:idx];
             no.sPosition = [[node objectForKey:@"positions"] objectAtIndex:idx];
+            no.sID = [[node objectForKey:@"ids"] objectAtIndex:idx];
             [no finish];
             [allNodes addObject:no];
 
@@ -172,7 +174,7 @@
 + (void)position:(SCNNode *)node x:(float)x y:(float)y z:(float)z
 {
 #define ORIGINX -5
-#define ORIGINZ 1
+#define ORIGINZ 0
 #define ORIGINY -2
 
     if (node.geometry == nil) {
@@ -187,6 +189,30 @@
     } else {
         NSAssert1(NO, @"Unknown class: %@", [node.geometry class]);
     }
+}
+
+- (NSArray<NodeObject *> *)nodesByGroupName:(NSString *)name
+{
+    __block GroupObject *group = nil;
+    [self.groups enumerateObjectsUsingBlock:^(GroupObject * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([g.name isEqualToString:name] == YES) {
+            *stop = YES;
+            group = g;
+        }
+    }];
+    return group.nodes;
+}
+
+- (NodeObject *)nodeByID:(NSString *)name
+{
+    __block NodeObject *node = nil;
+    [self.nodes enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([n.sID isEqualToString:name] == YES) {
+            *stop = YES;
+            node = n;
+        }
+    }];
+    return node;
 }
 
 @end

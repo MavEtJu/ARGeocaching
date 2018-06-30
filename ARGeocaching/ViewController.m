@@ -8,6 +8,16 @@
 
 #import "main.h"
 
+typedef NS_ENUM(NSInteger, CageStage) {
+    CAGE_START = 0,
+    CAGE_GOING_TO_BEGIN,
+    CAGE_BEGIN,
+    CAGE_GOING_UP,
+    CAGE_TOP,
+    CAGE_GOING_DOWN,
+    CAGE_DOWN
+};
+
 @interface ViewController () <ARSCNViewDelegate>
 
 @property (nonatomic, strong) IBOutlet ARSCNView *sceneView;
@@ -18,6 +28,8 @@
 @property (nonatomic)         float boxHeight;
 @property (nonatomic)         float floorHeight;
 
+@property (nonatomic)         CageStage cageStage;
+
 @end
 
 @implementation ViewController
@@ -27,6 +39,7 @@
     [super viewDidLoad];
 
     self.queue = [[NSOperationQueue alloc] init];
+    self.cageStage = CAGE_START;
 
     [self loadFloor];
 
@@ -55,6 +68,8 @@
 
     // Set the scene to the view
     self.sceneView.scene = scene;
+
+    [self changeCageLevel];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -96,23 +111,74 @@
 //            return;
 
 
-        [[objectManager.groups firstObject].nodes enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
-            n.node.hidden = !n.node.hidden;
-        }];
-
         SCNNode *n = [SCNNode nodeWithGeometry:[SCNBox boxWithWidth:0.5 height:0.5 length:0.5 chamferRadius:0]];
         n.geometry.firstMaterial.diffuse.contents = [UIColor greenColor];
         n.position = result.worldCoordinates;
         [self.sceneView.scene.rootNode addChildNode:n];
-        [self.queue addOperationWithBlock:^{
-            while (1) {
-                [NSThread sleepForTimeInterval:0.1];
-                NSLog(@"%f", n.position.y);
-                n.position = SCNVector3Make(n.position.x, n.position.y - 0.1, n.position.z);
-                if (n.position.y < -self.boxHeight)
-                    break;
-            }
-        }];
+        [self changeCageLevel];
+    }
+}
+
+- (void)changeCageLevel
+{
+    switch (self.cageStage) {
+        case CAGE_START: {
+            self.cageStage = CAGE_GOING_TO_BEGIN;
+            [self.queue addOperationWithBlock:^{
+                NodeObject *roof = [objectManager nodeByID:@"cage roof"];
+                NSAssert(roof != nil, @"No cage roof");
+                while (roof.node.position.y > -2) {
+                    [NSThread sleepForTimeInterval:0.1];
+                    [[objectManager nodesByGroupName:@"cage"] enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
+                        n.node.position = SCNVector3Make(n.node.position.x, n.node.position.y - 0.1, n.node.position.z);
+                    }];
+                }
+                self.cageStage = CAGE_BEGIN;
+            }];
+            break;
+        }
+
+        case CAGE_BEGIN: {
+            self.cageStage = CAGE_GOING_UP;
+            [self.queue addOperationWithBlock:^{
+                NodeObject *floor = [objectManager nodeByID:@"cage floor"];
+                NSAssert(floor != nil, @"No cage floor");
+                while (floor.node.position.y < -2) {
+                    [NSThread sleepForTimeInterval:0.1];
+                    [[objectManager nodesByGroupName:@"cage"] enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
+                        n.node.position = SCNVector3Make(n.node.position.x, n.node.position.y + 0.1, n.node.position.z);
+                    }];
+                }
+                self.cageStage = CAGE_TOP;
+            }];
+            break;
+        }
+
+        case CAGE_TOP: {
+            self.cageStage = CAGE_GOING_DOWN;
+            [self.queue addOperationWithBlock:^{
+                NodeObject *bottom = [objectManager nodeByID:@"cage bottom"];
+                NSAssert(bottom != nil, @"No cage bottom");
+                while (bottom.node.position.y < -2) {
+                    [NSThread sleepForTimeInterval:0.1];
+                    [objectManager.nodes enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
+                        if ([n.group.name isEqualToString:@"cage"] == YES)
+                            return;
+                        n.node.position = SCNVector3Make(n.node.position.x, n.node.position.y + 0.1, n.node.position.z);
+                    }];
+                }
+                self.cageStage = CAGE_DOWN;
+            }];
+            break;
+        }
+
+        case CAGE_DOWN:
+            break;
+
+        case CAGE_GOING_TO_BEGIN:
+        case CAGE_GOING_DOWN:
+        case CAGE_GOING_UP:
+            break;
     }
 }
 

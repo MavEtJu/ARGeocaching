@@ -16,12 +16,14 @@
 @property (nonatomic, retain) NSValue *scale;
 @property (nonatomic, retain) NSValue *position;
 @property (nonatomic, retain) GroupObject *group;
+@property (nonatomic, retain) NSString *ID;
 
 // Read from the configuration
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *sGeometry;
 @property (nonatomic, retain) NSArray<NSNumber *> *sPosition;
 @property (nonatomic, retain) NSArray<NSNumber *> *sScale;
+@property (nonatomic, retain) NSString *sID;
 
 - (void)finish;
 
