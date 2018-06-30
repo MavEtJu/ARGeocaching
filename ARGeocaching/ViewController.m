@@ -127,6 +127,14 @@ typedef NS_ENUM(NSInteger, CageStage) {
             [self.queue addOperationWithBlock:^{
                 NodeObject *roof = [objectManager nodeByID:@"cage roof"];
                 NSAssert(roof != nil, @"No cage roof");
+
+                NodeObject *down = [objectManager nodeByID:@"Arrow down box"];
+                NSAssert(down != nil, @"No down button");
+                down.node.hidden = NO;
+                NodeObject *up = [objectManager nodeByID:@"Arrow up box"];
+                NSAssert(up != nil, @"No up button");
+                up.node.hidden = YES;
+
                 while (roof.node.position.y > -2) {
                     [NSThread sleepForTimeInterval:0.1];
                     [[objectManager nodesByGroupName:@"cage"] enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -134,6 +142,8 @@ typedef NS_ENUM(NSInteger, CageStage) {
                     }];
                 }
                 self.cageStage = CAGE_BEGIN;
+                up.node.hidden = NO;
+                down.node.hidden = YES;
             }];
             break;
         }
@@ -143,6 +153,14 @@ typedef NS_ENUM(NSInteger, CageStage) {
             [self.queue addOperationWithBlock:^{
                 NodeObject *floor = [objectManager nodeByID:@"cage floor"];
                 NSAssert(floor != nil, @"No cage floor");
+
+                NodeObject *down = [objectManager nodeByID:@"Arrow down box"];
+                NSAssert(down != nil, @"No down button");
+                down.node.hidden = YES;
+                NodeObject *up = [objectManager nodeByID:@"Arrow up box"];
+                NSAssert(up != nil, @"No up button");
+                up.node.hidden = NO;
+
                 while (floor.node.position.y < -2) {
                     [NSThread sleepForTimeInterval:0.1];
                     [[objectManager nodesByGroupName:@"cage"] enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -150,6 +168,8 @@ typedef NS_ENUM(NSInteger, CageStage) {
                     }];
                 }
                 self.cageStage = CAGE_TOP;
+                down.node.hidden = NO;
+                up.node.hidden = YES;
             }];
             break;
         }
@@ -159,7 +179,7 @@ typedef NS_ENUM(NSInteger, CageStage) {
             [self.queue addOperationWithBlock:^{
                 NodeObject *bottom = [objectManager nodeByID:@"cage bottom"];
                 NSAssert(bottom != nil, @"No cage bottom");
-                while (bottom.node.position.y < -2) {
+                while (bottom.node.position.y < -2.1) {
                     [NSThread sleepForTimeInterval:0.1];
                     [objectManager.nodes enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
                         if ([n.group.name isEqualToString:@"cage"] == YES)

@@ -43,12 +43,27 @@
     "name": "Rust with arrow",
     "image": "Rust with arrow"
 }, {
+    "name": "Grass",
+    "image": "Grass"
+}, {
     "name": "Rust",
     "image": "Rust"
+}, {
+    "name": "Metal box cover",
+    "image": "Metal box cover"
+}, {
+    "name": "Metal box cover - arrow down",
+    "image": "Metal box cover - arrow down"
+}, {
+    "name": "Metal box cover - arrow up",
+    "image": "Metal box cover - arrow up"
 }],
 
 "boxes": [
 {
+    "name": "Grass patch",
+    "material": "Grass"
+}, {
     "name": "Floor tile",
     "material": "Granite"
 }, {
@@ -63,6 +78,12 @@
 }, {
     "name": "Metal wall",
     "material": "Metal"
+}, {
+    "name": "Arrow up box",
+    "materials": ["Metal box cover - arrow up", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover"]
+}, {
+    "name": "Arrow down box",
+    "materials": ["Metal box cover - arrow down", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover"]
 }],
 
 "tubes": [
@@ -75,7 +96,7 @@
 "nodes": [
 {
     "name": "Floor around cage (top)",
-    "geometry": "Floor tile",
+    "geometry": "Grass patch",
     "positions": [[-6, -0.1, -6], [-6, -0.1, 0], [-6, -0.1, 6], [0, -0.1, -6], [0, -0.1, 6], [6, -0.1, -6], [6, -0.1, 0], [6, -0.1, 6]],
     "sizes":     [[6, 0.1, 6],    [6, 0.1, 6],   [6, 0.1, 6],   [6, 0.1, 6],   [6, 0.1, 6],  [6, 0.1, 6],   [6, 0.1, 6],  [6, 0.1, 6]]
 }, {
@@ -89,7 +110,21 @@
     "id": "cage bottom",
     "position": [0, -34.1, 0],
     "size":     [6, 0.1, 6]
-    },
+}, {
+    "name": "Push button box - down",
+    "geometry": "Arrow down box",
+    "id": "Arrow down box",
+    "visible": "yes",
+    "position": [6, 1, -1],
+    "size":     [0.3, 0.5, 0.3]
+}, {
+    "name": "Push button box - up",
+    "geometry": "Arrow up box",
+    "id": "Arrow up box",
+    "visible": "no",
+    "position": [6, 1, -1],
+    "size":     [0.3, 0.5, 0.3]
+},
 
 {
     "name": "Shaft #1",

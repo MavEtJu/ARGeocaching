@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSValue *position;
 @property (nonatomic, retain) GroupObject *group;
 @property (nonatomic, retain) NSString *ID;
+@property (nonatomic        ) BOOL visisble;
 
 // Read from the configuration
 @property (nonatomic, retain) NSString *name;
@@ -24,6 +25,7 @@
 @property (nonatomic, retain) NSArray<NSNumber *> *sPosition;
 @property (nonatomic, retain) NSArray<NSNumber *> *sScale;
 @property (nonatomic, retain) NSString *sID;
+@property (nonatomic, retain) NSString *sVisible;
 
 - (void)finish;
 

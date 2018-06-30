@@ -174,7 +174,7 @@
 + (void)position:(SCNNode *)node x:(float)x y:(float)y z:(float)z
 {
 #define ORIGINX -5
-#define ORIGINZ 0
+#define ORIGINZ 3
 #define ORIGINY -2
 
     if (node.geometry == nil) {
