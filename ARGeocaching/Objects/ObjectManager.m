@@ -191,6 +191,23 @@
     }
 }
 
++ (float)positionY:(SCNNode *)node y:(float)y
+{
+
+    if (node.geometry == nil) {
+        return (y + ORIGINY);
+    } else if ([node.geometry isKindOfClass:[SCNBox class]] == YES) {
+        SCNBox *g = (SCNBox *)node.geometry;
+        return (y + ORIGINY + node.scale.y * g.height / 2);
+    } else if ([node.geometry isKindOfClass:[SCNTube class]] == YES) {
+        SCNTube *g = (SCNTube *)node.geometry;
+        return (y + ORIGINY + node.scale.y * g.height / 2);
+    } else {
+        NSAssert1(NO, @"Unknown class: %@", [node.geometry class]);
+    }
+    return -1;
+}
+
 - (NSArray<NodeObject *> *)nodesByGroupName:(NSString *)name
 {
     __block GroupObject *group = nil;

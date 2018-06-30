@@ -111,39 +111,53 @@ typedef NS_ENUM(NSInteger, CageStage) {
 //            return;
 
 
-        SCNNode *n = [SCNNode nodeWithGeometry:[SCNBox boxWithWidth:0.5 height:0.5 length:0.5 chamferRadius:0]];
-        n.geometry.firstMaterial.diffuse.contents = [UIColor greenColor];
-        n.position = result.worldCoordinates;
-        [self.sceneView.scene.rootNode addChildNode:n];
+//        SCNNode *n = [SCNNode nodeWithGeometry:[SCNBox boxWithWidth:0.5 height:0.5 length:0.5 chamferRadius:0]];
+//        n.geometry.firstMaterial.diffuse.contents = [UIColor greenColor];
+//        n.position = result.worldCoordinates;
+//        [self.sceneView.scene.rootNode addChildNode:n];
         [self changeCageLevel];
     }
 }
 
 - (void)changeCageLevel
 {
+    NodeObject *roof = [objectManager nodeByID:@"cage roof"];
+    NSAssert(roof != nil, @"No cage roof");
+    NodeObject *floor = [objectManager nodeByID:@"cage floor"];
+    NSAssert(floor != nil, @"No cage floor");
+
+    NodeObject *bottom = [objectManager nodeByID:@"cage bottom"];
+    NSAssert(bottom != nil, @"No cage bottom");
+
+    NodeObject *outsideDown = [objectManager nodeByID:@"Arrow down box"];
+    NSAssert(outsideDown != nil, @"No outside down button");
+    NodeObject *outsideUp = [objectManager nodeByID:@"Arrow up box"];
+    NSAssert(outsideUp != nil, @"No outside up button");
+
+    NodeObject *insideDown = [objectManager nodeByID:@"cage button down"];
+    NSAssert(insideDown != nil, @"No cage down button");
+    NodeObject *insideUp = [objectManager nodeByID:@"cage button up"];
+    NSAssert(insideUp != nil, @"No cage up button");
+
     switch (self.cageStage) {
         case CAGE_START: {
+            outsideUp.node.hidden = YES;
+            outsideDown.node.hidden = NO;
+            insideUp.node.hidden = YES;
+            insideDown.node.hidden = NO;
             self.cageStage = CAGE_GOING_TO_BEGIN;
             [self.queue addOperationWithBlock:^{
-                NodeObject *roof = [objectManager nodeByID:@"cage roof"];
-                NSAssert(roof != nil, @"No cage roof");
-
-                NodeObject *down = [objectManager nodeByID:@"Arrow down box"];
-                NSAssert(down != nil, @"No down button");
-                down.node.hidden = NO;
-                NodeObject *up = [objectManager nodeByID:@"Arrow up box"];
-                NSAssert(up != nil, @"No up button");
-                up.node.hidden = YES;
-
-                while (roof.node.position.y > -2) {
+                while (roof.node.position.y > [ObjectManager positionY:roof.node y:0]) {
                     [NSThread sleepForTimeInterval:0.1];
                     [[objectManager nodesByGroupName:@"cage"] enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
                         n.node.position = SCNVector3Make(n.node.position.x, n.node.position.y - 0.1, n.node.position.z);
                     }];
                 }
                 self.cageStage = CAGE_BEGIN;
-                up.node.hidden = NO;
-                down.node.hidden = YES;
+                outsideUp.node.hidden = NO;
+                outsideDown.node.hidden = YES;
+                insideUp.node.hidden = NO;
+                insideDown.node.hidden = YES;
             }];
             break;
         }
@@ -151,25 +165,17 @@ typedef NS_ENUM(NSInteger, CageStage) {
         case CAGE_BEGIN: {
             self.cageStage = CAGE_GOING_UP;
             [self.queue addOperationWithBlock:^{
-                NodeObject *floor = [objectManager nodeByID:@"cage floor"];
-                NSAssert(floor != nil, @"No cage floor");
-
-                NodeObject *down = [objectManager nodeByID:@"Arrow down box"];
-                NSAssert(down != nil, @"No down button");
-                down.node.hidden = YES;
-                NodeObject *up = [objectManager nodeByID:@"Arrow up box"];
-                NSAssert(up != nil, @"No up button");
-                up.node.hidden = NO;
-
-                while (floor.node.position.y < -2) {
+                while (floor.node.position.y < [ObjectManager positionY:floor.node y:0]) {
                     [NSThread sleepForTimeInterval:0.1];
                     [[objectManager nodesByGroupName:@"cage"] enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
                         n.node.position = SCNVector3Make(n.node.position.x, n.node.position.y + 0.1, n.node.position.z);
                     }];
                 }
                 self.cageStage = CAGE_TOP;
-                down.node.hidden = NO;
-                up.node.hidden = YES;
+                outsideDown.node.hidden = NO;
+                outsideUp.node.hidden = YES;
+                insideDown.node.hidden = NO;
+                insideUp.node.hidden = YES;
             }];
             break;
         }
@@ -177,15 +183,14 @@ typedef NS_ENUM(NSInteger, CageStage) {
         case CAGE_TOP: {
             self.cageStage = CAGE_GOING_DOWN;
             [self.queue addOperationWithBlock:^{
-                NodeObject *bottom = [objectManager nodeByID:@"cage bottom"];
-                NSAssert(bottom != nil, @"No cage bottom");
-                while (bottom.node.position.y < -2.1) {
+                while (bottom.node.position.y < [ObjectManager positionY:bottom.node y:0.0]) {
                     [NSThread sleepForTimeInterval:0.1];
                     [objectManager.nodes enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
                         if ([n.group.name isEqualToString:@"cage"] == YES)
                             return;
                         n.node.position = SCNVector3Make(n.node.position.x, n.node.position.y + 0.1, n.node.position.z);
                     }];
+                    NSLog(@"bottom.node.postion.y: %f %f", bottom.node.position.y, [ObjectManager positionY:bottom.node y:0.1]);
                 }
                 self.cageStage = CAGE_DOWN;
             }];
