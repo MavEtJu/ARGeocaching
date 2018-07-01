@@ -1,0 +1,63 @@
+{
+    "materials": [
+    {
+        "name": "Coal",
+        "image": "coal",
+        "insidetoo": "yes"
+    }
+    ],
+
+    "boxes": [
+    {
+        "name": "Coal wall",
+        "material": "Coal"
+    }
+    ],
+
+    "tubes": [
+    ],
+
+    "nodes": [ {
+        "name": "Floor around cage (bottom)",
+        "geometry": "Coal wall",
+        "positions": [[-6, -16.1, -6], [-6, -16.1, 0], [-6, -16.1, 6], [0, -16.1, -6], [0, -16.1, 6], [6, -16.1, -6], [6, -16.1, 0], [6, -16.1, 6]],
+        "sizes":     [[6, 0.1, 6],     [6, 0.1, 6],    [6, 0.1, 6],    [6, 0.1, 6],    [6, 0.1, 6],   [6, 0.1, 6],    [6, 0.1, 6],   [6, 0.1, 6]]
+    }, {
+        "name": "Floor under cage (bottom)",
+        "geometry": "Coal wall",
+        "id": "cage bottom",
+        "position": [0, -16.1, 0],
+        "size":     [6, 0.1, 6]
+    },
+
+    {
+        "name": "Coal walls (left)",
+        "geometry": "Coal wall",
+        "positions": [[-12, -16, -12], [-12, -16, -6], [-12, -16, 0], [-12, -16, 6], [-12, -16, 12]],
+        "sizes":     [[6, 6, 6],       [6, 6, 6],      [6, 6, 6],     [6, 6, 6],     [6, 6, 6]]
+    }, {
+        "name": "Coal walls (right)",
+        "geometry": "Coal wall",
+        "positions": [[12, -16, -12], [12, -16, -6], [12, -16, 0], [12, -16, 6], [12, -16, 12]],
+        "sizes":     [[6, 6, 6],      [6, 6, 6],     [6, 6, 6],    [6, 6, 6],    [6, 6, 6]]
+    }, {
+        "name": "Coal walls (south)",
+        "geometry": "Coal wall",
+        "positions": [[-6, -16, -12], [0, -16, -12], [6, -16, -12]],
+        "sizes":     [[6, 6, 6],    [6, 6, 6],   [6, 6, 6]]
+    }, {
+        "name": "Coal walls (north)",
+        "geometry": "Coal wall",
+        "positions": [[-6, -16, 12], [0, -16, 12], [6, -16, 12]],
+        "sizes":     [[6, 6, 6],     [6, 6, 6],    [6, 6, 6]]
+    }, {
+        "name": "Coal walls (roof)",
+        "geometry": "Coal wall",
+        "positions": [[-6, -10, -6], [-6, -10, 0], [-6, -10, 6], [0, -10, -6], [0, -10, 6], [6, -10, -6], [6, -10, 0], [6, -10, 6]],
+        "sizes":     [[6, 0.1, 6],   [6, 0.1, 6],  [6, 0.1, 6],  [6, 0.1, 6],  [6, 0.1, 6], [6, 0.1, 6],  [6, 0.1, 6], [6, 0.1, 6]]
+    }
+    ],
+
+    "lights": [
+    ]
+}

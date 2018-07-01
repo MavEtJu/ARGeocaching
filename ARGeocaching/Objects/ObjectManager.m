@@ -14,8 +14,23 @@
 
 @implementation ObjectManager
 
+- (instancetype)init
+{
+    self = [super init];
+
+    self.materials = [NSArray array];
+    self.boxes = [NSArray array];
+    self.tubes = [NSArray array];
+    self.nodes = [NSArray array];
+    self.lights = [NSArray array];
+    self.groups = [NSArray array];
+
+    return self;
+}
+
 - (void)loadFile:(NSString *)filename
 {
+    NSLog(@"Loading from %@", filename);
     NSData *data = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], filename]];
     NSError *error = nil;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
@@ -42,10 +57,11 @@
         mo.name = [material objectForKey:@"name"];
         mo.sImage = [material objectForKey:@"image"];
         mo.sTransparency = [material objectForKey:@"transparency"];
+        mo.sInsideToo = [material objectForKey:@"insidetoo"];
         [mo finish];
         [allMaterials addObject:mo];
     }];
-    self.materials = allMaterials;
+    self.materials = [self.materials arrayByAddingObjectsFromArray:allMaterials];
 
     [boxes enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull box, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[box objectForKey:@"disabled"] boolValue] == YES)
@@ -57,7 +73,7 @@
         [bo finish];
         [allBoxes addObject:bo];
     }];
-    self.boxes = allBoxes;
+    self.boxes = [self.boxes arrayByAddingObjectsFromArray:allBoxes];
 
     [tubes enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull tube, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[tube objectForKey:@"disabled"] boolValue] == YES)
@@ -70,7 +86,7 @@
         [to finish];
         [allTubes addObject:to];
     }];
-    self.tubes = allTubes;
+    self.tubes = [self.tubes arrayByAddingObjectsFromArray:allTubes];
 
     [nodes enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull node, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[node objectForKey:@"disabled"] boolValue] == YES)
@@ -104,7 +120,7 @@
                 [self addToGroup:group node:no groups:allGroups];
         }];
     }];
-    self.nodes = allNodes;
+    self.nodes = [self.nodes arrayByAddingObjectsFromArray:allNodes];
 
     [lights enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull light, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[light objectForKey:@"disabled"] boolValue] == YES)
@@ -136,9 +152,9 @@
                 [self addToGroup:group node:lo groups:allGroups];
         }];
     }];
-    self.lights = allLights;
+    self.lights = [self.lights arrayByAddingObjectsFromArray:allLights];
 
-    self.groups = allGroups;
+    self.groups = [self.groups arrayByAddingObjectsFromArray:allGroups];
 
     NSLog(@"Loaded %ld materials", [self.materials count]);
     NSLog(@"Loaded %ld boxes", [self.boxes count]);
@@ -174,8 +190,8 @@
 + (void)position:(SCNNode *)node x:(float)x y:(float)y z:(float)z
 {
 #define ORIGINX -5
-#define ORIGINZ 3
-#define ORIGINY -2
+#define ORIGINZ 2
+#define ORIGINY -2   // 15
 
     if (node.geometry == nil) {
         node.position = SCNVector3Make((x + ORIGINX), (y + ORIGINY), -(z + ORIGINZ));

@@ -17,7 +17,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     objectManager = [[ObjectManager alloc] init];
-    [objectManager loadFile:@"Mining.json"];
+    [objectManager loadFile:@"Mineshaft.json"];
+    [objectManager loadFile:@"Underground.json"];
     // Override point for customization after application launch.
     return YES;
 }

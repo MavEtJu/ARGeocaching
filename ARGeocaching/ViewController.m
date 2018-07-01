@@ -105,8 +105,36 @@ typedef NS_ENUM(NSInteger, CageStage) {
 //    self.vectors = [[NSMutableArray alloc] init];
     NSArray <SCNHitTestResult *> *res = [self.sceneView hitTest:[[touches anyObject] locationInView:self.sceneView] options:@{SCNHitTestFirstFoundOnlyKey:@YES}];
     if (res.count != 0) {
+
         SCNHitTestResult *result = res.lastObject;
         SCNNode *block = result.node;
+
+        switch (self.cageStage) {
+            case CAGE_BEGIN: {
+                NodeObject *n = [objectManager nodeByID:@"outside button up"];
+                NSAssert(n != nil, @"No outside button up");
+                if (n.node != block)
+                    break;
+                [self changeCageLevel];
+                break;
+            }
+
+            case CAGE_TOP: {
+                NodeObject *n = [objectManager nodeByID:@"cage button down"];
+                NSAssert(n != nil, @"No cage button down");
+                if (n.node != block)
+                    break;
+                [self changeCageLevel];
+                break;
+            }
+
+            case CAGE_GOING_UP:
+            case CAGE_GOING_DOWN:
+            case CAGE_GOING_TO_BEGIN:
+            case CAGE_DOWN:
+            case CAGE_START:
+                break;
+        }
 //        if ([[block class] isEqual:[SCNFloorTile class]] == NO)
 //            return;
 
@@ -115,7 +143,6 @@ typedef NS_ENUM(NSInteger, CageStage) {
 //        n.geometry.firstMaterial.diffuse.contents = [UIColor greenColor];
 //        n.position = result.worldCoordinates;
 //        [self.sceneView.scene.rootNode addChildNode:n];
-        [self changeCageLevel];
     }
 }
 
@@ -129,9 +156,9 @@ typedef NS_ENUM(NSInteger, CageStage) {
     NodeObject *bottom = [objectManager nodeByID:@"cage bottom"];
     NSAssert(bottom != nil, @"No cage bottom");
 
-    NodeObject *outsideDown = [objectManager nodeByID:@"Arrow down box"];
+    NodeObject *outsideDown = [objectManager nodeByID:@"outside button down"];
     NSAssert(outsideDown != nil, @"No outside down button");
-    NodeObject *outsideUp = [objectManager nodeByID:@"Arrow up box"];
+    NodeObject *outsideUp = [objectManager nodeByID:@"outside button up"];
     NSAssert(outsideUp != nil, @"No outside up button");
 
     NodeObject *insideDown = [objectManager nodeByID:@"cage button down"];

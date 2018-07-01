@@ -14,7 +14,7 @@
 		E867AE6120DDDF3D004C0544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E867AE6020DDDF3D004C0544 /* Assets.xcassets */; };
 		E867AE6420DDDF3D004C0544 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E867AE6220DDDF3D004C0544 /* LaunchScreen.storyboard */; };
 		E867AE6720DDDF3D004C0544 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E867AE6620DDDF3D004C0544 /* main.m */; };
-		E8A8D7C420E5A65A000595E9 /* Mining.json in Resources */ = {isa = PBXBuildFile; fileRef = E8A8D7C320E5A659000595E9 /* Mining.json */; };
+		E8A8D7C420E5A65A000595E9 /* Mineshaft.json in Resources */ = {isa = PBXBuildFile; fileRef = E8A8D7C320E5A659000595E9 /* Mineshaft.json */; };
 		E8A8D7C820E5AF36000595E9 /* ObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7C720E5AF36000595E9 /* ObjectManager.m */; };
 		E8A8D7CB20E5AF49000595E9 /* MaterialObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7CA20E5AF49000595E9 /* MaterialObject.m */; };
 		E8A8D7CE20E5AF59000595E9 /* BoxObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7CD20E5AF59000595E9 /* BoxObject.m */; };
@@ -23,6 +23,7 @@
 		E8A8D7D820E6010A000595E9 /* GeometryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7D720E6010A000595E9 /* GeometryObject.m */; };
 		E8A8D7DB20E609B5000595E9 /* LightObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7DA20E609B5000595E9 /* LightObject.m */; };
 		E8C389C120E61D8A00C13379 /* GroupObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C389C020E61D8A00C13379 /* GroupObject.m */; };
+		E8C389C320E7A81B00C13379 /* Underground.json in Resources */ = {isa = PBXBuildFile; fileRef = E8C389C220E7A81B00C13379 /* Underground.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +39,7 @@
 		E867AE6520DDDF3D004C0544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E867AE6620DDDF3D004C0544 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E8A8D7BC20E0CE03000595E9 /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
-		E8A8D7C320E5A659000595E9 /* Mining.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Mining.json; sourceTree = "<group>"; };
+		E8A8D7C320E5A659000595E9 /* Mineshaft.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Mineshaft.json; sourceTree = "<group>"; };
 		E8A8D7C620E5AF36000595E9 /* ObjectManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectManager.h; sourceTree = "<group>"; };
 		E8A8D7C720E5AF36000595E9 /* ObjectManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjectManager.m; sourceTree = "<group>"; };
 		E8A8D7C920E5AF48000595E9 /* MaterialObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaterialObject.h; sourceTree = "<group>"; };
@@ -55,6 +56,7 @@
 		E8A8D7DA20E609B5000595E9 /* LightObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LightObject.m; sourceTree = "<group>"; };
 		E8C389BF20E61D8A00C13379 /* GroupObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupObject.h; sourceTree = "<group>"; };
 		E8C389C020E61D8A00C13379 /* GroupObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupObject.m; sourceTree = "<group>"; };
+		E8C389C220E7A81B00C13379 /* Underground.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Underground.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +94,8 @@
 				E867AE5820DDDF39004C0544 /* art.scnassets */,
 				E867AE5A20DDDF39004C0544 /* ViewController.h */,
 				E867AE5B20DDDF39004C0544 /* ViewController.m */,
-				E8A8D7C320E5A659000595E9 /* Mining.json */,
+				E8A8D7C320E5A659000595E9 /* Mineshaft.json */,
+				E8C389C220E7A81B00C13379 /* Underground.json */,
 				E8A8D7C520E5AEFB000595E9 /* Objects */,
 				E867AE5D20DDDF3A004C0544 /* Main.storyboard */,
 				E867AE6020DDDF3D004C0544 /* Assets.xcassets */,
@@ -187,8 +190,9 @@
 				E867AE5920DDDF39004C0544 /* art.scnassets in Resources */,
 				E867AE6420DDDF3D004C0544 /* LaunchScreen.storyboard in Resources */,
 				E867AE6120DDDF3D004C0544 /* Assets.xcassets in Resources */,
-				E8A8D7C420E5A65A000595E9 /* Mining.json in Resources */,
+				E8A8D7C420E5A65A000595E9 /* Mineshaft.json in Resources */,
 				E867AE5F20DDDF3A004C0544 /* Main.storyboard in Resources */,
+				E8C389C320E7A81B00C13379 /* Underground.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

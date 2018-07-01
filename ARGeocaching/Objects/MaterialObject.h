@@ -13,11 +13,13 @@
 
 // References to the resolved objects
 @property (nonatomic, retain) UIImage *image;
+@property (nonatomic        ) BOOL insideToo;
 
 // Read from the configuration
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *sImage;
 @property (nonatomic, retain) NSString *sTransparency;
+@property (nonatomic, retain) NSString *sInsideToo;
 
 - (void)finish;
 
