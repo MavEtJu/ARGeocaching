@@ -1,238 +1,243 @@
 {
 
-"materials": [
-{
-    "name": "White bricks - 12",
-    "image": "Bricks - White - 12"
-}, {
-    "name": "White bricks - 4",
-    "image": "Bricks - White - 4"
-}, {
-    "name": "Stone pillar",
-    "image": "Pillar - Stone"
-}, {
-    "name": "Granite",
-    "image": "Granite"
-}, {
-    "name": "Semi transparent",
-    "image": "Roof - Transparent",
-    "transparency": 0.1
-}, {
-    "name": "Glass",
-    "image": "Glass",
-    "transparency": 0.1
-}, {
-    "name": "Wallpaper",
-    "image": "Wallpaper"
-}, {
-    "name": "Red metal",
-    "image": "Metal Red"
-}, {
-    "name": "Red metal with arrow",
-    "image": "Metal Red Arrow"
-}, {
-    "name": "Metal",
-    "image": "Metal Silver"
-}, {
-    "name": "White",
-    "image": "White"
-}, {
-    "name": "Fence",
-    "image": "Fence"
-}, {
-    "name": "Raster",
-    "image": "Raster"
-}, {
-    "name": "Rust with arrow",
-    "image": "Rust with arrow"
-}, {
-    "name": "Grass",
-    "image": "Grass"
-}, {
-    "name": "Metal floor",
-    "image": "Metal floor"
-}, {
-    "name": "Rust",
-    "image": "Rust"
-}, {
-    "name": "Metal box cover",
-    "image": "Metal box cover"
-}, {
-    "name": "Metal box cover - arrow down",
-    "image": "Metal box cover - arrow down"
-}, {
-    "name": "Metal box cover - arrow up",
-    "image": "Metal box cover - arrow up"
-}],
+    "materials":
+    [
+     {
+     "name": "White bricks - 12",
+     "image": "Bricks - White - 12"
+     }, {
+     "name": "White bricks - 4",
+     "image": "Bricks - White - 4"
+     }, {
+     "name": "Stone pillar",
+     "image": "Pillar - Stone"
+     }, {
+     "name": "Granite",
+     "image": "Granite"
+     }, {
+     "name": "Semi transparent",
+     "image": "Roof - Transparent",
+     "transparency": 0.1
+     }, {
+     "name": "Glass",
+     "image": "Glass",
+     "transparency": 0.1
+     }, {
+     "name": "Wallpaper",
+     "image": "Wallpaper"
+     }, {
+     "name": "Red metal",
+     "image": "Metal Red"
+     }, {
+     "name": "Red metal with arrow",
+     "image": "Metal Red Arrow"
+     }, {
+     "name": "Metal",
+     "image": "Metal Silver"
+     }, {
+     "name": "White",
+     "image": "White"
+     }, {
+     "name": "Fence",
+     "image": "Fence"
+     }, {
+     "name": "Raster",
+     "image": "Raster"
+     }, {
+     "name": "Rust with arrow",
+     "image": "Rust with arrow"
+     }, {
+     "name": "Grass",
+     "image": "Grass"
+     }, {
+     "name": "Metal floor",
+     "image": "Metal floor"
+     }, {
+     "name": "Rust",
+     "image": "Rust"
+     }, {
+     "name": "Metal box cover",
+     "image": "Metal box cover"
+     }, {
+     "name": "Metal box cover - arrow down",
+     "image": "Metal box cover - arrow down"
+     }, {
+     "name": "Metal box cover - arrow up",
+     "image": "Metal box cover - arrow up"
+     }],
 
-"boxes": [
-{
-    "name": "Grass patch",
-    "material": "Grass"
-}, {
-    "name": "Floor tile",
-    "material": "Granite"
-}, {
-    "name": "Rusty wall",
-    "material": "Rust"
-}, {
-    "name": "Red metal wall with down arrow",
-    "materials": ["Rust", "Rust with arrow", "Rust", "Rust with arrow", "Rust", "Rust"]
-}, {
-    "name": "Metal fence",
-    "material": "Fence"
-}, {
-    "name": "Metal raster",
-    "material": "Raster"
-}, {
-    "name": "Metal floor",
-    "material": "Metal floor"
-}, {
-    "name": "Metal wall",
-    "material": "Metal"
-}, {
-    "name": "Arrow up box - backward",
-    "materials": ["Metal box cover - arrow up", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover"]
-}, {
-    "name": "Arrow down box - backward",
-    "materials": ["Metal box cover - arrow down", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover"]
-}, {
-    "name": "Arrow up box - right",
-    "materials": ["Metal box cover", "Metal box cover - arrow up", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover"]
-}, {
-    "name": "Arrow down box - right",
-    "materials": ["Metal box cover", "Metal box cover - arrow down", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover"]
-}, {
-    "name": "No arrow box",
-    "materials": ["Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover"]
-}],
+    "boxes":
+    [
+     {
+     "name": "Grass patch",
+     "material": "Grass"
+     }, {
+     "name": "Floor tile",
+     "material": "Granite"
+     }, {
+     "name": "Rusty wall",
+     "material": "Rust"
+     }, {
+     "name": "Red metal wall with down arrow",
+     "materials": ["Rust", "Rust with arrow", "Rust", "Rust with arrow", "Rust", "Rust"]
+     }, {
+     "name": "Metal fence",
+     "material": "Fence"
+     }, {
+     "name": "Metal raster",
+     "material": "Raster"
+     }, {
+     "name": "Metal floor",
+     "material": "Metal floor"
+     }, {
+     "name": "Metal wall",
+     "material": "Metal"
+     }, {
+     "name": "Arrow up box - backward",
+     "materials": ["Metal box cover - arrow up", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover"]
+     }, {
+     "name": "Arrow down box - backward",
+     "materials": ["Metal box cover - arrow down", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover"]
+     }, {
+     "name": "Arrow up box - right",
+     "materials": ["Metal box cover", "Metal box cover - arrow up", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover"]
+     }, {
+     "name": "Arrow down box - right",
+     "materials": ["Metal box cover", "Metal box cover - arrow down", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover"]
+     }, {
+     "name": "No arrow box",
+     "materials": ["Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover"]
+     }],
 
-"tubes": [
-{
-    "name": "Metal pole",
-    "material": "Metal",
-    "radius": [0, 1]
-}],
+    "tubes":
+    [
+     {
+     "name": "Metal pole",
+     "material": "Metal",
+     "radius": [0, 1]
+     }],
 
-"nodes": [
-{
-    "name": "Floor around cage (top)",
-    "geometry": "Grass patch",
-    "positions": [[-6, -0.1, -6], [-6, -0.1, 0], [-6, -0.1, 6], [0, -0.1, -6], [0, -0.1, 6], [6, -0.1, -6], [6, -0.1, 0], [6, -0.1, 6]],
-    "sizes":     [[6, 0.1, 6],    [6, 0.1, 6],   [6, 0.1, 6],   [6, 0.1, 6],   [6, 0.1, 6],  [6, 0.1, 6],   [6, 0.1, 6],  [6, 0.1, 6]]
-}, {
-    "name": "Outside push button box - down",
-    "geometry": "Arrow down box - backward",
-    "id": "outside button down",
-    "visible": "yes",
-    "group": "push button",
-    "position": [6, 1, -1],
-    "size":     [0.3, 0.5, 0.3]
-}, {
-    "name": "Outside push button box - up",
-    "geometry": "Arrow up box - backward",
-    "id": "outside button up",
-    "visible": "no",
-    "group": "push button",
-    "position": [6, 1, -1],
-    "size":     [0.3, 0.5, 0.3]
-}, {
-    "name": "Outside push button box - none",
-    "geometry": "No arrow box",
-    "id": "outside button none",
-    "visible": "no",
-    "group": "push button",
-    "position": [6, 1, -1],
-    "size":     [0.3, 0.5, 0.3]
-}, {
-    "name": "Outside push button box - metal pole",
-    "geometry": "Metal pole",
-    "group": "push button",
-    "position": [6.1, 0, -0.9],
-    "size":     [0.1, 1, 0.1]
-},
+    "nodes":
+    [
+     {
+     "name": "Floor around cage (top)",
+     "geometry": "Grass patch",
+     "positions": [[-6, -0.1, -6], [-6, -0.1, 0], [-6, -0.1, 6], [0, -0.1, -6], [0, -0.1, 6], [6, -0.1, -6], [6, -0.1, 0], [6, -0.1, 6]],
+     "sizes":     [[6, 0.1, 6],    [6, 0.1, 6],   [6, 0.1, 6],   [6, 0.1, 6],   [6, 0.1, 6],  [6, 0.1, 6],   [6, 0.1, 6],  [6, 0.1, 6]]
+     }, {
+     "name": "Outside push button box - down",
+     "geometry": "Arrow down box - backward",
+     "id": "outside button down",
+     "visible": "yes",
+     "group": "push button",
+     "position": [6, 1, -1],
+     "size":     [0.3, 0.5, 0.3]
+     }, {
+     "name": "Outside push button box - up",
+     "geometry": "Arrow up box - backward",
+     "id": "outside button up",
+     "visible": "no",
+     "group": "push button",
+     "position": [6, 1, -1],
+     "size":     [0.3, 0.5, 0.3]
+     }, {
+     "name": "Outside push button box - none",
+     "geometry": "No arrow box",
+     "id": "outside button none",
+     "visible": "no",
+     "group": "push button",
+     "position": [6, 1, -1],
+     "size":     [0.3, 0.5, 0.3]
+     }, {
+     "name": "Outside push button box - metal pole",
+     "geometry": "Metal pole",
+     "group": "push button",
+     "position": [6.1, 0, -0.9],
+     "size":     [0.1, 1, 0.1]
+     },
 
-{
-    "name": "Shaft #4",
-    "geometry": "Rusty wall",
-    "positions": [[0, -12, 0], [0, -12, 0], [0, -12, 5.9], [5.9, -12, 0]],
-    "sizes":     [[6, 6, 0.1], [0.1, 6, 6], [6, 6, 0.1],   [0.1, 6, 6]]
-}, {
-    "name": "Shaft #5",
-    "geometry": "Rusty wall",
-    "positions": [[0, -6, 0], [0, -6, 0], [0, -6, 5.9], [5.9, -6, 0]],
-    "sizes":     [[6, 6, 0.1], [0.1, 6, 6], [6, 6, 0.1],   [0.1, 6, 6]]
-}, {
-    "name": "Outside of the cage #1",
-    "geometry": "Rusty wall",
-    "position": [0, 0, 5.9],
-    "size":     [6, 4, 0.1]
-}, {
-    "name": "Outside of the cage #2",
-    "geometry": "Red metal wall with down arrow",
-    "positions": [[0, 0, 0],   [5.9, 0, 0]],
-    "sizes":     [[0.1, 4, 6], [0.1, 4, 6]]
-},
+     {
+     "name": "Shaft #4",
+     "geometry": "Rusty wall",
+     "positions": [[0, -12, 0], [0, -12, 0], [0, -12, 5.9], [5.9, -12, 0]],
+     "sizes":     [[6, 6, 0.1], [0.1, 6, 6], [6, 6, 0.1],   [0.1, 6, 6]]
+     }, {
+     "name": "Shaft #5",
+     "geometry": "Rusty wall",
+     "positions": [[0, -6, 0], [0, -6, 0], [0, -6, 5.9], [5.9, -6, 0]],
+     "sizes":     [[6, 6, 0.1], [0.1, 6, 6], [6, 6, 0.1],   [0.1, 6, 6]]
+     }, {
+     "name": "Outside of the cage #1",
+     "geometry": "Rusty wall",
+     "position": [0, 0, 5.9],
+     "size":     [6, 4, 0.1]
+     }, {
+     "name": "Outside of the cage #2",
+     "geometry": "Red metal wall with down arrow",
+     "positions": [[0, 0, 0],   [5.9, 0, 0]],
+     "sizes":     [[0.1, 4, 6], [0.1, 4, 6]]
+     },
 
-{
-    "name": "The cage - sides",
-    "geometry": "Metal fence",
-    "group": "cage",
-    "positions": [[0.2, 0.2, 0.3], [0.2, 0.2, 5.6], [5.6, 0.2, 0.3]],
-    "sizes":     [[0.1, 3.6, 5.4], [5.4, 3.6, 0.1], [0.1, 3.6, 5.4]]
-}, {
-    "name": "The cage #2 - floor/roof",
-    "geometry": "Metal floor",
-    "group": "cage",
-    "ids": ["cage floor", "cage roof"],
-    "positions": [[0.1, 0.1, 0.1], [0.1, 3.8, 0.1]],
-    "sizes":     [[5.6, 0.1, 5.6], [5.6, 0.1, 5.6]]
-}, {
-    "name": "Cage strut",
-    "geometry": "Metal pole",
-    "group": "cage",
-    "positions": [[0.4, 0.0, 0.4], [5.5, 0.0, 0.4], [0.4, 0.0, 5.5], [5.5, 0.0, 5.5]],
-    "sizes":     [[0.1, 4.0, 0.1], [0.1, 4.0, 0.1], [0.1, 4.0, 0.1], [0.1, 4.0, 0.1]]
-}, {
-    "name": "Cage button up",
-    "geometry": "Arrow up box - right",
-    "group": "cage",
-    "visible": "no",
-    "id": "cage button up",
-    "position": [0.3, 1.0, 1.4],
-    "size":     [0.1, 0.3, 0.1]
-}, {
-    "name": "Cage button down",
-    "geometry": "Arrow down box - right",
-    "group": "cage",
-    "visible": "yes",
-    "id": "cage button down",
-    "position": [0.3, 1.0, 1.4],
-    "size":     [0.1, 0.3, 0.1]
-}, {
-    "name": "Cage button none",
-    "geometry": "No arrow box",
-    "group": "cage",
-    "visible": "no",
-    "id": "cage button none",
-    "position": [0.3, 1.0, 1.4],
-    "size":     [0.1, 0.3, 0.1]
-}
+     {
+     "name": "The cage - sides",
+     "geometry": "Metal fence",
+     "group": "cage",
+     "positions": [[0.2, 0.2, 0.3], [0.2, 0.2, 5.6], [5.6, 0.2, 0.3]],
+     "sizes":     [[0.1, 3.6, 5.4], [5.4, 3.6, 0.1], [0.1, 3.6, 5.4]]
+     }, {
+     "name": "The cage #2 - floor/roof",
+     "geometry": "Metal floor",
+     "group": "cage",
+     "ids": ["cage floor", "cage roof"],
+     "positions": [[0.1, 0.1, 0.1], [0.1, 3.8, 0.1]],
+     "sizes":     [[5.6, 0.1, 5.6], [5.6, 0.1, 5.6]]
+     }, {
+     "name": "Cage strut",
+     "geometry": "Metal pole",
+     "group": "cage",
+     "positions": [[0.4, 0.0, 0.4], [5.5, 0.0, 0.4], [0.4, 0.0, 5.5], [5.5, 0.0, 5.5]],
+     "sizes":     [[0.1, 4.0, 0.1], [0.1, 4.0, 0.1], [0.1, 4.0, 0.1], [0.1, 4.0, 0.1]]
+     }, {
+     "name": "Cage button up",
+     "geometry": "Arrow up box - right",
+     "group": "cage",
+     "visible": "no",
+     "id": "cage button up",
+     "position": [0.3, 1.0, 1.4],
+     "size":     [0.1, 0.3, 0.1]
+     }, {
+     "name": "Cage button down",
+     "geometry": "Arrow down box - right",
+     "group": "cage",
+     "visible": "yes",
+     "id": "cage button down",
+     "position": [0.3, 1.0, 1.4],
+     "size":     [0.1, 0.3, 0.1]
+     }, {
+     "name": "Cage button none",
+     "geometry": "No arrow box",
+     "group": "cage",
+     "visible": "no",
+     "id": "cage button none",
+     "position": [0.3, 1.0, 1.4],
+     "size":     [0.1, 0.3, 0.1]
+     }
 
-],
+     ],
 
-"lights": [
-{
-    "name": "Bright omni",
-    "colour": [1.0, 1.0, 1.0, 1.0],
-    "type": "omni",
-    "positions": [[-3, 1.1, -3], [-3, 1.1, 9], [9, 1.1, -3], [9, 1.1, 9]]
-}, {
-    "name": "Orange omni (inside cage)",
-    "colour": [1.0, 0.664, 0, 1.0],
-    "type": "omni",
-    "group": "cage",
-    "position": [3, 3.1, 3]
-}],
+    "lights":
+    [
+     {
+     "name": "Bright omni",
+     "colour": [1.0, 1.0, 1.0, 1.0],
+     "type": "omni",
+     "positions": [[-3, 1.1, -3], [-3, 1.1, 9], [9, 1.1, -3], [9, 1.1, 9]]
+     }, {
+     "name": "Orange omni (inside cage)",
+     "colour": [1.0, 0.664, 0, 1.0],
+     "type": "omni",
+     "group": "cage",
+     "position": [3, 3.1, 3]
+     }],
 
 }
