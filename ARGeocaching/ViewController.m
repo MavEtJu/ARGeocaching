@@ -160,18 +160,24 @@ typedef NS_ENUM(NSInteger, CageStage) {
     NSAssert(outsideDown != nil, @"No outside down button");
     NodeObject *outsideUp = [objectManager nodeByID:@"outside button up"];
     NSAssert(outsideUp != nil, @"No outside up button");
+    NodeObject *outsideNone = [objectManager nodeByID:@"outside button none"];
+    NSAssert(outsideNone != nil, @"No outside none button");
 
     NodeObject *insideDown = [objectManager nodeByID:@"cage button down"];
     NSAssert(insideDown != nil, @"No cage down button");
     NodeObject *insideUp = [objectManager nodeByID:@"cage button up"];
     NSAssert(insideUp != nil, @"No cage up button");
+    NodeObject *insideNone = [objectManager nodeByID:@"cage button none"];
+    NSAssert(insideNone != nil, @"No cage none button");
 
     switch (self.cageStage) {
         case CAGE_START: {
             outsideUp.node.hidden = YES;
             outsideDown.node.hidden = NO;
+            outsideNone.node.hidden = YES;
             insideUp.node.hidden = YES;
             insideDown.node.hidden = NO;
+            insideNone.node.hidden = YES;
             self.cageStage = CAGE_GOING_TO_BEGIN;
             [self.queue addOperationWithBlock:^{
                 while (roof.node.position.y > [ObjectManager positionY:roof.node y:0]) {
@@ -199,8 +205,9 @@ typedef NS_ENUM(NSInteger, CageStage) {
                     }];
                 }
                 self.cageStage = CAGE_TOP;
-                outsideDown.node.hidden = NO;
+                outsideDown.node.hidden = YES;
                 outsideUp.node.hidden = YES;
+                outsideNone.node.hidden = NO;
                 insideDown.node.hidden = NO;
                 insideUp.node.hidden = YES;
             }];
@@ -220,6 +227,8 @@ typedef NS_ENUM(NSInteger, CageStage) {
                     NSLog(@"bottom.node.postion.y: %f %f", bottom.node.position.y, [ObjectManager positionY:bottom.node y:0.1]);
                 }
                 self.cageStage = CAGE_DOWN;
+                insideDown.node.hidden = YES;
+                insideNone.node.hidden = NO;
             }];
             break;
         }

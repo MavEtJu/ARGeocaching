@@ -90,6 +90,9 @@
 }, {
     "name": "Arrow down box - right",
     "materials": ["Metal box cover", "Metal box cover - arrow down", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover"]
+}, {
+    "name": "No arrow box",
+    "materials": ["Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover"]
 }],
 
 "tubes": [
@@ -117,6 +120,14 @@
     "name": "Outside push button box - up",
     "geometry": "Arrow up box - backward",
     "id": "outside button up",
+    "visible": "no",
+    "group": "push button",
+    "position": [6, 1, -1],
+    "size":     [0.3, 0.5, 0.3]
+}, {
+    "name": "Outside push button box - none",
+    "geometry": "No arrow box",
+    "id": "outside button none",
     "visible": "no",
     "group": "push button",
     "position": [6, 1, -1],
@@ -184,6 +195,14 @@
     "group": "cage",
     "visible": "yes",
     "id": "cage button down",
+    "position": [0.3, 1.0, 1.4],
+    "size":     [0.1, 0.3, 0.1]
+}, {
+    "name": "Cage button none",
+    "geometry": "No arrow box",
+    "group": "cage",
+    "visible": "no",
+    "id": "cage button none",
     "position": [0.3, 1.0, 1.4],
     "size":     [0.1, 0.3, 0.1]
 }
