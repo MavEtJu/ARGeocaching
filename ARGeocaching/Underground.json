@@ -4,6 +4,18 @@
         "name": "Coal",
         "image": "coal",
         "insidetoo": "yes"
+    }, {
+        "name": "Sand",
+        "image": "Sand",
+    }, {
+        "name": "Wooden planks",
+        "image": "WoodenPlanks",
+    }, {
+        "name": "Paper unreadable",
+        "image": "Paper hidden",
+    }, {
+        "name": "Paper with codeword",
+        "image": "Paper with codeword",
     }
     ],
 
@@ -11,6 +23,18 @@
     {
         "name": "Coal wall",
         "material": "Coal"
+    }, {
+        "name": "Wooden planks",
+        "material": "Wooden planks"
+    }, {
+        "name": "Sand",
+        "material": "Sand"
+    }, {
+        "name": "Paper unreadable",
+        "material": "Paper unreadable",
+    }, {
+        "name": "Paper with codeword",
+        "material": "Paper with codeword",
     }
     ],
 
@@ -19,22 +43,22 @@
 
     "nodes": [ {
         "name": "Floor around cage (bottom)",
-        "geometry": "Coal wall",
+        "geometry": "Sand",
         "positions": [[-6, -16.1, -6], [-6, -16.1, 0], [-6, -16.1, 6], [0, -16.1, -6], [0, -16.1, 6], [6, -16.1, -6], [6, -16.1, 0], [6, -16.1, 6]],
         "sizes":     [[6, 0.1, 6],     [6, 0.1, 6],    [6, 0.1, 6],    [6, 0.1, 6],    [6, 0.1, 6],   [6, 0.1, 6],    [6, 0.1, 6],   [6, 0.1, 6]]
     }, {
         "name": "Floor under cage (bottom)",
-        "geometry": "Coal wall",
+        "geometry": "Metal floor",
         "id": "cage bottom",
         "position": [0, -16.1, 0],
         "size":     [6, 0.1, 6]
     },
 
     {
-        "name": "Coal walls (left)",
+        "name": "Coal walls (left, missing middle)",
         "geometry": "Coal wall",
-        "positions": [[-12, -16, -12], [-12, -16, -6], [-12, -16, 0], [-12, -16, 6], [-12, -16, 12]],
-        "sizes":     [[6, 6, 6],       [6, 6, 6],      [6, 6, 6],     [6, 6, 6],     [6, 6, 6]]
+        "positions": [[-12, -16, -12], [-12, -16, -6], [-12, -16, 6], [-12, -16, 12]],
+        "sizes":     [[6, 6, 6],       [6, 6, 6],      [6, 6, 6],     [6, 6, 6]]
     }, {
         "name": "Coal walls (right)",
         "geometry": "Coal wall",
@@ -55,6 +79,68 @@
         "geometry": "Coal wall",
         "positions": [[-6, -10, -6], [-6, -10, 0], [-6, -10, 6], [0, -10, -6], [0, -10, 6], [6, -10, -6], [6, -10, 0], [6, -10, 6]],
         "sizes":     [[6, 0.1, 6],   [6, 0.1, 6],  [6, 0.1, 6],  [6, 0.1, 6],  [6, 0.1, 6], [6, 0.1, 6],  [6, 0.1, 6], [6, 0.1, 6]]
+    }, {
+        "name": "Coal walls (floor)",
+        "geometry": "Sand",
+        "positions": [[-30, -16, -12], [-30, -16, -6], [-30, -16, 0], [-24, -16, 0], [-18, -16, 0], [-12, -16, 0]],
+        "sizes":     [[6, 0.1, 6],     [6, 0.1, 6],    [6, 0.1, 6],   [6, 0.1, 6],   [6, 0.1, 6],   [6, 0.1, 6]]
+    },
+
+    {
+        "name": "Coal walls (left corridor - top)",
+        "geometry": "Coal wall",
+        "positions": [[-36, -16, 6], [-30, -16, 6], [-24, -16, 6], [-18, -16, 6]],
+        "sizes":     [[6, 6, 6],     [6, 6, 6],     [6, 6, 6],     [6, 6, 6]]
+    }, {
+        "name": "Coal walls (left corridor - left)",
+        "geometry": "Coal wall",
+        "positions": [[-36, -16, 0], [-36, -16, -6], [-36, -16, -12], [-18, -16, -12]],
+        "sizes":     [[6, 6, 6],     [6, 6, 6],      [6, 6, 6],       [6, 6, 6]]
+    }, {
+        "name": "Coal walls (left corridor - right/bottom)",
+        "geometry": "Coal wall",
+        "positions": [[-36, -16, 0], [-36, -16, -6], [-36, -16, -12], [-18, -16, -12]],
+        "sizes":     [[6, 6, 6],     [6, 6, 6],      [6, 6, 6],       [6, 6, 6]]
+    },
+
+    {
+        "name": "Wooden chest - top open",
+        "geometry": "Wooden planks",
+        "id": "wooden chest top open",
+        "visible": "no",
+        "position": [-29, -15.4, -11.6],
+        "size":     [1.1, 0.1, 0.6],
+    }, {
+        "name": "Wooden chest - bottom",
+        "geometry": "Wooden planks",
+        "position": [-29, -15.9, -11],
+        "size":     [1.1, 0.1, 0.6],
+    }, {
+        "name": "Wooden chest - sides",
+        "geometry": "Wooden planks",
+        "id": "wooden chest sides",
+        "positions": [[-28.9, -15.8, -11], [-29, -15.8, -11], [-29, -15.8, -10.5], [-28, -15.8, -10.9]],
+        "sizes":     [[1, 0.5, 0.1],       [0.1, 0.5, 0.5],   [1, 0.5, 0.1],       [0.1, 0.5, 0.5]]
+    }, {
+        "name": "Wooden chest - top closed",
+        "geometry": "Wooden planks",
+        "id": "wooden chest top closed",
+        "position": [-29, -15.3, -11],
+        "size":     [1.1, 0.1, 0.6],
+    }, {
+              "name": "Paper unreadable",
+              "geometry": "Paper unreadable",
+              "id": "paper unreadable",
+              "position": [-28.8, -15.7, -10.8],
+              "size": [0.7, 0.01, 0.2]
+    }, {
+              "name": "Paper with codeword",
+              "geometry": "Paper with codeword",
+              "id": "paper with codeword",
+              "visible": "no",
+              "position": [-28.8, -15.25, -11.2],
+              "size":     [0.7, 0.01, 0.2],
+
     }
     ],
 

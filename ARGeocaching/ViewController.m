@@ -8,14 +8,15 @@
 
 #import "main.h"
 
-typedef NS_ENUM(NSInteger, CageStage) {
-    CAGE_START = 0,
-    CAGE_GOING_TO_BEGIN,
-    CAGE_BEGIN,
-    CAGE_GOING_UP,
-    CAGE_TOP,
-    CAGE_GOING_DOWN,
-    CAGE_DOWN
+typedef NS_ENUM(NSInteger, GameStage) {
+    STAGE_START = 0,
+    STAGE_CAGE_GOING_TO_INITIAL,
+    STAGE_CAGE_AT_INITIAL,
+    STAGE_CAGE_GOING_UP,
+    STAGE_CAGE_AT_TOP,
+    STAGE_CAGE_GOING_DOWN,
+    STAGE_CAGE_DOWN,
+    STAGE_BOX_OPENED,
 };
 
 @interface ViewController () <ARSCNViewDelegate>
@@ -28,7 +29,7 @@ typedef NS_ENUM(NSInteger, CageStage) {
 @property (nonatomic)         float boxHeight;
 @property (nonatomic)         float floorHeight;
 
-@property (nonatomic)         CageStage cageStage;
+@property (nonatomic)         GameStage stage;
 
 @end
 
@@ -39,7 +40,7 @@ typedef NS_ENUM(NSInteger, CageStage) {
     [super viewDidLoad];
 
     self.queue = [[NSOperationQueue alloc] init];
-    self.cageStage = CAGE_START;
+    self.stage = STAGE_START;
 
     [self loadFloor];
 
@@ -69,7 +70,7 @@ typedef NS_ENUM(NSInteger, CageStage) {
     // Set the scene to the view
     self.sceneView.scene = scene;
 
-    [self changeCageLevel];
+    [self performAction];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -109,44 +110,58 @@ typedef NS_ENUM(NSInteger, CageStage) {
         SCNHitTestResult *result = res.lastObject;
         SCNNode *block = result.node;
 
-        switch (self.cageStage) {
-            case CAGE_BEGIN: {
+        switch (self.stage) {
+            case STAGE_CAGE_AT_INITIAL: {
                 NodeObject *n = [objectManager nodeByID:@"outside button up"];
                 NSAssert(n != nil, @"No outside button up");
                 if (n.node != block)
                     break;
-                [self changeCageLevel];
+                [self performAction];
                 break;
             }
 
-            case CAGE_TOP: {
+            case STAGE_CAGE_AT_TOP: {
                 NodeObject *n = [objectManager nodeByID:@"cage button down"];
                 NSAssert(n != nil, @"No cage button down");
                 if (n.node != block)
                     break;
-                [self changeCageLevel];
+                [self performAction];
                 break;
             }
 
-            case CAGE_GOING_UP:
-            case CAGE_GOING_DOWN:
-            case CAGE_GOING_TO_BEGIN:
-            case CAGE_DOWN:
-            case CAGE_START:
+            case STAGE_CAGE_DOWN: {
+                NodeObject *n = [objectManager nodeByID:@"wooden chest top closed"];
+                NSAssert(n != nil, @"No wooden chest top closed");
+                if (n.node != block)
+                    break;
+                [self performAction];
+                break;
+            }
+
+            case STAGE_BOX_OPENED: {
+                NodeObject *n = [objectManager nodeByID:@"paper unreadable"];
+                NSAssert(n != nil, @"No paper unreadable");
+                if (n.node != block)
+                    break;
+                [self performAction];
+                break;
+            }
+
+            case STAGE_CAGE_GOING_UP:
+            case STAGE_CAGE_GOING_DOWN:
+            case STAGE_CAGE_GOING_TO_INITIAL:
+            case STAGE_START:
                 break;
         }
-//        if ([[block class] isEqual:[SCNFloorTile class]] == NO)
-//            return;
 
-
-//        SCNNode *n = [SCNNode nodeWithGeometry:[SCNBox boxWithWidth:0.5 height:0.5 length:0.5 chamferRadius:0]];
-//        n.geometry.firstMaterial.diffuse.contents = [UIColor greenColor];
-//        n.position = result.worldCoordinates;
-//        [self.sceneView.scene.rootNode addChildNode:n];
+//      SCNNode *n = [SCNNode nodeWithGeometry:[SCNBox boxWithWidth:0.5 height:0.5 length:0.5 chamferRadius:0]];
+//      n.geometry.firstMaterial.diffuse.contents = [UIColor greenColor];
+//      n.position = result.worldCoordinates;
+//      [self.sceneView.scene.rootNode addChildNode:n];
     }
 }
 
-- (void)changeCageLevel
+- (void)performAction
 {
     NodeObject *roof = [objectManager nodeByID:@"cage roof"];
     NSAssert(roof != nil, @"No cage roof");
@@ -170,15 +185,30 @@ typedef NS_ENUM(NSInteger, CageStage) {
     NodeObject *insideNone = [objectManager nodeByID:@"cage button none"];
     NSAssert(insideNone != nil, @"No cage none button");
 
-    switch (self.cageStage) {
-        case CAGE_START: {
+    NodeObject *chestTopOpen = [objectManager nodeByID:@"wooden chest top open"];
+    NSAssert(chestTopOpen != nil, @"No wooden chest top open");
+    NodeObject *chestTopClosed = [objectManager nodeByID:@"wooden chest top closed"];
+    NSAssert(chestTopClosed != nil, @"No wooden chest top closed");
+
+    NodeObject *paperUnreadable = [objectManager nodeByID:@"paper unreadable"];
+    NSAssert(paperUnreadable != nil, @"No paper unreadable");
+    NodeObject *paperWithCodeword = [objectManager nodeByID:@"paper with codeword"];
+    NSAssert(paperWithCodeword != nil, @"No paper with codeword");
+
+    switch (self.stage) {
+        case STAGE_START: {
             outsideUp.node.hidden = YES;
             outsideDown.node.hidden = NO;
             outsideNone.node.hidden = YES;
             insideUp.node.hidden = YES;
             insideDown.node.hidden = NO;
             insideNone.node.hidden = YES;
-            self.cageStage = CAGE_GOING_TO_BEGIN;
+            chestTopOpen.node.hidden = YES;
+            chestTopClosed.node.hidden = NO;
+            paperUnreadable.node.hidden = NO;
+            paperWithCodeword.node.hidden = YES;
+
+            self.stage = STAGE_CAGE_GOING_TO_INITIAL;
             [self.queue addOperationWithBlock:^{
                 while (roof.node.position.y > [ObjectManager positionY:roof.node y:0]) {
                     [NSThread sleepForTimeInterval:0.1];
@@ -186,7 +216,7 @@ typedef NS_ENUM(NSInteger, CageStage) {
                         n.node.position = SCNVector3Make(n.node.position.x, n.node.position.y - 0.1, n.node.position.z);
                     }];
                 }
-                self.cageStage = CAGE_BEGIN;
+                self.stage = STAGE_CAGE_AT_INITIAL;
                 outsideUp.node.hidden = NO;
                 outsideDown.node.hidden = YES;
                 insideUp.node.hidden = NO;
@@ -195,8 +225,8 @@ typedef NS_ENUM(NSInteger, CageStage) {
             break;
         }
 
-        case CAGE_BEGIN: {
-            self.cageStage = CAGE_GOING_UP;
+        case STAGE_CAGE_AT_INITIAL: {
+            self.stage = STAGE_CAGE_GOING_UP;
             [self.queue addOperationWithBlock:^{
                 while (floor.node.position.y < [ObjectManager positionY:floor.node y:0]) {
                     [NSThread sleepForTimeInterval:0.1];
@@ -204,7 +234,7 @@ typedef NS_ENUM(NSInteger, CageStage) {
                         n.node.position = SCNVector3Make(n.node.position.x, n.node.position.y + 0.1, n.node.position.z);
                     }];
                 }
-                self.cageStage = CAGE_TOP;
+                self.stage = STAGE_CAGE_AT_TOP;
                 outsideDown.node.hidden = YES;
                 outsideUp.node.hidden = YES;
                 outsideNone.node.hidden = NO;
@@ -214,8 +244,8 @@ typedef NS_ENUM(NSInteger, CageStage) {
             break;
         }
 
-        case CAGE_TOP: {
-            self.cageStage = CAGE_GOING_DOWN;
+        case STAGE_CAGE_AT_TOP: {
+            self.stage = STAGE_CAGE_GOING_DOWN;
             [self.queue addOperationWithBlock:^{
                 while (bottom.node.position.y < [ObjectManager positionY:bottom.node y:0.0]) {
                     [NSThread sleepForTimeInterval:0.1];
@@ -224,21 +254,28 @@ typedef NS_ENUM(NSInteger, CageStage) {
                             return;
                         n.node.position = SCNVector3Make(n.node.position.x, n.node.position.y + 0.1, n.node.position.z);
                     }];
-                    NSLog(@"bottom.node.postion.y: %f %f", bottom.node.position.y, [ObjectManager positionY:bottom.node y:0.1]);
                 }
-                self.cageStage = CAGE_DOWN;
+                self.stage = STAGE_CAGE_DOWN;
                 insideDown.node.hidden = YES;
                 insideNone.node.hidden = NO;
             }];
             break;
         }
 
-        case CAGE_DOWN:
+        case STAGE_CAGE_DOWN:
+            self.stage = STAGE_BOX_OPENED;
+            chestTopOpen.node.hidden = NO;
+            chestTopClosed.node.hidden = YES;
             break;
 
-        case CAGE_GOING_TO_BEGIN:
-        case CAGE_GOING_DOWN:
-        case CAGE_GOING_UP:
+        case STAGE_BOX_OPENED:
+            paperUnreadable.node.hidden = YES;
+            paperWithCodeword.node.hidden = NO;
+            break;
+
+        case STAGE_CAGE_GOING_TO_INITIAL:
+        case STAGE_CAGE_GOING_DOWN:
+        case STAGE_CAGE_GOING_UP:
             break;
     }
 }
