@@ -24,6 +24,7 @@
 		E8A8D7DB20E609B5000595E9 /* LightObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7DA20E609B5000595E9 /* LightObject.m */; };
 		E8C389C120E61D8A00C13379 /* GroupObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C389C020E61D8A00C13379 /* GroupObject.m */; };
 		E8C389C320E7A81B00C13379 /* Underground.json in Resources */ = {isa = PBXBuildFile; fileRef = E8C389C220E7A81B00C13379 /* Underground.json */; };
+		E8C389C620E9EBF200C13379 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C389C520E9EBF200C13379 /* TableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,8 @@
 		E8C389BF20E61D8A00C13379 /* GroupObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupObject.h; sourceTree = "<group>"; };
 		E8C389C020E61D8A00C13379 /* GroupObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupObject.m; sourceTree = "<group>"; };
 		E8C389C220E7A81B00C13379 /* Underground.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Underground.json; sourceTree = "<group>"; };
+		E8C389C420E9EBF200C13379 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		E8C389C520E9EBF200C13379 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,8 @@
 				E867AE5820DDDF39004C0544 /* art.scnassets */,
 				E867AE5A20DDDF39004C0544 /* GA12490ViewController.h */,
 				E867AE5B20DDDF39004C0544 /* GA12490ViewController.m */,
+				E8C389C420E9EBF200C13379 /* TableViewController.h */,
+				E8C389C520E9EBF200C13379 /* TableViewController.m */,
 				E8A8D7C320E5A659000595E9 /* Mineshaft.json */,
 				E8C389C220E7A81B00C13379 /* Underground.json */,
 				E8A8D7C520E5AEFB000595E9 /* Objects */,
@@ -210,6 +215,7 @@
 				E8A8D7C820E5AF36000595E9 /* ObjectManager.m in Sources */,
 				E8C389C120E61D8A00C13379 /* GroupObject.m in Sources */,
 				E867AE6720DDDF3D004C0544 /* main.m in Sources */,
+				E8C389C620E9EBF200C13379 /* TableViewController.m in Sources */,
 				E8A8D7D520E5FFD0000595E9 /* TubeObject.m in Sources */,
 				E867AE5720DDDF39004C0544 /* AppDelegate.m in Sources */,
 				E8A8D7D820E6010A000595E9 /* GeometryObject.m in Sources */,
