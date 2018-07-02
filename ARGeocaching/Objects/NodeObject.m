@@ -32,7 +32,7 @@
     NSAssert1(geometry != nil, @"Unknown geometry: %@", self.sGeometry);
 
     self.scale = [NSValue valueWithSCNVector3:SCNVector3Make([[self.sScale objectAtIndex:0] floatValue], [[self.sScale objectAtIndex:1] floatValue], [[self.sScale objectAtIndex:2] floatValue])];
-    self.position = [NSValue valueWithSCNVector3:SCNVector3Make([[self.sPosition objectAtIndex:0] floatValue], [[self.sPosition objectAtIndex:1] floatValue], [[self.sPosition objectAtIndex:2] floatValue])];
+    self.position = [NSValue valueWithSCNVector3:SCNVector3Make([[self.sPosition objectAtIndex:0] floatValue] + self.group.origin.x, [[self.sPosition objectAtIndex:1] floatValue] + self.group.origin.y, [[self.sPosition objectAtIndex:2] floatValue] + self.group.origin.z)];
     self.visisble = self.sVisible == nil ? YES : [self.sVisible isEqualToString:@"yes"] == YES ? YES : NO;
 
     self.geometry = geometry.geometry;

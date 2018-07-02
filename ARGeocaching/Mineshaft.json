@@ -120,110 +120,127 @@
     "nodes":
     [
      {
-     "name": "Floor around cage (top)",
-     "geometry": "Grass patch",
-     "positions": [[-6, -0.1, -6], [-6, -0.1, 0], [-6, -0.1, 6], [0, -0.1, -6], [0, -0.1, 6], [6, -0.1, -6], [6, -0.1, 0], [6, -0.1, 6]],
-     "sizes":     [[6, 0.1, 6],    [6, 0.1, 6],   [6, 0.1, 6],   [6, 0.1, 6],   [6, 0.1, 6],  [6, 0.1, 6],   [6, 0.1, 6],  [6, 0.1, 6]]
-     }, {
-     "name": "Outside push button box - down",
-     "geometry": "Arrow down box - backward",
-     "id": "outside button down",
-     "visible": "yes",
+     "group": "Floor around cage (top)",
+     "origin": [-6, -0.1, -6],
+     "objects":
+     [
+      {
+      "name": "Floor around cage (top)",
+      "geometry": "Grass patch",
+      "positions": [[0, 0, 0],   [0, 0, 6],   [0, 0, 12],  [6, 0, 0],   [6, 0, 12],  [12, 0, 0],  [12, 0, 6],  [12, 0, 12]],
+      "sizes":     [[6, 0.1, 6], [6, 0.1, 6], [6, 0.1, 6], [6, 0.1, 6], [6, 0.1, 6], [6, 0.1, 6], [6, 0.1, 6],  [6, 0.1, 6]]
+      }
+      ]},
+     {
      "group": "push button",
-     "position": [6, 1, -1],
-     "size":     [0.3, 0.5, 0.3]
-     }, {
-     "name": "Outside push button box - up",
-     "geometry": "Arrow up box - backward",
-     "id": "outside button up",
-     "visible": "no",
-     "group": "push button",
-     "position": [6, 1, -1],
-     "size":     [0.3, 0.5, 0.3]
-     }, {
-     "name": "Outside push button box - none",
-     "geometry": "No arrow box",
-     "id": "outside button none",
-     "visible": "no",
-     "group": "push button",
-     "position": [6, 1, -1],
-     "size":     [0.3, 0.5, 0.3]
-     }, {
-     "name": "Outside push button box - metal pole",
-     "geometry": "Metal pole",
-     "group": "push button",
-     "position": [6.1, 0, -0.9],
-     "size":     [0.1, 1, 0.1]
-     },
+     "origin": [6, 1, -1],
+     "objects":
+     [
+      {
+      "name": "Outside push button box - down",
+      "geometry": "Arrow down box - backward",
+      "id": "outside button down",
+      "visible": "yes",
+      "position": [0, 0, 0],
+      "size":     [0.3, 0.5, 0.3]
+      }, {
+      "name": "Outside push button box - up",
+      "geometry": "Arrow up box - backward",
+      "id": "outside button up",
+      "visible": "no",
+      "position": [0, 0, 0],
+      "size":     [0.3, 0.5, 0.3]
+      }, {
+      "name": "Outside push button box - none",
+      "geometry": "No arrow box",
+      "id": "outside button none",
+      "visible": "no",
+      "group": "push button",
+      "position": [0, 0, 0],
+      "size":     [0.3, 0.5, 0.3]
+      }, {
+      "name": "Outside push button box - metal pole",
+      "geometry": "Metal pole",
+      "group": "push button",
+      "position": [0.1, -1, 0.1],
+      "size":     [0.1, 1, 0.1]
+      }
+      ]},
 
      {
-     "name": "Shaft #4",
-     "geometry": "Rusty wall",
-     "positions": [[0, -12, 0], [0, -12, 0], [0, -12, 5.9], [5.9, -12, 0]],
-     "sizes":     [[6, 6, 0.1], [0.1, 6, 6], [6, 6, 0.1],   [0.1, 6, 6]]
-     }, {
-     "name": "Shaft #5",
-     "geometry": "Rusty wall",
-     "positions": [[0, -6, 0], [0, -6, 0], [0, -6, 5.9], [5.9, -6, 0]],
-     "sizes":     [[6, 6, 0.1], [0.1, 6, 6], [6, 6, 0.1],   [0.1, 6, 6]]
-     }, {
-     "name": "Outside of the cage #1",
-     "geometry": "Rusty wall",
-     "position": [0, 0, 5.9],
-     "size":     [6, 4, 0.1]
-     }, {
-     "name": "Outside of the cage #2",
-     "geometry": "Red metal wall with down arrow",
-     "positions": [[0, 0, 0],   [5.9, 0, 0]],
-     "sizes":     [[0.1, 4, 6], [0.1, 4, 6]]
-     },
+     "group": "Shaft",
+     "origin": [0, 0, 0],
+     "objects":
+     [
+      {
+      "name": "Shaft #4",
+      "geometry": "Rusty wall",
+      "positions": [[0, -12, 0], [0, -12, 0], [0, -12, 5.9], [5.9, -12, 0]],
+      "sizes":     [[6, 6, 0.1], [0.1, 6, 6], [6, 6, 0.1],   [0.1, 6, 6]]
+      }, {
+      "name": "Shaft #5",
+      "geometry": "Rusty wall",
+      "positions": [[0, -6, 0], [0, -6, 0], [0, -6, 5.9], [5.9, -6, 0]],
+      "sizes":     [[6, 6, 0.1], [0.1, 6, 6], [6, 6, 0.1],   [0.1, 6, 6]]
+      }, {
+      "name": "Outside of the cage #1",
+      "geometry": "Rusty wall",
+      "position": [0, 0, 5.9],
+      "size":     [6, 4, 0.1]
+      }, {
+      "name": "Outside of the cage #2",
+      "geometry": "Red metal wall with down arrow",
+      "positions": [[0, 0, 0],   [5.9, 0, 0]],
+      "sizes":     [[0.1, 4, 6], [0.1, 4, 6]]
+      }
+      ]},
 
      {
-     "name": "The cage - sides",
-     "geometry": "Metal fence",
      "group": "cage",
-     "positions": [[0.2, 0.2, 0.3], [0.2, 0.2, 5.6], [5.6, 0.2, 0.3]],
-     "sizes":     [[0.1, 3.6, 5.4], [5.4, 3.6, 0.1], [0.1, 3.6, 5.4]]
-     }, {
-     "name": "The cage #2 - floor/roof",
-     "geometry": "Metal floor",
-     "group": "cage",
-     "ids": ["cage floor", "cage roof"],
-     "positions": [[0.1, 0.1, 0.1], [0.1, 3.8, 0.1]],
-     "sizes":     [[5.6, 0.1, 5.6], [5.6, 0.1, 5.6]]
-     }, {
-     "name": "Cage strut",
-     "geometry": "Metal pole",
-     "group": "cage",
-     "positions": [[0.4, 0.0, 0.4], [5.5, 0.0, 0.4], [0.4, 0.0, 5.5], [5.5, 0.0, 5.5]],
-     "sizes":     [[0.1, 4.0, 0.1], [0.1, 4.0, 0.1], [0.1, 4.0, 0.1], [0.1, 4.0, 0.1]]
-     }, {
-     "name": "Cage button up",
-     "geometry": "Arrow up box - right",
-     "group": "cage",
-     "visible": "no",
-     "id": "cage button up",
-     "position": [0.3, 1.0, 1.4],
-     "size":     [0.1, 0.3, 0.1]
-     }, {
-     "name": "Cage button down",
-     "geometry": "Arrow down box - right",
-     "group": "cage",
-     "visible": "yes",
-     "id": "cage button down",
-     "position": [0.3, 1.0, 1.4],
-     "size":     [0.1, 0.3, 0.1]
-     }, {
-     "name": "Cage button none",
-     "geometry": "No arrow box",
-     "group": "cage",
-     "visible": "no",
-     "id": "cage button none",
-     "position": [0.3, 1.0, 1.4],
-     "size":     [0.1, 0.3, 0.1]
-     }
-
-     ],
+     "origin": [0.2, 0.2, 0.3],
+     "objects":
+     [
+     {
+      "name": "The cage - sides",
+      "geometry": "Metal fence",
+      "positions": [[0, 0, 0],       [0, 0, 5.3],     [5.4, 0, 0]],
+      "sizes":     [[0.1, 3.6, 5.4], [5.4, 3.6, 0.1], [0.1, 3.6, 5.4]]
+      }, {
+      "name": "The cage #2 - floor/roof",
+      "geometry": "Metal floor",
+      "ids": ["cage floor", "cage roof"],
+      "positions": [[-0.1, -0.1, -0.2], [-0.1, 3.6, -0.2]],
+      "sizes":     [[5.6, 0.1, 5.6],    [5.6, 0.1, 5.6]]
+      }, {
+      "name": "Cage strut",
+      "geometry": "Metal pole",
+      "positions": [[0.2, -0.2, 0.1], [5.3, -0.2, 0.1], [0.2, -0.2, 5.2], [5.3, -0.2, 5.2]],
+      "sizes":     [[0.1, 4.0, 0.1],  [0.1, 4.0, 0.1],  [0.1, 4.0, 0.1],  [0.1, 4.0, 0.1]]
+      }, {
+      "name": "Cage button up",
+      "geometry": "Arrow up box - right",
+      "visible": "no",
+      "id": "cage button up",
+      "position": [0.1, 0.8, 1.1],
+      "size":     [0.1, 0.3, 0.1]
+      }, {
+      "name": "Cage button down",
+      "geometry": "Arrow down box - right",
+      "visible": "yes",
+      "id": "cage button down",
+      "position": [0.1, 0.8, 1.1],
+      "size":     [0.1, 0.3, 0.1]
+      }, {
+      "name": "Cage button none",
+      "geometry": "No arrow box",
+      "group": "cage",
+      "visible": "no",
+      "id": "cage button none",
+      "position": [0.1, 0.8, 1.1],
+      "size":     [0.1, 0.3, 0.1]
+      }
+      ]
+     }],
 
     "lights":
     [
@@ -238,6 +255,6 @@
      "type": "omni",
      "group": "cage",
      "position": [3, 3.1, 3]
-     }],
+     }]
 
 }

@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, GameStage) {
     STAGE_BOX_OPENED,
 };
 
-@interface ViewController () <ARSCNViewDelegate>
+@interface GA12490ViewController () <ARSCNViewDelegate>
 
 @property (nonatomic, strong) IBOutlet ARSCNView *sceneView;
 @property (nonatomic, retain) NSOperationQueue *queue;
@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, GameStage) {
 
 @end
 
-@implementation ViewController
+@implementation GA12490ViewController
 
 - (void)viewDidLoad
 {
@@ -44,7 +44,7 @@ typedef NS_ENUM(NSInteger, GameStage) {
 
     [self loadFloor];
 
-    self.sceneView.autoenablesDefaultLighting = NO;
+//    self.sceneView.autoenablesDefaultLighting = NO;
     self.sceneView.delegate = self;
     self.sceneView.showsStatistics = YES;
 }
@@ -78,7 +78,7 @@ typedef NS_ENUM(NSInteger, GameStage) {
     [super viewWillAppear:animated];
     
     ARWorldTrackingConfiguration *configuration = [ARWorldTrackingConfiguration new];
-    configuration.lightEstimationEnabled = NO;
+//    configuration.lightEstimationEnabled = NO;
 
     [self.sceneView.session runWithConfiguration:configuration];
 }
@@ -103,7 +103,27 @@ typedef NS_ENUM(NSInteger, GameStage) {
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-//    self.vectors = [[NSMutableArray alloc] init];
+
+    UITouch *touch = [touches anyObject];
+    CGPoint p = [touch locationInView:self.view];
+    NSValue *v = [NSValue valueWithCGPoint:p];
+    NSLog(@"%@", v);
+
+    // Touch at top right
+//    if (p.x > 550 && p.y < 120) {
+//        CGFloat dx, dz;
+//
+//        dz = (p.y < 60) ? 0.6 : -0.6;
+//        dx = (p.x > 640) ? -0.6 : 0.6;
+//
+//        [objectManager.nodes enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
+//            n.node.position = SCNVector3Make(n.node.position.x + dx, n.node.position.y, n.node.position.z + dz);
+//        }];
+//
+//        return;
+//    }
+
+    // Touch on nodes
     NSArray <SCNHitTestResult *> *res = [self.sceneView hitTest:[[touches anyObject] locationInView:self.sceneView] options:@{SCNHitTestFirstFoundOnlyKey:@YES}];
     if (res.count != 0) {
 

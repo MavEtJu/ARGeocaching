@@ -8,6 +8,6 @@
 
 //#import <ModelIO/ModelIO.h>
 
-@interface ViewController : UIViewController <UIGestureRecognizerDelegate>
+@interface GA12490ViewController : UIViewController <UIGestureRecognizerDelegate>
 
 @end

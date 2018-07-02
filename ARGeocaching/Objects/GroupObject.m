@@ -23,4 +23,11 @@
     return self;
 }
 
+- (void)finish
+{
+    self.origin = SCNVector3Make([[self.aOrigin objectAtIndex:0] floatValue],
+                                 [[self.aOrigin objectAtIndex:1] floatValue],
+                                 [[self.aOrigin objectAtIndex:2] floatValue]);
+}
+
 @end

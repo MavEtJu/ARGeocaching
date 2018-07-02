@@ -15,6 +15,8 @@
     self.colour = [UIColor colorWithRed:[[self.sColour objectAtIndex:0] floatValue] green:[[self.sColour objectAtIndex:1] floatValue] blue:[[self.sColour objectAtIndex:2] floatValue] alpha:[[self.sColour objectAtIndex:3] floatValue]];
     if ([self.sType isEqualToString:@"omni"] == YES)
         self.type = SCNLightTypeOmni;
+    if ([self.sType isEqualToString:@"directional"] == YES)
+        self.type = SCNLightTypeDirectional;
     NSAssert1(self.type != nil, @"Unknown light type: %@", self.sType);
 
     self.light = [SCNLight light];

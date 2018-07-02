@@ -88,37 +88,47 @@
     }];
     self.tubes = [self.tubes arrayByAddingObjectsFromArray:allTubes];
 
-    [nodes enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull node, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([[node objectForKey:@"disabled"] boolValue] == YES)
+    [nodes enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull groupdata, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([[groupdata objectForKey:@"disabled"] boolValue] == YES)
             return;
-        if ([node objectForKey:@"position"] != nil) {
-            NodeObject *no = [[NodeObject alloc] init];
-            no.name = [node objectForKey:@"name"];
-            no.sGeometry = [node objectForKey:@"geometry"];
-            no.sScale = [node objectForKey:@"size"];
-            no.sPosition = [node objectForKey:@"position"];
-            no.sID = [node objectForKey:@"id"];
-            [no finish];
-            [allNodes addObject:no];
+        GroupObject *group = [[GroupObject alloc] init];
+        group.name = [groupdata objectForKey:@"group"];
+        group.aOrigin = [groupdata objectForKey:@"origin"];
+        [group finish];
+        [allGroups addObject:group];
 
-            NSString *group = [node objectForKey:@"group"];
-            if (group != nil)
-                [self addToGroup:group node:no groups:allGroups];
-        }
-        [[node objectForKey:@"positions"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NodeObject *no = [[NodeObject alloc] init];
-            no.name = [node objectForKey:@"name"];
-            no.sGeometry = [node objectForKey:@"geometry"];
-            no.sScale = [[node objectForKey:@"sizes"] objectAtIndex:idx];
-            no.sPosition = [[node objectForKey:@"positions"] objectAtIndex:idx];
-            no.sID = [[node objectForKey:@"ids"] objectAtIndex:idx];
-            [no finish];
-            [allNodes addObject:no];
+        NSMutableArray<NodeObject *> *groupNodes = [NSMutableArray array];
 
-            NSString *group = [node objectForKey:@"group"];
-            if (group != nil)
-                [self addToGroup:group node:no groups:allGroups];
+        [[groupdata objectForKey:@"objects"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull node, NSUInteger idx, BOOL * _Nonnull stop) {
+
+            if ([[node objectForKey:@"disabled"] boolValue] == YES)
+                return;
+            if ([node objectForKey:@"position"] != nil) {
+                NodeObject *no = [[NodeObject alloc] init];
+                no.name = [node objectForKey:@"name"];
+                no.sGeometry = [node objectForKey:@"geometry"];
+                no.sScale = [node objectForKey:@"size"];
+                no.sPosition = [node objectForKey:@"position"];
+                no.sID = [node objectForKey:@"id"];
+                no.group = group;
+                [no finish];
+                [allNodes addObject:no];
+                [groupNodes addObject:no];
+            }
+            [[node objectForKey:@"positions"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NodeObject *no = [[NodeObject alloc] init];
+                no.name = [node objectForKey:@"name"];
+                no.sGeometry = [node objectForKey:@"geometry"];
+                no.sScale = [[node objectForKey:@"sizes"] objectAtIndex:idx];
+                no.sPosition = [[node objectForKey:@"positions"] objectAtIndex:idx];
+                no.sID = [[node objectForKey:@"ids"] objectAtIndex:idx];
+                no.group = group;
+                [no finish];
+                [allNodes addObject:no];
+                [groupNodes addObject:no];
+            }];
         }];
+        group.nodes = groupNodes;
     }];
     self.nodes = [self.nodes arrayByAddingObjectsFromArray:allNodes];
 
@@ -133,10 +143,6 @@
             lo.sPosition = [light objectForKey:@"position"];
             [lo finish];
             [allLights addObject:lo];
-
-            NSString *group = [light objectForKey:@"group"];
-            if (group != nil)
-                [self addToGroup:group node:lo groups:allGroups];
         }
         [[light objectForKey:@"positions"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             LightObject *lo = [[LightObject alloc] init];
@@ -146,10 +152,6 @@
             lo.sPosition = [[light objectForKey:@"positions"] objectAtIndex:idx];
             [lo finish];
             [allLights addObject:lo];
-
-            NSString *group = [light objectForKey:@"group"];
-            if (group != nil)
-                [self addToGroup:group node:lo groups:allGroups];
         }];
     }];
     self.lights = [self.lights arrayByAddingObjectsFromArray:allLights];
@@ -164,24 +166,6 @@
     NSLog(@"Loaded %ld groups", [self.groups count]);
 }
 
-- (void)addToGroup:(NSString *)name node:(id)node groups:(NSMutableArray<GroupObject *> *)groups
-{
-    __block GroupObject *group = nil;
-    [groups enumerateObjectsUsingBlock:^(GroupObject * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([g.name isEqualToString:name] == YES) {
-            *stop = YES;
-            group = g;
-        }
-    }];
-    if (group == nil) {
-        group = [[GroupObject alloc] init];
-        group.name = name;
-        [groups addObject:group];
-    }
-    [group.nodes addObject:node];
-    ((NodeObject *)node).group = group;
-}
-
 /*
  * x: left or right from you. Positive is right.
  * y: up or down. Positive is up.
@@ -190,7 +174,7 @@
 + (void)position:(SCNNode *)node x:(float)x y:(float)y z:(float)z
 {
 #define ORIGINX 5
-#define ORIGINZ -2
+#define ORIGINZ -6
 #define ORIGINY 2
 
 //// Bottom cage
@@ -204,10 +188,10 @@
 #define ORIGINX -6
 #define ORIGINY -14
 #define ORIGINZ 1
-
-#define ORIGINX -29
-#define ORIGINY -14
-#define ORIGINZ -11
+//
+//#define ORIGINX -29
+//#define ORIGINY -14
+//#define ORIGINZ -11
 
     if (node.geometry == nil) {
         node.position = SCNVector3Make((x - ORIGINX), (y - ORIGINY), -(z - ORIGINZ));
