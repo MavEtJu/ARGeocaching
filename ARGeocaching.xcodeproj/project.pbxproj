@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E809B96820EB5B2C0004E7ED /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E809B96720EB5B2C0004E7ED /* Media.xcassets */; };
 		E867AE5720DDDF39004C0544 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E867AE5620DDDF39004C0544 /* AppDelegate.m */; };
 		E867AE5920DDDF39004C0544 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E867AE5820DDDF39004C0544 /* art.scnassets */; };
 		E867AE5C20DDDF3A004C0544 /* GA12490ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E867AE5B20DDDF39004C0544 /* GA12490ViewController.m */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E809B96720EB5B2C0004E7ED /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E867AE5220DDDF39004C0544 /* ARGeocaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGeocaching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E867AE5520DDDF39004C0544 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E867AE5620DDDF39004C0544 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -73,6 +75,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E809B96620EB5AEF0004E7ED /* GA12490 */ = {
+			isa = PBXGroup;
+			children = (
+				E867AE5A20DDDF39004C0544 /* GA12490ViewController.h */,
+				E867AE5B20DDDF39004C0544 /* GA12490ViewController.m */,
+				E8A8D7C320E5A659000595E9 /* Mineshaft.json */,
+				E8C389C220E7A81B00C13379 /* Underground.json */,
+				E809B96720EB5B2C0004E7ED /* Media.xcassets */,
+			);
+			path = GA12490;
+			sourceTree = "<group>";
+		};
 		E867AE4920DDDF39004C0544 = {
 			isa = PBXGroup;
 			children = (
@@ -94,16 +108,13 @@
 			children = (
 				E867AE5520DDDF39004C0544 /* AppDelegate.h */,
 				E867AE5620DDDF39004C0544 /* AppDelegate.m */,
-				E867AE5820DDDF39004C0544 /* art.scnassets */,
-				E867AE5A20DDDF39004C0544 /* GA12490ViewController.h */,
-				E867AE5B20DDDF39004C0544 /* GA12490ViewController.m */,
 				E8C389C420E9EBF200C13379 /* TableViewController.h */,
 				E8C389C520E9EBF200C13379 /* TableViewController.m */,
-				E8A8D7C320E5A659000595E9 /* Mineshaft.json */,
-				E8C389C220E7A81B00C13379 /* Underground.json */,
+				E809B96620EB5AEF0004E7ED /* GA12490 */,
 				E8A8D7C520E5AEFB000595E9 /* Objects */,
 				E867AE5D20DDDF3A004C0544 /* Main.storyboard */,
 				E867AE6020DDDF3D004C0544 /* Assets.xcassets */,
+				E867AE5820DDDF39004C0544 /* art.scnassets */,
 				E867AE6220DDDF3D004C0544 /* LaunchScreen.storyboard */,
 				E867AE6520DDDF3D004C0544 /* Info.plist */,
 				E867AE6620DDDF3D004C0544 /* main.m */,
@@ -194,6 +205,7 @@
 			files = (
 				E867AE5920DDDF39004C0544 /* art.scnassets in Resources */,
 				E867AE6420DDDF3D004C0544 /* LaunchScreen.storyboard in Resources */,
+				E809B96820EB5B2C0004E7ED /* Media.xcassets in Resources */,
 				E867AE6120DDDF3D004C0544 /* Assets.xcassets in Resources */,
 				E8A8D7C420E5A65A000595E9 /* Mineshaft.json in Resources */,
 				E867AE5F20DDDF3A004C0544 /* Main.storyboard in Resources */,
