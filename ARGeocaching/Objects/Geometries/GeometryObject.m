@@ -17,20 +17,21 @@
 - (void)finish
 {
     __block MaterialObject *material = nil;
-    NSAssert(self.sMaterials != nil || self.sMaterial != nil, @"No materials defined");
-    if (self.sMaterial != nil) {
+    NSAssert(self.sMaterial != nil, @"No materials defined");
+    if ([self.sMaterial isKindOfClass:[NSString class]] == YES) {
+        NSString *sMaterial = (NSString *)self.sMaterial;
         [objectManager.materials enumerateObjectsUsingBlock:^(MaterialObject * _Nonnull mo, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([mo.name isEqualToString:self.sMaterial] == YES) {
+            if ([mo.name isEqualToString:sMaterial] == YES) {
                 *stop = YES;
                 material = mo;
             }
         }];
         NSAssert1(material != nil, @"Unknown material: %@", self.sMaterial);
-        self.material = material.material;
+        self.materials = @[material.material, material.material, material.material, material.material, material.material, material.material];
     }
-    if (self.sMaterials != nil) {
+    if ([self.sMaterial isKindOfClass:[NSArray class]] == YES) {
         NSMutableArray<SCNMaterial *> *materials = [NSMutableArray arrayWithCapacity:6];
-        [self.sMaterials enumerateObjectsUsingBlock:^(NSString * _Nonnull m, NSUInteger idx, BOOL * _Nonnull stop) {
+        [(NSArray *)self.sMaterial enumerateObjectsUsingBlock:^(NSString * _Nonnull m, NSUInteger idx, BOOL * _Nonnull stop) {
             material = nil;
             [objectManager.materials enumerateObjectsUsingBlock:^(MaterialObject * _Nonnull mo, NSUInteger idx, BOOL * _Nonnull stop) {
                 if ([m isEqualToString:mo.name] == YES) {
@@ -47,10 +48,7 @@
 
 - (void)finished
 {
-    if (self.material != nil)
-        self.geometry.materials = @[self.material, self.material, self.material, self.material, self.material, self.material];
-    if (self.materials != nil)
-        self.geometry.materials = self.materials;
+    self.geometry.materials = self.materials;
 }
 
 @end

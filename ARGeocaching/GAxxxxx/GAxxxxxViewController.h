@@ -6,6 +6,6 @@
 //  Copyright © 2018 Edwin Groothuis. All rights reserved.
 //
 
-@interface GAxxxxViewController : UIViewController <UIGestureRecognizerDelegate>
+@interface GAxxxxxViewController : UIViewController <UIGestureRecognizerDelegate>
 
 @end

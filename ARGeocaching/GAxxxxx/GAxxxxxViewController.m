@@ -15,7 +15,7 @@ typedef NS_ENUM(NSInteger, GameStage) {
 };
 
 
-@interface GAxxxxViewController () <ARSCNViewDelegate>
+@interface GAxxxxxViewController () <ARSCNViewDelegate>
 
 @property (nonatomic, strong) IBOutlet ARSCNView *sceneView;
 @property (nonatomic, retain) NSOperationQueue *queue;
@@ -29,7 +29,7 @@ typedef NS_ENUM(NSInteger, GameStage) {
 
 @end
 
-@implementation GAxxxxViewController
+@implementation GAxxxxxViewController
 
 - (void)viewDidLoad
 {

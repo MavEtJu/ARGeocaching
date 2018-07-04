@@ -24,9 +24,12 @@
                     @{@"title": @"GA12490",
                       @"description": @"Caringbah Mines",
                       },
-                    @{@"title": @"GAxxxx",
+                    @{@"title": @"GAxxxxx",
                       @"description": @"Totem Pole",
-                      }
+                      },
+                    @{@"title": @"Demo",
+                      @"description": @"Demo of all objects",
+                      },
                     ];
 }
 
@@ -34,9 +37,9 @@
 {
     [super viewDidAppear:animated];
 
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    NSDictionary *dict = [self.caches objectAtIndex:1];
-    UIViewController *viewController = [sb instantiateViewControllerWithIdentifier:[dict objectForKey:@"title"]];
+    NSDictionary *dict = [self.caches objectAtIndex:0];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:[dict objectForKey:@"title"] bundle:nil];
+    UIViewController *viewController = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
     [self presentViewController:viewController animated:FALSE completion:nil];
 }
 

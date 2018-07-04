@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		E805CF7520EC586F00AC4A04 /* Top Floor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E805CF7320EC586F00AC4A04 /* Top Floor.jpg */; };
 		E805CF7620EC586F00AC4A04 /* Underground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E805CF7420EC586F00AC4A04 /* Underground.jpg */; };
-		E805CF7A20EC59F700AC4A04 /* GAxxxxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF7920EC59F700AC4A04 /* GAxxxxViewController.m */; };
+		E805CF7A20EC59F700AC4A04 /* GAxxxxxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF7920EC59F700AC4A04 /* GAxxxxxViewController.m */; };
 		E805CF7C20EC5D4300AC4A04 /* Totem Pole.json in Resources */ = {isa = PBXBuildFile; fileRef = E805CF7B20EC5D4300AC4A04 /* Totem Pole.json */; };
 		E805CF7E20EC61A800AC4A04 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E805CF7D20EC61A800AC4A04 /* Media.xcassets */; };
 		E805CF8220EC77EA00AC4A04 /* SphereObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF8120EC77EA00AC4A04 /* SphereObject.m */; };
@@ -20,6 +20,8 @@
 		E805CF9120ECB3E600AC4A04 /* PyramidObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF9020ECB3E600AC4A04 /* PyramidObject.m */; };
 		E805CF9520ECB40700AC4A04 /* ConeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF9420ECB40700AC4A04 /* ConeObject.m */; };
 		E805CF9820ECB41200AC4A04 /* TorusObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF9720ECB41200AC4A04 /* TorusObject.m */; };
+		E805CF9C20ECD53B00AC4A04 /* GA12490.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E805CF9B20ECD53B00AC4A04 /* GA12490.storyboard */; };
+		E805CF9E20ECD5EC00AC4A04 /* GAxxxxx.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E805CF9D20ECD5EB00AC4A04 /* GAxxxxx.storyboard */; };
 		E809B96820EB5B2C0004E7ED /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E809B96720EB5B2C0004E7ED /* Media.xcassets */; };
 		E867AE5720DDDF39004C0544 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E867AE5620DDDF39004C0544 /* AppDelegate.m */; };
 		E867AE5920DDDF39004C0544 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E867AE5820DDDF39004C0544 /* art.scnassets */; };
@@ -44,8 +46,8 @@
 /* Begin PBXFileReference section */
 		E805CF7320EC586F00AC4A04 /* Top Floor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Top Floor.jpg"; sourceTree = "<group>"; };
 		E805CF7420EC586F00AC4A04 /* Underground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Underground.jpg; sourceTree = "<group>"; };
-		E805CF7820EC59F700AC4A04 /* GAxxxxViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAxxxxViewController.h; path = ARGeocaching/GAxxxxx/GAxxxxViewController.h; sourceTree = SOURCE_ROOT; };
-		E805CF7920EC59F700AC4A04 /* GAxxxxViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GAxxxxViewController.m; path = ARGeocaching/GAxxxxx/GAxxxxViewController.m; sourceTree = SOURCE_ROOT; };
+		E805CF7820EC59F700AC4A04 /* GAxxxxxViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAxxxxxViewController.h; path = ARGeocaching/GAxxxxx/GAxxxxxViewController.h; sourceTree = SOURCE_ROOT; };
+		E805CF7920EC59F700AC4A04 /* GAxxxxxViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GAxxxxxViewController.m; path = ARGeocaching/GAxxxxx/GAxxxxxViewController.m; sourceTree = SOURCE_ROOT; };
 		E805CF7B20EC5D4300AC4A04 /* Totem Pole.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = "Totem Pole.json"; path = "ARGeocaching/GAxxxxx/Totem Pole.json"; sourceTree = SOURCE_ROOT; };
 		E805CF7D20EC61A800AC4A04 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ARGeocaching/GAxxxxx/Media.xcassets; sourceTree = SOURCE_ROOT; };
 		E805CF8020EC77EA00AC4A04 /* SphereObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SphereObject.h; sourceTree = "<group>"; };
@@ -64,6 +66,8 @@
 		E805CF9420ECB40700AC4A04 /* ConeObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConeObject.m; sourceTree = "<group>"; };
 		E805CF9620ECB41200AC4A04 /* TorusObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TorusObject.h; sourceTree = "<group>"; };
 		E805CF9720ECB41200AC4A04 /* TorusObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TorusObject.m; sourceTree = "<group>"; };
+		E805CF9B20ECD53B00AC4A04 /* GA12490.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GA12490.storyboard; sourceTree = "<group>"; };
+		E805CF9D20ECD5EB00AC4A04 /* GAxxxxx.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = GAxxxxx.storyboard; path = ARGeocaching/GA12490/GAxxxxx.storyboard; sourceTree = SOURCE_ROOT; };
 		E809B96720EB5B2C0004E7ED /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E867AE5220DDDF39004C0544 /* ARGeocaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGeocaching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E867AE5520DDDF39004C0544 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -113,8 +117,9 @@
 		E805CF7720EC59D600AC4A04 /* GAxxxxx */ = {
 			isa = PBXGroup;
 			children = (
-				E805CF7820EC59F700AC4A04 /* GAxxxxViewController.h */,
-				E805CF7920EC59F700AC4A04 /* GAxxxxViewController.m */,
+				E805CF7820EC59F700AC4A04 /* GAxxxxxViewController.h */,
+				E805CF7920EC59F700AC4A04 /* GAxxxxxViewController.m */,
+				E805CF9D20ECD5EB00AC4A04 /* GAxxxxx.storyboard */,
 				E805CF7B20EC5D4300AC4A04 /* Totem Pole.json */,
 				E805CF7D20EC61A800AC4A04 /* Media.xcassets */,
 			);
@@ -151,6 +156,13 @@
 			path = Geometries;
 			sourceTree = "<group>";
 		};
+		E805CF9A20ECD4E100AC4A04 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
 		E809B96620EB5AEF0004E7ED /* GA12490 */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +170,7 @@
 				E867AE5B20DDDF39004C0544 /* GA12490ViewController.m */,
 				E8A8D7C320E5A659000595E9 /* Mineshaft.json */,
 				E8C389C220E7A81B00C13379 /* Underground.json */,
+				E805CF9B20ECD53B00AC4A04 /* GA12490.storyboard */,
 				E809B96720EB5B2C0004E7ED /* Media.xcassets */,
 				E805CF7320EC586F00AC4A04 /* Top Floor.jpg */,
 				E805CF7420EC586F00AC4A04 /* Underground.jpg */,
@@ -188,6 +201,7 @@
 				E867AE5620DDDF39004C0544 /* AppDelegate.m */,
 				E8C389C420E9EBF200C13379 /* TableViewController.h */,
 				E8C389C520E9EBF200C13379 /* TableViewController.m */,
+				E805CF9A20ECD4E100AC4A04 /* Demo */,
 				E805CF7720EC59D600AC4A04 /* GAxxxxx */,
 				E809B96620EB5AEF0004E7ED /* GA12490 */,
 				E8A8D7C520E5AEFB000595E9 /* Objects */,
@@ -282,11 +296,13 @@
 				E867AE6420DDDF3D004C0544 /* LaunchScreen.storyboard in Resources */,
 				E809B96820EB5B2C0004E7ED /* Media.xcassets in Resources */,
 				E805CF7C20EC5D4300AC4A04 /* Totem Pole.json in Resources */,
+				E805CF9C20ECD53B00AC4A04 /* GA12490.storyboard in Resources */,
 				E805CF7E20EC61A800AC4A04 /* Media.xcassets in Resources */,
 				E805CF7620EC586F00AC4A04 /* Underground.jpg in Resources */,
 				E867AE6120DDDF3D004C0544 /* Assets.xcassets in Resources */,
 				E8A8D7C420E5A65A000595E9 /* Mineshaft.json in Resources */,
 				E867AE5F20DDDF3A004C0544 /* Main.storyboard in Resources */,
+				E805CF9E20ECD5EC00AC4A04 /* GAxxxxx.storyboard in Resources */,
 				E8C389C320E7A81B00C13379 /* Underground.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,7 +324,7 @@
 				E805CF8B20ECB2FC00AC4A04 /* PlaneObject.m in Sources */,
 				E805CF9820ECB41200AC4A04 /* TorusObject.m in Sources */,
 				E8C389C120E61D8A00C13379 /* GroupObject.m in Sources */,
-				E805CF7A20EC59F700AC4A04 /* GAxxxxViewController.m in Sources */,
+				E805CF7A20EC59F700AC4A04 /* GAxxxxxViewController.m in Sources */,
 				E805CF9120ECB3E600AC4A04 /* PyramidObject.m in Sources */,
 				E867AE6720DDDF3D004C0544 /* main.m in Sources */,
 				E8C389C620E9EBF200C13379 /* TableViewController.m in Sources */,

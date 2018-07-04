@@ -12,13 +12,11 @@
 @property (nonatomic, retain) SCNGeometry *geometry;
 
 // References to the resolved objects
-@property (nonatomic, retain) SCNMaterial *material;
 @property (nonatomic, retain) NSArray<SCNMaterial *> *materials;
 
 // Read from the configuration
 @property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSString *sMaterial;
-@property (nonatomic, retain) NSArray<NSString *> *sMaterials;
+@property (nonatomic, retain) NSObject *sMaterial;
 
 - (void)finish;
 - (void)finished;

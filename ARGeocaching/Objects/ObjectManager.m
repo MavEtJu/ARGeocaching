@@ -76,7 +76,6 @@
         BoxObject *bo = [[BoxObject alloc] init];
         bo.name = [box objectForKey:@"name"];
         bo.sMaterial = [box objectForKey:@"material"];
-        bo.sMaterials = [box objectForKey:@"materials"];
         [bo finish];
         [all addObject:bo];
     }];
@@ -89,7 +88,6 @@
         TubeObject *to = [[TubeObject alloc] init];
         to.name = [tube objectForKey:@"name"];
         to.sMaterial = [tube objectForKey:@"material"];
-        to.sMaterials = [tube objectForKey:@"materials"];
         to.sRadius = [tube objectForKey:@"radius"];
         [to finish];
         [all addObject:to];
@@ -103,7 +101,6 @@
         SphereObject *so = [[SphereObject alloc] init];
         so.name = [sphere objectForKey:@"name"];
         so.sMaterial = [sphere objectForKey:@"material"];
-        so.sMaterials = [sphere objectForKey:@"materials"];
         so.sRadius = [sphere objectForKey:@"radius"];
         [so finish];
         [all addObject:so];
@@ -117,7 +114,6 @@
         CapsuleObject *co = [[CapsuleObject alloc] init];
         co.name = [capsule objectForKey:@"name"];
         co.sMaterial = [capsule objectForKey:@"material"];
-        co.sMaterials = [capsule objectForKey:@"materials"];
         co.sRadius = [capsule objectForKey:@"radius"];
         [co finish];
         [all addObject:co];
@@ -131,7 +127,6 @@
         CylinderObject *co = [[CylinderObject alloc] init];
         co.name = [cylinder objectForKey:@"name"];
         co.sMaterial = [cylinder objectForKey:@"material"];
-        co.sMaterials = [cylinder objectForKey:@"materials"];
         co.sRadius = [cylinder objectForKey:@"radius"];
         [co finish];
         [all addObject:co];
@@ -145,7 +140,6 @@
         PlaneObject *po = [[PlaneObject alloc] init];
         po.name = [plane objectForKey:@"name"];
         po.sMaterial = [plane objectForKey:@"material"];
-        po.sMaterials = [plane objectForKey:@"materials"];
         [po finish];
         [all addObject:po];
     }];
@@ -158,7 +152,6 @@
         PyramidObject *po = [[PyramidObject alloc] init];
         po.name = [pyramid objectForKey:@"name"];
         po.sMaterial = [pyramid objectForKey:@"material"];
-        po.sMaterials = [pyramid objectForKey:@"materials"];
         [po finish];
         [all addObject:po];
     }];
@@ -171,7 +164,6 @@
         TorusObject *to = [[TorusObject alloc] init];
         to.name = [torus objectForKey:@"name"];
         to.sMaterial = [torus objectForKey:@"material"];
-        to.sMaterials = [torus objectForKey:@"materials"];
         to.sRadius = [torus objectForKey:@"radius"];
         [to finish];
         [all addObject:to];
@@ -185,7 +177,6 @@
         ConeObject *co = [[ConeObject alloc] init];
         co.name = [cone objectForKey:@"name"];
         co.sMaterial = [cone objectForKey:@"material"];
-        co.sMaterials = [cone objectForKey:@"materials"];
         co.sRadius = [cone objectForKey:@"radius"];
         [co finish];
         [all addObject:co];
@@ -217,10 +208,10 @@
         NSMutableArray<NodeObject *> *groupNodes = [NSMutableArray array];
 
         [[groupdata objectForKey:@"objects"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull node, NSUInteger idx, BOOL * _Nonnull stop) {
-
             if ([[node objectForKey:@"disabled"] boolValue] == YES)
                 return;
-            if ([node objectForKey:@"position"] != nil) {
+            NSObject *sPosition = [[node objectForKey:@"position"] objectAtIndex:0];
+            if ([sPosition isKindOfClass:[NSNumber class]] == YES) {
                 NodeObject *no = [[NodeObject alloc] init];
                 no.name = [node objectForKey:@"name"];
                 no.sGeometry = [node objectForKey:@"geometry"];
@@ -232,18 +223,20 @@
                 [all addObject:no];
                 [groupNodes addObject:no];
             }
-            [[node objectForKey:@"positions"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                NodeObject *no = [[NodeObject alloc] init];
-                no.name = [node objectForKey:@"name"];
-                no.sGeometry = [node objectForKey:@"geometry"];
-                no.sScale = [[node objectForKey:@"sizes"] objectAtIndex:idx];
-                no.sPosition = [[node objectForKey:@"positions"] objectAtIndex:idx];
-                no.sID = [[node objectForKey:@"ids"] objectAtIndex:idx];
-                no.group = group;
-                [no finish];
-                [all addObject:no];
-                [groupNodes addObject:no];
-            }];
+            if ([sPosition isKindOfClass:[NSArray class]] == YES) {
+                [[node objectForKey:@"position"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    NodeObject *no = [[NodeObject alloc] init];
+                    no.name = [node objectForKey:@"name"];
+                    no.sGeometry = [node objectForKey:@"geometry"];
+                    no.sScale = [[node objectForKey:@"size"] objectAtIndex:idx];
+                    no.sPosition = [[node objectForKey:@"position"] objectAtIndex:idx];
+                    no.sID = [[node objectForKey:@"id"] objectAtIndex:idx];
+                    no.group = group;
+                    [no finish];
+                    [all addObject:no];
+                    [groupNodes addObject:no];
+                }];
+            }
         }];
         group.nodes = groupNodes;
     }];
@@ -252,8 +245,10 @@
     [all removeAllObjects];
     [[json objectForKey:@"lights"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull light, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[light objectForKey:@"disabled"] boolValue] == YES)
-            return;
-        if ([light objectForKey:@"position"] != nil) {
+        return;
+
+        NSObject *sPosition = [[light objectForKey:@"position"] objectAtIndex:0];
+        if ([sPosition isKindOfClass:[NSNumber class]] == YES) {
             LightObject *lo = [[LightObject alloc] init];
             lo.name = [light objectForKey:@"name"];
             lo.sColour = [light objectForKey:@"colour"];
@@ -262,15 +257,17 @@
             [lo finish];
             [all addObject:lo];
         }
-        [[light objectForKey:@"positions"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            LightObject *lo = [[LightObject alloc] init];
-            lo.name = [light objectForKey:@"name"];
-            lo.sColour = [light objectForKey:@"colour"];
-            lo.sType = [light objectForKey:@"type"];
-            lo.sPosition = [[light objectForKey:@"positions"] objectAtIndex:idx];
-            [lo finish];
-            [all addObject:lo];
-        }];
+        if ([sPosition isKindOfClass:[NSArray class]] == YES) {
+            [[light objectForKey:@"position"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                LightObject *lo = [[LightObject alloc] init];
+                lo.name = [light objectForKey:@"name"];
+                lo.sColour = [light objectForKey:@"colour"];
+                lo.sType = [light objectForKey:@"type"];
+                lo.sPosition = [[light objectForKey:@"position"] objectAtIndex:idx];
+                [lo finish];
+                [all addObject:lo];
+            }];
+        }
     }];
     self.lights = [self.lights arrayByAddingObjectsFromArray:all];
 
