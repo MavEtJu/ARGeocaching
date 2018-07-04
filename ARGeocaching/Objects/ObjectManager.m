@@ -28,6 +28,10 @@
     self.lights = [NSArray array];
     self.groups = [NSArray array];
     self.planes = [NSArray array];
+    self.pyramids = [NSArray array];
+    self.floors = [NSArray array];
+    self.toruses = [NSArray array];
+    self.cones = [NSArray array];
 
     return self;
 }
@@ -290,9 +294,18 @@
 {
     if (node.geometry == nil) {
         node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY), -(z - objectManager.originZ));
+    } else if ([node.geometry isKindOfClass:[SCNCone class]] == YES) {
+        SCNCone *g = (SCNCone *)node.geometry;
+        node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY + node.scale.y * g.height / 2), -(z - objectManager.originZ));
     } else if ([node.geometry isKindOfClass:[SCNBox class]] == YES) {
         SCNBox *g = (SCNBox *)node.geometry;
         node.position = SCNVector3Make((x - objectManager.originX + node.scale.x * g.width / 2), (y - objectManager.originY + node.scale.y * g.height / 2), -(z - objectManager.originZ + node.scale.z * g.length / 2));
+    } else if ([node.geometry isKindOfClass:[SCNPyramid class]] == YES) {
+        SCNPyramid *g = (SCNPyramid *)node.geometry;
+        node.position = SCNVector3Make((x - objectManager.originX + node.scale.x * g.width / 2), (y - objectManager.originY + node.scale.y * g.height / 2), -(z - objectManager.originZ + node.scale.z * g.length / 2));
+    } else if ([node.geometry isKindOfClass:[SCNPlane class]] == YES) {
+        SCNPlane *g = (SCNPlane *)node.geometry;
+        node.position = SCNVector3Make((x - objectManager.originX + node.scale.x * g.width / 2), (y - objectManager.originY + node.scale.y * g.height / 2), -(z - objectManager.originZ));
     } else if ([node.geometry isKindOfClass:[SCNTube class]] == YES) {
         SCNTube *g = (SCNTube *)node.geometry;
         node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY + node.scale.y * g.height / 2), -(z - objectManager.originZ));
@@ -305,6 +318,9 @@
     } else if ([node.geometry isKindOfClass:[SCNCylinder class]] == YES) {
         SCNCylinder *g = (SCNCylinder *)node.geometry;
         node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY + node.scale.y * g.radius / 2), -(z - objectManager.originZ));
+    } else if ([node.geometry isKindOfClass:[SCNTorus class]] == YES) {
+        SCNTorus *g = (SCNTorus *)node.geometry;
+        node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY), -(z - objectManager.originZ));
     } else {
         NSAssert1(NO, @"Unknown class: %@", [node.geometry class]);
     }

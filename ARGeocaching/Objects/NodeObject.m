@@ -47,6 +47,37 @@
             geometry = go;
         }
     }];
+    [objectManager.pyramids enumerateObjectsUsingBlock:^(GeometryObject * _Nonnull go, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([go.name isEqualToString:self.sGeometry] == YES) {
+            *stop = YES;
+            geometry = go;
+        }
+    }];
+    [objectManager.planes enumerateObjectsUsingBlock:^(GeometryObject * _Nonnull go, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([go.name isEqualToString:self.sGeometry] == YES) {
+            *stop = YES;
+            geometry = go;
+        }
+    }];
+    [objectManager.floors enumerateObjectsUsingBlock:^(GeometryObject * _Nonnull go, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([go.name isEqualToString:self.sGeometry] == YES) {
+            *stop = YES;
+            geometry = go;
+        }
+    }];
+    [objectManager.toruses enumerateObjectsUsingBlock:^(GeometryObject * _Nonnull go, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([go.name isEqualToString:self.sGeometry] == YES) {
+            *stop = YES;
+            geometry = go;
+        }
+    }];
+    [objectManager.cones enumerateObjectsUsingBlock:^(GeometryObject * _Nonnull go, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([go.name isEqualToString:self.sGeometry] == YES) {
+            *stop = YES;
+            geometry = go;
+        }
+    }];
+
     NSAssert1(geometry != nil, @"Unknown geometry: %@", self.sGeometry);
 
     self.scale = [NSValue valueWithSCNVector3:SCNVector3Make([[self.sScale objectAtIndex:0] floatValue], [[self.sScale objectAtIndex:1] floatValue], [[self.sScale objectAtIndex:2] floatValue])];

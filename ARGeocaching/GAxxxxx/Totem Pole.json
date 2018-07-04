@@ -73,6 +73,40 @@
      "material": "Blue",
      "radius": 1
      }
+     ],
+
+    "pyramids":
+    [
+     {
+     "name": "Blue pyramid",
+     "materials": ["Blue", "Red", "Green", "Blue", "Red", "Green"]
+     }
+     ],
+
+    "toruses":
+    [
+     {
+     "name": "Red torus",
+     "radius": [1, 0.1],
+     "materials": ["Blue", "Red", "Green", "Blue", "Red", "Green"]
+     }
+     ],
+
+    "cones":
+    [
+     {
+     "name": "Red cone",
+     "radius": [1, 0.1],
+     "materials": ["Rust", "Rust", "Rust", "Rust", "Rust", "Rust"]
+     }
+     ],
+
+    "planes":
+    [
+     {
+     "name": "Blue plane",
+     "material": "Rust"
+     }
     ],
 
     "nodes":
@@ -84,35 +118,10 @@
      "objects":
      [
       {
-      "name": "Top",
-      "geometry": "Red tube",
-      "position": [0, 0, 0],
-      "size": [1, 1, 2]
-      }, {
-      "name": "Sphere",
-      "geometry": "Blue circle",
-      "position": [0, 1.5, 0],
-      "size": [1, 2, 1]
-      }, {
-      "name": "Capsule",
-      "geometry": "Blue capsule .1",
-      "position": [2, 0.5, 0],
-      "size": [1, 4, 1]
-      }, {
-      "name": "Capsule",
-      "geometry": "Blue capsule .4",
-      "position": [3, 0.5, 0],
-      "size": [1, 4, 1]
-      }, {
-      "name": "Capsule",
-      "geometry": "Blue capsule .1",
-      "position": [-3, 0.5, 0],
-      "size": [1, 4, 2]
-      }, {
-      "name": "Cylinder",
-      "geometry": "Blue cylinder",
+      "name": "P",
+      "geometry": "Blue plane",
       "position": [-2, 0.5, 0],
-      "size": [1, 4, 1]
+      "size": [1, 1, 0]
       }
       ]
      }
