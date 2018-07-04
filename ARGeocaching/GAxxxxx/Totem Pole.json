@@ -4,6 +4,10 @@
     "materials":
     [
      {
+     "name": "Rust",
+     "image": "Rust"
+     },
+     {
      "name": "Red",
      "image": "Red colour"
      }, {
@@ -40,6 +44,19 @@
      }
     ],
 
+    "capsules":
+    [
+     {
+     "name": "Blue capsule .1",
+     "material": "Rust",
+     "radius": 0.1
+     }, {
+     "name": "Blue capsule .4",
+     "material": "Rust",
+     "radius": 0.4
+     }
+    ],
+
     "spheres":
     [
      {
@@ -66,7 +83,27 @@
       "name": "Sphere",
       "geometry": "Blue circle",
       "position": [0, 1.5, 0],
-      "size": [1, 1, 1]
+      "size": [1, 2, 1]
+      }, {
+      "name": "Capsule",
+      "geometry": "Blue capsule .1",
+      "position": [2, 0.5, 0],
+      "size": [1, 4, 1]
+      }, {
+      "name": "Capsule",
+      "geometry": "Blue capsule .4",
+      "position": [3, 0.5, 0],
+      "size": [1, 4, 1]
+      }, {
+      "name": "Capsule",
+      "geometry": "Blue capsule .1",
+      "position": [-3, 0.5, 0],
+      "size": [1, 4, 2]
+      }, {
+      "name": "Capsule",
+      "geometry": "Blue capsule .4",
+      "position": [-2, 0.5, 0],
+      "size": [1, 4, 2]
       }
       ]
      }

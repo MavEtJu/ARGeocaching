@@ -11,7 +11,8 @@
 @property (nonatomic, retain) NSArray<MaterialObject *> *materials;
 @property (nonatomic, retain) NSArray<BoxObject *> *boxes;
 @property (nonatomic, retain) NSArray<TubeObject *> *tubes;
-@property (nonatomic, retain) NSArray<TubeObject *> *spheres;
+@property (nonatomic, retain) NSArray<SphereObject *> *spheres;
+@property (nonatomic, retain) NSArray<CapsuleObject *> *capsules;
 @property (nonatomic, retain) NSArray<LightObject *> *lights;
 @property (nonatomic, retain) NSArray<NodeObject *> *nodes;
 @property (nonatomic, retain) NSArray<GroupObject *> *groups;

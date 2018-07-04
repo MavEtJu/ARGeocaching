@@ -23,6 +23,7 @@
     self.tubes = [NSArray array];
     self.nodes = [NSArray array];
     self.spheres = [NSArray array];
+    self.capsules = [NSArray array];
     self.lights = [NSArray array];
     self.groups = [NSArray array];
 
@@ -43,6 +44,7 @@
     NSArray<NSDictionary *> *tubes = [json objectForKey:@"tubes"];
     NSArray<NSDictionary *> *nodes = [json objectForKey:@"nodes"];
     NSArray<NSDictionary *> *spheres = [json objectForKey:@"spheres"];
+    NSArray<NSDictionary *> *capsules = [json objectForKey:@"capsules"];
     NSArray<NSDictionary *> *lights = [json objectForKey:@"lights"];
 
     NSArray<NSNumber *> *origins = [json objectForKey:@"origin"];
@@ -52,13 +54,14 @@
         self.originZ = [[origins objectAtIndex:2] floatValue];
     }
 
-    NSMutableArray<MaterialObject *> *allMaterials = [NSMutableArray arrayWithCapacity:10];
-    NSMutableArray<BoxObject *> *allBoxes = [NSMutableArray arrayWithCapacity:10];
-    NSMutableArray<TubeObject *> *allTubes = [NSMutableArray arrayWithCapacity:10];
-    NSMutableArray<NodeObject *> *allNodes = [NSMutableArray arrayWithCapacity:10];
-    NSMutableArray<SphereObject *> *allSpheres = [NSMutableArray arrayWithCapacity:10];
-    NSMutableArray<LightObject *> *allLights = [NSMutableArray arrayWithCapacity:10];
-    NSMutableArray<GroupObject *> *allGroups = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray<MaterialObject *> *allMaterials = [NSMutableArray array];
+    NSMutableArray<BoxObject *> *allBoxes = [NSMutableArray array];
+    NSMutableArray<TubeObject *> *allTubes = [NSMutableArray array];
+    NSMutableArray<NodeObject *> *allNodes = [NSMutableArray array];
+    NSMutableArray<SphereObject *> *allSpheres = [NSMutableArray array];
+    NSMutableArray<CapsuleObject *> *allCapsules = [NSMutableArray array];
+    NSMutableArray<LightObject *> *allLights = [NSMutableArray array];
+    NSMutableArray<GroupObject *> *allGroups = [NSMutableArray array];
 
     [materials enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull material, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[material objectForKey:@"disabled"] boolValue] == YES)
@@ -100,7 +103,7 @@
 
     [spheres enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull sphere, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[sphere objectForKey:@"disabled"] boolValue] == YES)
-            return;
+        return;
         SphereObject *so = [[SphereObject alloc] init];
         so.name = [sphere objectForKey:@"name"];
         so.sMaterial = [sphere objectForKey:@"material"];
@@ -110,6 +113,19 @@
         [allSpheres addObject:so];
     }];
     self.spheres = [self.spheres arrayByAddingObjectsFromArray:allSpheres];
+
+    [capsules enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull capsule, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([[capsule objectForKey:@"disabled"] boolValue] == YES)
+            return;
+        CapsuleObject *co = [[CapsuleObject alloc] init];
+        co.name = [capsule objectForKey:@"name"];
+        co.sMaterial = [capsule objectForKey:@"material"];
+        co.sMaterials = [capsule objectForKey:@"materials"];
+        co.sRadius = [capsule objectForKey:@"radius"];
+        [co finish];
+        [allCapsules addObject:co];
+    }];
+    self.capsules = [self.capsules arrayByAddingObjectsFromArray:allCapsules];
 
     [nodes enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull groupdata, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[groupdata objectForKey:@"disabled"] boolValue] == YES)
@@ -204,6 +220,9 @@
         node.position = SCNVector3Make((x - objectManager.originX + node.scale.x * g.width / 2), (y - objectManager.originY + node.scale.y * g.height / 2), -(z - objectManager.originZ + node.scale.z * g.length / 2));
     } else if ([node.geometry isKindOfClass:[SCNTube class]] == YES) {
         SCNTube *g = (SCNTube *)node.geometry;
+        node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY + node.scale.y * g.height / 2), -(z - objectManager.originZ));
+    } else if ([node.geometry isKindOfClass:[SCNCapsule class]] == YES) {
+        SCNCapsule *g = (SCNCapsule *)node.geometry;
         node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY + node.scale.y * g.height / 2), -(z - objectManager.originZ));
     } else if ([node.geometry isKindOfClass:[SCNSphere class]] == YES) {
         SCNSphere *g = (SCNSphere *)node.geometry;
