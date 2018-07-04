@@ -82,7 +82,6 @@ typedef NS_ENUM(NSInteger, GameStage) {
     [super viewWillAppear:animated];
     
     ARWorldTrackingConfiguration *configuration = [ARWorldTrackingConfiguration new];
-//    configuration.lightEstimationEnabled = NO;
 
     [self.sceneView.session runWithConfiguration:configuration];
 }
@@ -92,17 +91,6 @@ typedef NS_ENUM(NSInteger, GameStage) {
     [super viewWillDisappear:animated];
     
     [self.sceneView.session pause];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
-}
-
-- (void)tap:(UITapGestureRecognizer *)gesture
-{
-    NSLog(@"tap");
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
