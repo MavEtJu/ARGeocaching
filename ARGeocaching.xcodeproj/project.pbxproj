@@ -14,6 +14,7 @@
 		E805CF7E20EC61A800AC4A04 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E805CF7D20EC61A800AC4A04 /* Media.xcassets */; };
 		E805CF8220EC77EA00AC4A04 /* SphereObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF8120EC77EA00AC4A04 /* SphereObject.m */; };
 		E805CF8520EC7C4F00AC4A04 /* CapsuleObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF8420EC7C4F00AC4A04 /* CapsuleObject.m */; };
+		E805CF8820EC860100AC4A04 /* CylinderObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF8720EC860100AC4A04 /* CylinderObject.m */; };
 		E809B96820EB5B2C0004E7ED /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E809B96720EB5B2C0004E7ED /* Media.xcassets */; };
 		E867AE5720DDDF39004C0544 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E867AE5620DDDF39004C0544 /* AppDelegate.m */; };
 		E867AE5920DDDF39004C0544 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E867AE5820DDDF39004C0544 /* art.scnassets */; };
@@ -46,6 +47,8 @@
 		E805CF8120EC77EA00AC4A04 /* SphereObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SphereObject.m; sourceTree = "<group>"; };
 		E805CF8320EC7C4F00AC4A04 /* CapsuleObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CapsuleObject.h; sourceTree = "<group>"; };
 		E805CF8420EC7C4F00AC4A04 /* CapsuleObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CapsuleObject.m; sourceTree = "<group>"; };
+		E805CF8620EC860100AC4A04 /* CylinderObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CylinderObject.h; sourceTree = "<group>"; };
+		E805CF8720EC860100AC4A04 /* CylinderObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CylinderObject.m; sourceTree = "<group>"; };
 		E809B96720EB5B2C0004E7ED /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E867AE5220DDDF39004C0544 /* ARGeocaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGeocaching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E867AE5520DDDF39004C0544 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -172,6 +175,8 @@
 				E8A8D7D420E5FFD0000595E9 /* TubeObject.m */,
 				E805CF8020EC77EA00AC4A04 /* SphereObject.h */,
 				E805CF8120EC77EA00AC4A04 /* SphereObject.m */,
+				E805CF8620EC860100AC4A04 /* CylinderObject.h */,
+				E805CF8720EC860100AC4A04 /* CylinderObject.m */,
 				E805CF8320EC7C4F00AC4A04 /* CapsuleObject.h */,
 				E805CF8420EC7C4F00AC4A04 /* CapsuleObject.m */,
 				E8A8D7CF20E5AF68000595E9 /* NodeObject.h */,
@@ -272,6 +277,7 @@
 				E8C389C620E9EBF200C13379 /* TableViewController.m in Sources */,
 				E8A8D7D520E5FFD0000595E9 /* TubeObject.m in Sources */,
 				E867AE5720DDDF39004C0544 /* AppDelegate.m in Sources */,
+				E805CF8820EC860100AC4A04 /* CylinderObject.m in Sources */,
 				E8A8D7D820E6010A000595E9 /* GeometryObject.m in Sources */,
 				E8A8D7DB20E609B5000595E9 /* LightObject.m in Sources */,
 				E805CF8220EC77EA00AC4A04 /* SphereObject.m in Sources */,

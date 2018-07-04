@@ -21,6 +21,7 @@
 #import "TubeObject.h"
 #import "SphereObject.h"
 #import "CapsuleObject.h"
+#import "CylinderObject.h"
 #import "NodeObject.h"
 #import "LightObject.h"
 #import "GroupObject.h"

@@ -24,6 +24,7 @@
     self.nodes = [NSArray array];
     self.spheres = [NSArray array];
     self.capsules = [NSArray array];
+    self.cylinders = [NSArray array];
     self.lights = [NSArray array];
     self.groups = [NSArray array];
 
@@ -45,6 +46,7 @@
     NSArray<NSDictionary *> *nodes = [json objectForKey:@"nodes"];
     NSArray<NSDictionary *> *spheres = [json objectForKey:@"spheres"];
     NSArray<NSDictionary *> *capsules = [json objectForKey:@"capsules"];
+    NSArray<NSDictionary *> *cylinders = [json objectForKey:@"cylinders"];
     NSArray<NSDictionary *> *lights = [json objectForKey:@"lights"];
 
     NSArray<NSNumber *> *origins = [json objectForKey:@"origin"];
@@ -60,6 +62,7 @@
     NSMutableArray<NodeObject *> *allNodes = [NSMutableArray array];
     NSMutableArray<SphereObject *> *allSpheres = [NSMutableArray array];
     NSMutableArray<CapsuleObject *> *allCapsules = [NSMutableArray array];
+    NSMutableArray<CylinderObject *> *allCylinders = [NSMutableArray array];
     NSMutableArray<LightObject *> *allLights = [NSMutableArray array];
     NSMutableArray<GroupObject *> *allGroups = [NSMutableArray array];
 
@@ -116,7 +119,7 @@
 
     [capsules enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull capsule, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[capsule objectForKey:@"disabled"] boolValue] == YES)
-            return;
+        return;
         CapsuleObject *co = [[CapsuleObject alloc] init];
         co.name = [capsule objectForKey:@"name"];
         co.sMaterial = [capsule objectForKey:@"material"];
@@ -126,6 +129,19 @@
         [allCapsules addObject:co];
     }];
     self.capsules = [self.capsules arrayByAddingObjectsFromArray:allCapsules];
+
+    [cylinders enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull cylinder, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([[cylinder objectForKey:@"disabled"] boolValue] == YES)
+            return;
+        CylinderObject *co = [[CylinderObject alloc] init];
+        co.name = [cylinder objectForKey:@"name"];
+        co.sMaterial = [cylinder objectForKey:@"material"];
+        co.sMaterials = [cylinder objectForKey:@"materials"];
+        co.sRadius = [cylinder objectForKey:@"radius"];
+        [co finish];
+        [allCylinders addObject:co];
+    }];
+    self.cylinders = [self.cylinders arrayByAddingObjectsFromArray:allCylinders];
 
     [nodes enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull groupdata, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[groupdata objectForKey:@"disabled"] boolValue] == YES)
@@ -226,6 +242,9 @@
         node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY + node.scale.y * g.height / 2), -(z - objectManager.originZ));
     } else if ([node.geometry isKindOfClass:[SCNSphere class]] == YES) {
         SCNSphere *g = (SCNSphere *)node.geometry;
+        node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY + node.scale.y * g.radius / 2), -(z - objectManager.originZ));
+    } else if ([node.geometry isKindOfClass:[SCNCylinder class]] == YES) {
+        SCNCylinder *g = (SCNCylinder *)node.geometry;
         node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY + node.scale.y * g.radius / 2), -(z - objectManager.originZ));
     } else {
         NSAssert1(NO, @"Unknown class: %@", [node.geometry class]);
