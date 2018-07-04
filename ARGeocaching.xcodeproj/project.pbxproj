@@ -122,6 +122,35 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		E805CF9920ECC67900AC4A04 /* Geometries */ = {
+			isa = PBXGroup;
+			children = (
+				E8A8D7D620E6010A000595E9 /* GeometryObject.h */,
+				E8A8D7D720E6010A000595E9 /* GeometryObject.m */,
+				E8A8D7CC20E5AF59000595E9 /* BoxObject.h */,
+				E8A8D7CD20E5AF59000595E9 /* BoxObject.m */,
+				E805CF8320EC7C4F00AC4A04 /* CapsuleObject.h */,
+				E805CF8420EC7C4F00AC4A04 /* CapsuleObject.m */,
+				E805CF9320ECB40700AC4A04 /* ConeObject.h */,
+				E805CF9420ECB40700AC4A04 /* ConeObject.m */,
+				E805CF8620EC860100AC4A04 /* CylinderObject.h */,
+				E805CF8720EC860100AC4A04 /* CylinderObject.m */,
+				E805CF8C20ECB3D900AC4A04 /* FloorObject.h */,
+				E805CF8D20ECB3D900AC4A04 /* FloorObject.m */,
+				E805CF8920ECB2FC00AC4A04 /* PlaneObject.h */,
+				E805CF8A20ECB2FC00AC4A04 /* PlaneObject.m */,
+				E805CF8F20ECB3E600AC4A04 /* PyramidObject.h */,
+				E805CF9020ECB3E600AC4A04 /* PyramidObject.m */,
+				E805CF8020EC77EA00AC4A04 /* SphereObject.h */,
+				E805CF8120EC77EA00AC4A04 /* SphereObject.m */,
+				E805CF9620ECB41200AC4A04 /* TorusObject.h */,
+				E805CF9720ECB41200AC4A04 /* TorusObject.m */,
+				E8A8D7D320E5FFD0000595E9 /* TubeObject.h */,
+				E8A8D7D420E5FFD0000595E9 /* TubeObject.m */,
+			);
+			path = Geometries;
+			sourceTree = "<group>";
+		};
 		E809B96620EB5AEF0004E7ED /* GA12490 */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,32 +211,11 @@
 				E8C389C020E61D8A00C13379 /* GroupObject.m */,
 				E8A8D7C920E5AF48000595E9 /* MaterialObject.h */,
 				E8A8D7CA20E5AF49000595E9 /* MaterialObject.m */,
-				E8A8D7D620E6010A000595E9 /* GeometryObject.h */,
-				E8A8D7D720E6010A000595E9 /* GeometryObject.m */,
-				E8A8D7CC20E5AF59000595E9 /* BoxObject.h */,
-				E8A8D7CD20E5AF59000595E9 /* BoxObject.m */,
-				E8A8D7D320E5FFD0000595E9 /* TubeObject.h */,
-				E8A8D7D420E5FFD0000595E9 /* TubeObject.m */,
-				E805CF8020EC77EA00AC4A04 /* SphereObject.h */,
-				E805CF8120EC77EA00AC4A04 /* SphereObject.m */,
-				E805CF8620EC860100AC4A04 /* CylinderObject.h */,
-				E805CF8720EC860100AC4A04 /* CylinderObject.m */,
-				E805CF8320EC7C4F00AC4A04 /* CapsuleObject.h */,
-				E805CF8420EC7C4F00AC4A04 /* CapsuleObject.m */,
-				E805CF8920ECB2FC00AC4A04 /* PlaneObject.h */,
-				E805CF8A20ECB2FC00AC4A04 /* PlaneObject.m */,
-				E805CF8F20ECB3E600AC4A04 /* PyramidObject.h */,
-				E805CF9020ECB3E600AC4A04 /* PyramidObject.m */,
-				E805CF8C20ECB3D900AC4A04 /* FloorObject.h */,
-				E805CF8D20ECB3D900AC4A04 /* FloorObject.m */,
-				E805CF9620ECB41200AC4A04 /* TorusObject.h */,
-				E805CF9720ECB41200AC4A04 /* TorusObject.m */,
-				E805CF9320ECB40700AC4A04 /* ConeObject.h */,
-				E805CF9420ECB40700AC4A04 /* ConeObject.m */,
 				E8A8D7CF20E5AF68000595E9 /* NodeObject.h */,
 				E8A8D7D020E5AF68000595E9 /* NodeObject.m */,
 				E8A8D7D920E609B5000595E9 /* LightObject.h */,
 				E8A8D7DA20E609B5000595E9 /* LightObject.m */,
+				E805CF9920ECC67900AC4A04 /* Geometries */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
