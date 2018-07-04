@@ -7,11 +7,23 @@
      "name": "Red",
      "image": "Red colour"
      }, {
+     "name": "Red semi-transpart",
+     "image": "Red colour",
+     "transparency": 0.5
+     }, {
      "name": "Blue",
      "image": "Blue colour"
      }, {
+     "name": "Blue semi-transparent",
+     "image": "Blue colour",
+     "transparency": 0.5
+     }, {
      "name": "Green",
      "image": "Green colour"
+     }, {
+     "name": "Green semi-transparent",
+     "image": "Green colour",
+     "transparency": 0.5
      }
     ],
 
@@ -23,8 +35,17 @@
     [
      {
      "name": "Red tube",
-     "materials": ["Red", "Red", "Green", "Green", "Blue", "Blue"],
+     "materials": ["Red", "Red", "Green semi-transparent", "Green semi-transparent", "Blue", "Blue"],
      "radius": [0, 1]
+     }
+    ],
+
+    "spheres":
+    [
+     {
+     "name": "Blue circle",
+     "material": "Blue",
+     "radius": 1
      }
     ],
 
@@ -41,6 +62,11 @@
       "geometry": "Red tube",
       "position": [0, 0, 0],
       "size": [1, 1, 2]
+      }, {
+      "name": "Sphere",
+      "geometry": "Blue circle",
+      "position": [0, 1.5, 0],
+      "size": [1, 1, 1]
       }
       ]
      }

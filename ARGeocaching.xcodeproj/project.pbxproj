@@ -12,6 +12,7 @@
 		E805CF7A20EC59F700AC4A04 /* GAxxxxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF7920EC59F700AC4A04 /* GAxxxxViewController.m */; };
 		E805CF7C20EC5D4300AC4A04 /* Totem Pole.json in Resources */ = {isa = PBXBuildFile; fileRef = E805CF7B20EC5D4300AC4A04 /* Totem Pole.json */; };
 		E805CF7E20EC61A800AC4A04 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E805CF7D20EC61A800AC4A04 /* Media.xcassets */; };
+		E805CF8220EC77EA00AC4A04 /* SphereObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF8120EC77EA00AC4A04 /* SphereObject.m */; };
 		E809B96820EB5B2C0004E7ED /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E809B96720EB5B2C0004E7ED /* Media.xcassets */; };
 		E867AE5720DDDF39004C0544 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E867AE5620DDDF39004C0544 /* AppDelegate.m */; };
 		E867AE5920DDDF39004C0544 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E867AE5820DDDF39004C0544 /* art.scnassets */; };
@@ -40,6 +41,8 @@
 		E805CF7920EC59F700AC4A04 /* GAxxxxViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GAxxxxViewController.m; path = ARGeocaching/GAxxxxx/GAxxxxViewController.m; sourceTree = SOURCE_ROOT; };
 		E805CF7B20EC5D4300AC4A04 /* Totem Pole.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = "Totem Pole.json"; path = "ARGeocaching/GAxxxxx/Totem Pole.json"; sourceTree = SOURCE_ROOT; };
 		E805CF7D20EC61A800AC4A04 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ARGeocaching/GAxxxxx/Media.xcassets; sourceTree = SOURCE_ROOT; };
+		E805CF8020EC77EA00AC4A04 /* SphereObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SphereObject.h; sourceTree = "<group>"; };
+		E805CF8120EC77EA00AC4A04 /* SphereObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SphereObject.m; sourceTree = "<group>"; };
 		E809B96720EB5B2C0004E7ED /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E867AE5220DDDF39004C0544 /* ARGeocaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGeocaching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E867AE5520DDDF39004C0544 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 				E8A8D7CD20E5AF59000595E9 /* BoxObject.m */,
 				E8A8D7D320E5FFD0000595E9 /* TubeObject.h */,
 				E8A8D7D420E5FFD0000595E9 /* TubeObject.m */,
+				E805CF8020EC77EA00AC4A04 /* SphereObject.h */,
+				E805CF8120EC77EA00AC4A04 /* SphereObject.m */,
 				E8A8D7CF20E5AF68000595E9 /* NodeObject.h */,
 				E8A8D7D020E5AF68000595E9 /* NodeObject.m */,
 				E8A8D7D920E609B5000595E9 /* LightObject.h */,
@@ -263,6 +268,7 @@
 				E867AE5720DDDF39004C0544 /* AppDelegate.m in Sources */,
 				E8A8D7D820E6010A000595E9 /* GeometryObject.m in Sources */,
 				E8A8D7DB20E609B5000595E9 /* LightObject.m in Sources */,
+				E805CF8220EC77EA00AC4A04 /* SphereObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

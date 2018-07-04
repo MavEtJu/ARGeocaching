@@ -22,6 +22,7 @@
     self.boxes = [NSArray array];
     self.tubes = [NSArray array];
     self.nodes = [NSArray array];
+    self.spheres = [NSArray array];
     self.lights = [NSArray array];
     self.groups = [NSArray array];
 
@@ -41,6 +42,7 @@
     NSArray<NSDictionary *> *boxes = [json objectForKey:@"boxes"];
     NSArray<NSDictionary *> *tubes = [json objectForKey:@"tubes"];
     NSArray<NSDictionary *> *nodes = [json objectForKey:@"nodes"];
+    NSArray<NSDictionary *> *spheres = [json objectForKey:@"spheres"];
     NSArray<NSDictionary *> *lights = [json objectForKey:@"lights"];
 
     NSArray<NSNumber *> *origins = [json objectForKey:@"origin"];
@@ -54,6 +56,7 @@
     NSMutableArray<BoxObject *> *allBoxes = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray<TubeObject *> *allTubes = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray<NodeObject *> *allNodes = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray<SphereObject *> *allSpheres = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray<LightObject *> *allLights = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray<GroupObject *> *allGroups = [NSMutableArray arrayWithCapacity:10];
 
@@ -84,7 +87,7 @@
 
     [tubes enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull tube, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[tube objectForKey:@"disabled"] boolValue] == YES)
-            return;
+        return;
         TubeObject *to = [[TubeObject alloc] init];
         to.name = [tube objectForKey:@"name"];
         to.sMaterial = [tube objectForKey:@"material"];
@@ -94,6 +97,19 @@
         [allTubes addObject:to];
     }];
     self.tubes = [self.tubes arrayByAddingObjectsFromArray:allTubes];
+
+    [spheres enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull sphere, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([[sphere objectForKey:@"disabled"] boolValue] == YES)
+            return;
+        SphereObject *so = [[SphereObject alloc] init];
+        so.name = [sphere objectForKey:@"name"];
+        so.sMaterial = [sphere objectForKey:@"material"];
+        so.sMaterials = [sphere objectForKey:@"materials"];
+        so.sRadius = [sphere objectForKey:@"radius"];
+        [so finish];
+        [allSpheres addObject:so];
+    }];
+    self.spheres = [self.spheres arrayByAddingObjectsFromArray:allSpheres];
 
     [nodes enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull groupdata, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[groupdata objectForKey:@"disabled"] boolValue] == YES)
@@ -168,6 +184,7 @@
     NSLog(@"Loaded %ld materials", [self.materials count]);
     NSLog(@"Loaded %ld boxes", [self.boxes count]);
     NSLog(@"Loaded %ld tubes", [self.tubes count]);
+    NSLog(@"Loaded %ld spheres", [self.spheres count]);
     NSLog(@"Loaded %ld nodes", [self.nodes count]);
     NSLog(@"Loaded %ld lights", [self.lights count]);
     NSLog(@"Loaded %ld groups", [self.groups count]);
@@ -188,6 +205,9 @@
     } else if ([node.geometry isKindOfClass:[SCNTube class]] == YES) {
         SCNTube *g = (SCNTube *)node.geometry;
         node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY + node.scale.y * g.height / 2), -(z - objectManager.originZ));
+    } else if ([node.geometry isKindOfClass:[SCNSphere class]] == YES) {
+        SCNSphere *g = (SCNSphere *)node.geometry;
+        node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY + node.scale.y * g.radius / 2), -(z - objectManager.originZ));
     } else {
         NSAssert1(NO, @"Unknown class: %@", [node.geometry class]);
     }
@@ -204,6 +224,9 @@
     } else if ([node.geometry isKindOfClass:[SCNTube class]] == YES) {
         SCNTube *g = (SCNTube *)node.geometry;
         return (y - objectManager.originY + node.scale.y * g.height / 2);
+    } else if ([node.geometry isKindOfClass:[SCNSphere class]] == YES) {
+        SCNSphere *g = (SCNSphere *)node.geometry;
+        return (y - objectManager.originY + node.scale.y * g.radius / 2);
     } else {
         NSAssert1(NO, @"Unknown class: %@", [node.geometry class]);
     }

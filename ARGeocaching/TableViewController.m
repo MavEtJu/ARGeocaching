@@ -30,6 +30,16 @@
                     ];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    NSDictionary *dict = [self.caches objectAtIndex:1];
+    UIViewController *viewController = [sb instantiateViewControllerWithIdentifier:[dict objectForKey:@"title"]];
+    [self presentViewController:viewController animated:FALSE completion:nil];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
