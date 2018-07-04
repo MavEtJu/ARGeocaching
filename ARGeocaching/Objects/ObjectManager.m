@@ -43,6 +43,13 @@
     NSArray<NSDictionary *> *nodes = [json objectForKey:@"nodes"];
     NSArray<NSDictionary *> *lights = [json objectForKey:@"lights"];
 
+    NSArray<NSNumber *> *origins = [json objectForKey:@"origin"];
+    if (origins != nil) {
+        self.originX = [[origins objectAtIndex:0] floatValue];
+        self.originY = [[origins objectAtIndex:1] floatValue];
+        self.originZ = [[origins objectAtIndex:2] floatValue];
+    }
+
     NSMutableArray<MaterialObject *> *allMaterials = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray<BoxObject *> *allBoxes = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray<TubeObject *> *allTubes = [NSMutableArray arrayWithCapacity:10];
@@ -173,35 +180,14 @@
  */
 + (void)position:(SCNNode *)node x:(float)x y:(float)y z:(float)z
 {
-#define ORIGINX 5
-#define ORIGINZ -6
-#define ORIGINY 2
-
-//// Bottom cage
-//#define ORIGINY -15
-//
-//// Hall way
-//#define ORIGINX -17
-//#define ORIGINZ -6
-//
-// bottom
-//#define ORIGINX -6
-//#define ORIGINY -14
-//#define ORIGINZ 1
-//
-//#define ORIGINX -29
-//#define ORIGINY -14
-//#define ORIGINZ -11
-
     if (node.geometry == nil) {
-        node.position = SCNVector3Make((x - ORIGINX), (y - ORIGINY), -(z - ORIGINZ));
+        node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY), -(z - objectManager.originZ));
     } else if ([node.geometry isKindOfClass:[SCNBox class]] == YES) {
-//        [node.geometry isKindOfClass:[SCNLight class]] == YES) {
         SCNBox *g = (SCNBox *)node.geometry;
-        node.position = SCNVector3Make((x - ORIGINX + node.scale.x * g.width / 2), (y - ORIGINY + node.scale.y * g.height / 2), -(z - ORIGINZ + node.scale.z * g.length / 2));
+        node.position = SCNVector3Make((x - objectManager.originX + node.scale.x * g.width / 2), (y - objectManager.originY + node.scale.y * g.height / 2), -(z - objectManager.originZ + node.scale.z * g.length / 2));
     } else if ([node.geometry isKindOfClass:[SCNTube class]] == YES) {
         SCNTube *g = (SCNTube *)node.geometry;
-        node.position = SCNVector3Make((x - ORIGINX), (y - ORIGINY + node.scale.y * g.height / 2), -(z - ORIGINZ));
+        node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY + node.scale.y * g.height / 2), -(z - objectManager.originZ));
     } else {
         NSAssert1(NO, @"Unknown class: %@", [node.geometry class]);
     }
@@ -211,13 +197,13 @@
 {
 
     if (node.geometry == nil) {
-        return (y - ORIGINY);
+        return (y - objectManager.originY);
     } else if ([node.geometry isKindOfClass:[SCNBox class]] == YES) {
         SCNBox *g = (SCNBox *)node.geometry;
-        return (y - ORIGINY + node.scale.y * g.height / 2);
+        return (y - objectManager.originY + node.scale.y * g.height / 2);
     } else if ([node.geometry isKindOfClass:[SCNTube class]] == YES) {
         SCNTube *g = (SCNTube *)node.geometry;
-        return (y - ORIGINY + node.scale.y * g.height / 2);
+        return (y - objectManager.originY + node.scale.y * g.height / 2);
     } else {
         NSAssert1(NO, @"Unknown class: %@", [node.geometry class]);
     }

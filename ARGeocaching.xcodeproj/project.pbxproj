@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E805CF7520EC586F00AC4A04 /* Top Floor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E805CF7320EC586F00AC4A04 /* Top Floor.jpg */; };
+		E805CF7620EC586F00AC4A04 /* Underground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E805CF7420EC586F00AC4A04 /* Underground.jpg */; };
 		E809B96820EB5B2C0004E7ED /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E809B96720EB5B2C0004E7ED /* Media.xcassets */; };
 		E867AE5720DDDF39004C0544 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E867AE5620DDDF39004C0544 /* AppDelegate.m */; };
 		E867AE5920DDDF39004C0544 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E867AE5820DDDF39004C0544 /* art.scnassets */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E805CF7320EC586F00AC4A04 /* Top Floor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Top Floor.jpg"; sourceTree = "<group>"; };
+		E805CF7420EC586F00AC4A04 /* Underground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Underground.jpg; sourceTree = "<group>"; };
 		E809B96720EB5B2C0004E7ED /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E867AE5220DDDF39004C0544 /* ARGeocaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGeocaching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E867AE5520DDDF39004C0544 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -83,6 +87,8 @@
 				E8A8D7C320E5A659000595E9 /* Mineshaft.json */,
 				E8C389C220E7A81B00C13379 /* Underground.json */,
 				E809B96720EB5B2C0004E7ED /* Media.xcassets */,
+				E805CF7320EC586F00AC4A04 /* Top Floor.jpg */,
+				E805CF7420EC586F00AC4A04 /* Underground.jpg */,
 			);
 			path = GA12490;
 			sourceTree = "<group>";
@@ -204,8 +210,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E867AE5920DDDF39004C0544 /* art.scnassets in Resources */,
+				E805CF7520EC586F00AC4A04 /* Top Floor.jpg in Resources */,
 				E867AE6420DDDF3D004C0544 /* LaunchScreen.storyboard in Resources */,
 				E809B96820EB5B2C0004E7ED /* Media.xcassets in Resources */,
+				E805CF7620EC586F00AC4A04 /* Underground.jpg in Resources */,
 				E867AE6120DDDF3D004C0544 /* Assets.xcassets in Resources */,
 				E8A8D7C420E5A65A000595E9 /* Mineshaft.json in Resources */,
 				E867AE5F20DDDF3A004C0544 /* Main.storyboard in Resources */,

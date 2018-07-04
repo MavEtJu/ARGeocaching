@@ -39,6 +39,10 @@ typedef NS_ENUM(NSInteger, GameStage) {
 {
     [super viewDidLoad];
 
+    objectManager = [[ObjectManager alloc] init];
+    [objectManager loadFile:@"Mineshaft.json"];
+    [objectManager loadFile:@"Underground.json"];
+
     self.queue = [[NSOperationQueue alloc] init];
     self.stage = STAGE_START;
 

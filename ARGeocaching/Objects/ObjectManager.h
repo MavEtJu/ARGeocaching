@@ -15,6 +15,10 @@
 @property (nonatomic, retain) NSArray<NodeObject *> *nodes;
 @property (nonatomic, retain) NSArray<GroupObject *> *groups;
 
+@property (nonatomic        ) float originX;
+@property (nonatomic        ) float originY;
+@property (nonatomic        ) float originZ;
+
 - (void)loadFile:(NSString *)filename;
 - (NSArray<NodeObject *> *)nodesByGroupName:(NSString *)name;
 - (NodeObject *)nodeByID:(NSString *)name;
