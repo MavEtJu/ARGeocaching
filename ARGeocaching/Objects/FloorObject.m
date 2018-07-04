@@ -1,5 +1,5 @@
 //
-//  SphereObject.m
+//  FloorObject.m
 //  ARGeocaching
 //
 //  Created by Edwin Groothuis on 4/7/18.
@@ -8,21 +8,20 @@
 
 #import "main.h"
 
-@interface SphereObject ()
+@interface FloorObject ()
 
 @end
 
-@implementation SphereObject
+@implementation FloorObject
 
 - (void)finish
 {
     [super finish];
 
-    self.radius = [self.sRadius floatValue];
-
-    self.geometry = [SCNSphere sphereWithRadius:self.radius];
+    self.geometry = [SCNFloor floor];
 
     [self finished];
 }
+
 
 @end

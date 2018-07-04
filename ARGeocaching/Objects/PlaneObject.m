@@ -1,5 +1,5 @@
 //
-//  SphereObject.m
+//  PlaneObject.m
 //  ARGeocaching
 //
 //  Created by Edwin Groothuis on 4/7/18.
@@ -8,19 +8,17 @@
 
 #import "main.h"
 
-@interface SphereObject ()
+@interface PlaneObject ()
 
 @end
 
-@implementation SphereObject
+@implementation PlaneObject
 
 - (void)finish
 {
     [super finish];
 
-    self.radius = [self.sRadius floatValue];
-
-    self.geometry = [SCNSphere sphereWithRadius:self.radius];
+    self.geometry = [SCNPlane planeWithWidth:1 height:1];
 
     [self finished];
 }

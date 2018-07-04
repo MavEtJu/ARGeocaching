@@ -27,6 +27,7 @@
     self.cylinders = [NSArray array];
     self.lights = [NSArray array];
     self.groups = [NSArray array];
+    self.planes = [NSArray array];
 
     return self;
 }
@@ -40,15 +41,6 @@
 
     NSAssert1(json != nil, @"%@", error);
 
-    NSArray<NSDictionary *> *materials = [json objectForKey:@"materials"];
-    NSArray<NSDictionary *> *boxes = [json objectForKey:@"boxes"];
-    NSArray<NSDictionary *> *tubes = [json objectForKey:@"tubes"];
-    NSArray<NSDictionary *> *nodes = [json objectForKey:@"nodes"];
-    NSArray<NSDictionary *> *spheres = [json objectForKey:@"spheres"];
-    NSArray<NSDictionary *> *capsules = [json objectForKey:@"capsules"];
-    NSArray<NSDictionary *> *cylinders = [json objectForKey:@"cylinders"];
-    NSArray<NSDictionary *> *lights = [json objectForKey:@"lights"];
-
     NSArray<NSNumber *> *origins = [json objectForKey:@"origin"];
     if (origins != nil) {
         self.originX = [[origins objectAtIndex:0] floatValue];
@@ -56,17 +48,11 @@
         self.originZ = [[origins objectAtIndex:2] floatValue];
     }
 
-    NSMutableArray<MaterialObject *> *allMaterials = [NSMutableArray array];
-    NSMutableArray<BoxObject *> *allBoxes = [NSMutableArray array];
-    NSMutableArray<TubeObject *> *allTubes = [NSMutableArray array];
-    NSMutableArray<NodeObject *> *allNodes = [NSMutableArray array];
-    NSMutableArray<SphereObject *> *allSpheres = [NSMutableArray array];
-    NSMutableArray<CapsuleObject *> *allCapsules = [NSMutableArray array];
-    NSMutableArray<CylinderObject *> *allCylinders = [NSMutableArray array];
-    NSMutableArray<LightObject *> *allLights = [NSMutableArray array];
+    NSMutableArray<id> *all = [NSMutableArray array];
     NSMutableArray<GroupObject *> *allGroups = [NSMutableArray array];
 
-    [materials enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull material, NSUInteger idx, BOOL * _Nonnull stop) {
+    [all removeAllObjects];
+    [[json objectForKey:@"materials"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull material, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[material objectForKey:@"disabled"] boolValue] == YES)
             return;
         MaterialObject *mo = [[MaterialObject alloc] init];
@@ -75,11 +61,12 @@
         mo.sTransparency = [material objectForKey:@"transparency"];
         mo.sInsideToo = [material objectForKey:@"insidetoo"];
         [mo finish];
-        [allMaterials addObject:mo];
+        [all addObject:mo];
     }];
-    self.materials = [self.materials arrayByAddingObjectsFromArray:allMaterials];
+    self.materials = [self.materials arrayByAddingObjectsFromArray:all];
 
-    [boxes enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull box, NSUInteger idx, BOOL * _Nonnull stop) {
+    [all removeAllObjects];
+    [[json objectForKey:@"boxes"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull box, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[box objectForKey:@"disabled"] boolValue] == YES)
             return;
         BoxObject *bo = [[BoxObject alloc] init];
@@ -87,11 +74,12 @@
         bo.sMaterial = [box objectForKey:@"material"];
         bo.sMaterials = [box objectForKey:@"materials"];
         [bo finish];
-        [allBoxes addObject:bo];
+        [all addObject:bo];
     }];
-    self.boxes = [self.boxes arrayByAddingObjectsFromArray:allBoxes];
+    self.boxes = [self.boxes arrayByAddingObjectsFromArray:all];
 
-    [tubes enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull tube, NSUInteger idx, BOOL * _Nonnull stop) {
+    [all removeAllObjects];
+    [[json objectForKey:@"tubes"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull tube, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[tube objectForKey:@"disabled"] boolValue] == YES)
         return;
         TubeObject *to = [[TubeObject alloc] init];
@@ -100,24 +88,26 @@
         to.sMaterials = [tube objectForKey:@"materials"];
         to.sRadius = [tube objectForKey:@"radius"];
         [to finish];
-        [allTubes addObject:to];
+        [all addObject:to];
     }];
-    self.tubes = [self.tubes arrayByAddingObjectsFromArray:allTubes];
+    self.tubes = [self.tubes arrayByAddingObjectsFromArray:all];
 
-    [spheres enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull sphere, NSUInteger idx, BOOL * _Nonnull stop) {
+    [all removeAllObjects];
+    [[json objectForKey:@"spheres"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull sphere, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[sphere objectForKey:@"disabled"] boolValue] == YES)
-        return;
+            return;
         SphereObject *so = [[SphereObject alloc] init];
         so.name = [sphere objectForKey:@"name"];
         so.sMaterial = [sphere objectForKey:@"material"];
         so.sMaterials = [sphere objectForKey:@"materials"];
         so.sRadius = [sphere objectForKey:@"radius"];
         [so finish];
-        [allSpheres addObject:so];
+        [all addObject:so];
     }];
-    self.spheres = [self.spheres arrayByAddingObjectsFromArray:allSpheres];
+    self.spheres = [self.spheres arrayByAddingObjectsFromArray:all];
 
-    [capsules enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull capsule, NSUInteger idx, BOOL * _Nonnull stop) {
+    [all removeAllObjects];
+    [[json objectForKey:@"capsules"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull capsule, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[capsule objectForKey:@"disabled"] boolValue] == YES)
         return;
         CapsuleObject *co = [[CapsuleObject alloc] init];
@@ -126,24 +116,92 @@
         co.sMaterials = [capsule objectForKey:@"materials"];
         co.sRadius = [capsule objectForKey:@"radius"];
         [co finish];
-        [allCapsules addObject:co];
+        [all addObject:co];
     }];
-    self.capsules = [self.capsules arrayByAddingObjectsFromArray:allCapsules];
+    self.capsules = [self.capsules arrayByAddingObjectsFromArray:all];
 
-    [cylinders enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull cylinder, NSUInteger idx, BOOL * _Nonnull stop) {
+    [all removeAllObjects];
+    [[json objectForKey:@"cylinders"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull cylinder, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[cylinder objectForKey:@"disabled"] boolValue] == YES)
-            return;
+        return;
         CylinderObject *co = [[CylinderObject alloc] init];
         co.name = [cylinder objectForKey:@"name"];
         co.sMaterial = [cylinder objectForKey:@"material"];
         co.sMaterials = [cylinder objectForKey:@"materials"];
         co.sRadius = [cylinder objectForKey:@"radius"];
         [co finish];
-        [allCylinders addObject:co];
+        [all addObject:co];
     }];
-    self.cylinders = [self.cylinders arrayByAddingObjectsFromArray:allCylinders];
+    self.cylinders = [self.cylinders arrayByAddingObjectsFromArray:all];
 
-    [nodes enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull groupdata, NSUInteger idx, BOOL * _Nonnull stop) {
+    [all removeAllObjects];
+    [[json objectForKey:@"planes"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull plane, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([[plane objectForKey:@"disabled"] boolValue] == YES)
+        return;
+        PlaneObject *po = [[PlaneObject alloc] init];
+        po.name = [plane objectForKey:@"name"];
+        po.sMaterial = [plane objectForKey:@"material"];
+        po.sMaterials = [plane objectForKey:@"materials"];
+        [po finish];
+        [all addObject:po];
+    }];
+    self.planes = [self.planes arrayByAddingObjectsFromArray:all];
+
+    [all removeAllObjects];
+    [[json objectForKey:@"pyramids"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull pyramid, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([[pyramid objectForKey:@"disabled"] boolValue] == YES)
+        return;
+        PyramidObject *po = [[PyramidObject alloc] init];
+        po.name = [pyramid objectForKey:@"name"];
+        po.sMaterial = [pyramid objectForKey:@"material"];
+        po.sMaterials = [pyramid objectForKey:@"materials"];
+        [po finish];
+        [all addObject:po];
+    }];
+    self.pyramids = [self.pyramids arrayByAddingObjectsFromArray:all];
+
+    [all removeAllObjects];
+    [[json objectForKey:@"toruses"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull torus, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([[torus objectForKey:@"disabled"] boolValue] == YES)
+        return;
+        TorusObject *to = [[TorusObject alloc] init];
+        to.name = [torus objectForKey:@"name"];
+        to.sMaterial = [torus objectForKey:@"material"];
+        to.sMaterials = [torus objectForKey:@"materials"];
+        to.sRadius = [torus objectForKey:@"radius"];
+        [to finish];
+        [all addObject:to];
+    }];
+    self.toruses = [self.toruses arrayByAddingObjectsFromArray:all];
+
+    [all removeAllObjects];
+    [[json objectForKey:@"cones"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull cone, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([[cone objectForKey:@"disabled"] boolValue] == YES)
+        return;
+        ConeObject *co = [[ConeObject alloc] init];
+        co.name = [cone objectForKey:@"name"];
+        co.sMaterial = [cone objectForKey:@"material"];
+        co.sMaterials = [cone objectForKey:@"materials"];
+        co.sRadius = [cone objectForKey:@"radius"];
+        [co finish];
+        [all addObject:co];
+    }];
+    self.cones = [self.cones arrayByAddingObjectsFromArray:all];
+
+    [all removeAllObjects];
+    [[json objectForKey:@"floors"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull floor, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([[floor objectForKey:@"disabled"] boolValue] == YES)
+            return;
+        FloorObject *fo = [[FloorObject alloc] init];
+        fo.name = [floor objectForKey:@"name"];
+        fo.sMaterial = [floor objectForKey:@"material"];
+        [fo finish];
+        [all addObject:fo];
+    }];
+    self.floors = [self.floors arrayByAddingObjectsFromArray:all];
+
+    [all removeAllObjects];
+    [[json objectForKey:@"nodes"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull groupdata, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[groupdata objectForKey:@"disabled"] boolValue] == YES)
             return;
         GroupObject *group = [[GroupObject alloc] init];
@@ -167,7 +225,7 @@
                 no.sID = [node objectForKey:@"id"];
                 no.group = group;
                 [no finish];
-                [allNodes addObject:no];
+                [all addObject:no];
                 [groupNodes addObject:no];
             }
             [[node objectForKey:@"positions"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -179,15 +237,16 @@
                 no.sID = [[node objectForKey:@"ids"] objectAtIndex:idx];
                 no.group = group;
                 [no finish];
-                [allNodes addObject:no];
+                [all addObject:no];
                 [groupNodes addObject:no];
             }];
         }];
         group.nodes = groupNodes;
     }];
-    self.nodes = [self.nodes arrayByAddingObjectsFromArray:allNodes];
+    self.nodes = [self.nodes arrayByAddingObjectsFromArray:all];
 
-    [lights enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull light, NSUInteger idx, BOOL * _Nonnull stop) {
+    [all removeAllObjects];
+    [[json objectForKey:@"lights"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull light, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[light objectForKey:@"disabled"] boolValue] == YES)
             return;
         if ([light objectForKey:@"position"] != nil) {
@@ -197,7 +256,7 @@
             lo.sType = [light objectForKey:@"type"];
             lo.sPosition = [light objectForKey:@"position"];
             [lo finish];
-            [allLights addObject:lo];
+            [all addObject:lo];
         }
         [[light objectForKey:@"positions"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             LightObject *lo = [[LightObject alloc] init];
@@ -206,10 +265,10 @@
             lo.sType = [light objectForKey:@"type"];
             lo.sPosition = [[light objectForKey:@"positions"] objectAtIndex:idx];
             [lo finish];
-            [allLights addObject:lo];
+            [all addObject:lo];
         }];
     }];
-    self.lights = [self.lights arrayByAddingObjectsFromArray:allLights];
+    self.lights = [self.lights arrayByAddingObjectsFromArray:all];
 
     self.groups = [self.groups arrayByAddingObjectsFromArray:allGroups];
 

@@ -1,5 +1,5 @@
 //
-//  SphereObject.m
+//  PyramidObject.m
 //  ARGeocaching
 //
 //  Created by Edwin Groothuis on 4/7/18.
@@ -8,19 +8,17 @@
 
 #import "main.h"
 
-@interface SphereObject ()
+@interface PyramidObject ()
 
 @end
 
-@implementation SphereObject
+@implementation PyramidObject
 
 - (void)finish
 {
     [super finish];
 
-    self.radius = [self.sRadius floatValue];
-
-    self.geometry = [SCNSphere sphereWithRadius:self.radius];
+    self.geometry = [SCNPyramid pyramidWithWidth:1 height:1 length:1];
 
     [self finished];
 }

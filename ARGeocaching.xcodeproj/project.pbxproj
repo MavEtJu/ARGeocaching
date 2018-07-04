@@ -15,6 +15,11 @@
 		E805CF8220EC77EA00AC4A04 /* SphereObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF8120EC77EA00AC4A04 /* SphereObject.m */; };
 		E805CF8520EC7C4F00AC4A04 /* CapsuleObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF8420EC7C4F00AC4A04 /* CapsuleObject.m */; };
 		E805CF8820EC860100AC4A04 /* CylinderObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF8720EC860100AC4A04 /* CylinderObject.m */; };
+		E805CF8B20ECB2FC00AC4A04 /* PlaneObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF8A20ECB2FC00AC4A04 /* PlaneObject.m */; };
+		E805CF8E20ECB3D900AC4A04 /* FloorObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF8D20ECB3D900AC4A04 /* FloorObject.m */; };
+		E805CF9120ECB3E600AC4A04 /* PyramidObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF9020ECB3E600AC4A04 /* PyramidObject.m */; };
+		E805CF9520ECB40700AC4A04 /* ConeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF9420ECB40700AC4A04 /* ConeObject.m */; };
+		E805CF9820ECB41200AC4A04 /* TorusObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF9720ECB41200AC4A04 /* TorusObject.m */; };
 		E809B96820EB5B2C0004E7ED /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E809B96720EB5B2C0004E7ED /* Media.xcassets */; };
 		E867AE5720DDDF39004C0544 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E867AE5620DDDF39004C0544 /* AppDelegate.m */; };
 		E867AE5920DDDF39004C0544 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E867AE5820DDDF39004C0544 /* art.scnassets */; };
@@ -49,6 +54,16 @@
 		E805CF8420EC7C4F00AC4A04 /* CapsuleObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CapsuleObject.m; sourceTree = "<group>"; };
 		E805CF8620EC860100AC4A04 /* CylinderObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CylinderObject.h; sourceTree = "<group>"; };
 		E805CF8720EC860100AC4A04 /* CylinderObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CylinderObject.m; sourceTree = "<group>"; };
+		E805CF8920ECB2FC00AC4A04 /* PlaneObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaneObject.h; sourceTree = "<group>"; };
+		E805CF8A20ECB2FC00AC4A04 /* PlaneObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaneObject.m; sourceTree = "<group>"; };
+		E805CF8C20ECB3D900AC4A04 /* FloorObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FloorObject.h; sourceTree = "<group>"; };
+		E805CF8D20ECB3D900AC4A04 /* FloorObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FloorObject.m; sourceTree = "<group>"; };
+		E805CF8F20ECB3E600AC4A04 /* PyramidObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PyramidObject.h; sourceTree = "<group>"; };
+		E805CF9020ECB3E600AC4A04 /* PyramidObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PyramidObject.m; sourceTree = "<group>"; };
+		E805CF9320ECB40700AC4A04 /* ConeObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConeObject.h; sourceTree = "<group>"; };
+		E805CF9420ECB40700AC4A04 /* ConeObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConeObject.m; sourceTree = "<group>"; };
+		E805CF9620ECB41200AC4A04 /* TorusObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TorusObject.h; sourceTree = "<group>"; };
+		E805CF9720ECB41200AC4A04 /* TorusObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TorusObject.m; sourceTree = "<group>"; };
 		E809B96720EB5B2C0004E7ED /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E867AE5220DDDF39004C0544 /* ARGeocaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGeocaching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E867AE5520DDDF39004C0544 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -179,6 +194,16 @@
 				E805CF8720EC860100AC4A04 /* CylinderObject.m */,
 				E805CF8320EC7C4F00AC4A04 /* CapsuleObject.h */,
 				E805CF8420EC7C4F00AC4A04 /* CapsuleObject.m */,
+				E805CF8920ECB2FC00AC4A04 /* PlaneObject.h */,
+				E805CF8A20ECB2FC00AC4A04 /* PlaneObject.m */,
+				E805CF8F20ECB3E600AC4A04 /* PyramidObject.h */,
+				E805CF9020ECB3E600AC4A04 /* PyramidObject.m */,
+				E805CF8C20ECB3D900AC4A04 /* FloorObject.h */,
+				E805CF8D20ECB3D900AC4A04 /* FloorObject.m */,
+				E805CF9620ECB41200AC4A04 /* TorusObject.h */,
+				E805CF9720ECB41200AC4A04 /* TorusObject.m */,
+				E805CF9320ECB40700AC4A04 /* ConeObject.h */,
+				E805CF9420ECB40700AC4A04 /* ConeObject.m */,
 				E8A8D7CF20E5AF68000595E9 /* NodeObject.h */,
 				E8A8D7D020E5AF68000595E9 /* NodeObject.m */,
 				E8A8D7D920E609B5000595E9 /* LightObject.h */,
@@ -266,13 +291,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8A8D7CE20E5AF59000595E9 /* BoxObject.m in Sources */,
+				E805CF8E20ECB3D900AC4A04 /* FloorObject.m in Sources */,
 				E867AE5C20DDDF3A004C0544 /* GA12490ViewController.m in Sources */,
 				E8A8D7D120E5AF68000595E9 /* NodeObject.m in Sources */,
 				E805CF8520EC7C4F00AC4A04 /* CapsuleObject.m in Sources */,
 				E8A8D7CB20E5AF49000595E9 /* MaterialObject.m in Sources */,
 				E8A8D7C820E5AF36000595E9 /* ObjectManager.m in Sources */,
+				E805CF8B20ECB2FC00AC4A04 /* PlaneObject.m in Sources */,
+				E805CF9820ECB41200AC4A04 /* TorusObject.m in Sources */,
 				E8C389C120E61D8A00C13379 /* GroupObject.m in Sources */,
 				E805CF7A20EC59F700AC4A04 /* GAxxxxViewController.m in Sources */,
+				E805CF9120ECB3E600AC4A04 /* PyramidObject.m in Sources */,
 				E867AE6720DDDF3D004C0544 /* main.m in Sources */,
 				E8C389C620E9EBF200C13379 /* TableViewController.m in Sources */,
 				E8A8D7D520E5FFD0000595E9 /* TubeObject.m in Sources */,
@@ -281,6 +310,7 @@
 				E8A8D7D820E6010A000595E9 /* GeometryObject.m in Sources */,
 				E8A8D7DB20E609B5000595E9 /* LightObject.m in Sources */,
 				E805CF8220EC77EA00AC4A04 /* SphereObject.m in Sources */,
+				E805CF9520ECB40700AC4A04 /* ConeObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
