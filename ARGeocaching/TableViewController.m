@@ -23,6 +23,9 @@
     self.caches = @[
                     @{@"title": @"GA12490",
                       @"description": @"Caringbah Mines",
+                      },
+                    @{@"title": @"GAxxxx",
+                      @"description": @"Totem Pole",
                       }
                     ];
 }
@@ -53,7 +56,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *viewController = [sb instantiateViewControllerWithIdentifier:@"GA12490"];
+    NSDictionary *dict = [self.caches objectAtIndex:indexPath.row];
+    UIViewController *viewController = [sb instantiateViewControllerWithIdentifier:[dict objectForKey:@"title"]];
 
     [self presentViewController:viewController animated:FALSE completion:nil];
 }

@@ -1,0 +1,48 @@
+{
+    "origin": [0, 2, -6],
+
+    "materials":
+    [
+     {
+     "name": "Red",
+     "image": "Red colour"
+     }, {
+     "name": "Blue",
+     "image": "Blue colour"
+     }, {
+     "name": "Green",
+     "image": "Green colour"
+     }
+    ],
+
+    "boxes":
+    [
+    ],
+
+    "tubes":
+    [
+     {
+     "name": "Red tube",
+     "materials": ["Red", "Red", "Green", "Green", "Blue", "Blue"],
+     "radius": [0, 1]
+     }
+    ],
+
+    "nodes":
+    [
+     {
+     "group": "Top",
+     "origin": [0, 0, 0],
+
+     "objects":
+     [
+      {
+      "name": "Top",
+      "geometry": "Red tube",
+      "position": [0, 0, 0],
+      "size": [1, 1, 2]
+      }
+      ]
+     }
+     ]
+}
