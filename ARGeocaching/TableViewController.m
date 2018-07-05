@@ -37,7 +37,7 @@
 {
     [super viewDidAppear:animated];
 
-    NSDictionary *dict = [self.caches objectAtIndex:0];
+    NSDictionary *dict = [self.caches objectAtIndex:2];
     UIStoryboard *sb = [UIStoryboard storyboardWithName:[dict objectForKey:@"title"] bundle:nil];
     UIViewController *viewController = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
     [self presentViewController:viewController animated:FALSE completion:nil];

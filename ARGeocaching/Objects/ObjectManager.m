@@ -217,6 +217,7 @@
                 no.sGeometry = [node objectForKey:@"geometry"];
                 no.sScale = [node objectForKey:@"size"];
                 no.sPosition = [node objectForKey:@"position"];
+                no.sRotation = [node objectForKey:@"rotation"];
                 no.sID = [node objectForKey:@"id"];
                 no.group = group;
                 [no finish];
@@ -230,6 +231,7 @@
                     no.sGeometry = [node objectForKey:@"geometry"];
                     no.sScale = [[node objectForKey:@"size"] objectAtIndex:idx];
                     no.sPosition = [[node objectForKey:@"position"] objectAtIndex:idx];
+                    no.sRotation = [[node objectForKey:@"rotation"] objectAtIndex:idx];
                     no.sID = [[node objectForKey:@"id"] objectAtIndex:idx];
                     no.group = group;
                     [no finish];
@@ -254,6 +256,7 @@
             lo.sColour = [light objectForKey:@"colour"];
             lo.sType = [light objectForKey:@"type"];
             lo.sPosition = [light objectForKey:@"position"];
+            lo.sRotation = [light objectForKey:@"rotation"];
             [lo finish];
             [all addObject:lo];
         }
@@ -264,6 +267,7 @@
                 lo.sColour = [light objectForKey:@"colour"];
                 lo.sType = [light objectForKey:@"type"];
                 lo.sPosition = [[light objectForKey:@"position"] objectAtIndex:idx];
+                lo.sRotation = [[light objectForKey:@"rotation"] objectAtIndex:idx];
                 [lo finish];
                 [all addObject:lo];
             }];

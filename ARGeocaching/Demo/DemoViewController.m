@@ -133,10 +133,12 @@ typedef NS_ENUM(NSInteger, GameStage) {
                 float dx = -0.1;
                 float dy = -0.1;
                 float dz = -0.2;
+                float angle = 0;
                 while (self.animating == YES) {
                     [NSThread sleepForTimeInterval:0.1];
                     [[objectManager nodesByGroupName:@"boxes"] enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
-                        n.node.position = SCNVector3Make(n.node.position.x + dx, n.node.position.y + dy, n.node.position.z + dz);
+//                        n.node.position = SCNVector3Make(n.node.position.x + dx, n.node.position.y + dy, n.node.position.z + dz);
+                        n.node.rotation = SCNVector4Make(0, 0, 1, angle);
                     }];
 
                     NSLog(@"%f - %f - %f",
@@ -147,6 +149,7 @@ typedef NS_ENUM(NSInteger, GameStage) {
                     if ([boxSmall1 jsonPositionY] > 3) dy = -0.1;
                     if ([boxSmall1 jsonPositionZ] < 0) dz = -0.1;
                     if ([boxSmall1 jsonPositionZ] > 3) dz = +0.1;
+                    angle += GLKMathDegreesToRadians(10);
                 }
             }];
             break;
