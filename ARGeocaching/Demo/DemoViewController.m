@@ -10,6 +10,9 @@
 
 typedef NS_ENUM(NSInteger, GameStage) {
     STAGE_BOXES = 0,
+    STAGE_TUBES,
+
+    STAGE_MAX
 };
 
 
@@ -42,6 +45,13 @@ typedef NS_ENUM(NSInteger, GameStage) {
     self.stage = STAGE_BOXES;
 
     [self loadFloor];
+
+    [objectManager.nodes enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
+        n.node.hidden = YES;
+    }];
+    [[objectManager nodesByGroupName:@"boxes"] enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
+        n.node.hidden = NO;
+    }];
 
     //    self.sceneView.autoenablesDefaultLighting = NO;
     self.sceneView.delegate = self;
@@ -114,6 +124,26 @@ typedef NS_ENUM(NSInteger, GameStage) {
         self.animating = !self.animating;
         if (self.animating == YES)
             [self performAction];
+    } else {
+        [objectManager.nodes enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
+            n.node.hidden = YES;
+        }];
+        self.stage = (self.stage + 1) % STAGE_MAX;
+        NSArray<NodeObject *> *nodes;
+        switch (self.stage) {
+            case STAGE_BOXES:
+                nodes = [objectManager nodesByGroupName:@"boxes"];
+                break;
+            case STAGE_TUBES:
+                nodes = [objectManager nodesByGroupName:@"tubes"];
+                break;
+            case STAGE_MAX:
+                break;
+        }
+        [nodes enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
+            n.node.hidden = NO;
+        }];
+
     }
 }
 
@@ -122,39 +152,44 @@ typedef NS_ENUM(NSInteger, GameStage) {
 #define FIND(__variable__, __name__) \
     NodeObject *__variable__ = [objectManager nodeByID:__name__]; \
     NSAssert1(__variable__ != nil, @"Node '%@' not found", __name__);
-    FIND(boxLarge1, @"large box #1")
-    FIND(boxLarge2, @"large box #2")
-    FIND(boxSmall1, @"small box #1")
-    FIND(boxSmall2, @"small box #2")
 
+    NSArray<NodeObject *> *nodes = nil;
+    NodeObject *left = nil;
     switch (self.stage) {
         case STAGE_BOXES: {
-            [self.queue addOperationWithBlock:^{
-                float dx = -0.1;
-                float dy = -0.1;
-                float dz = -0.2;
-                float angle = 0;
-                while (self.animating == YES) {
-                    [NSThread sleepForTimeInterval:0.1];
-                    [[objectManager nodesByGroupName:@"boxes"] enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
-//                        n.node.position = SCNVector3Make(n.node.position.x + dx, n.node.position.y + dy, n.node.position.z + dz);
-                        n.node.rotation = SCNVector4Make(0, 0, 1, angle);
-                    }];
-
-                    NSLog(@"%f - %f - %f",
-                          [boxSmall1 jsonPositionX], [boxSmall1 jsonPositionY], [boxSmall1 jsonPositionZ]);
-                    if ([boxSmall1 jsonPositionX] < -3) dx = +0.1;
-                    if ([boxSmall1 jsonPositionX] > 3) dx = -0.1;
-                    if ([boxSmall1 jsonPositionY] < 0) dy = +0.1;
-                    if ([boxSmall1 jsonPositionY] > 3) dy = -0.1;
-                    if ([boxSmall1 jsonPositionZ] < 0) dz = -0.1;
-                    if ([boxSmall1 jsonPositionZ] > 3) dz = +0.1;
-                    angle += GLKMathDegreesToRadians(10);
-                }
-            }];
+            nodes = [objectManager nodesByGroupName:@"boxes"];
+            left = [objectManager nodeByID:@"large box #1"];
             break;
         }
+        case STAGE_TUBES: {
+            nodes = [objectManager nodesByGroupName:@"tubes"];
+            left = [objectManager nodeByID:@"large tube #1"];
+            break;
+        }
+
+        case STAGE_MAX:
+        break       ;
     }
+
+    [self.queue addOperationWithBlock:^{
+        float dx = -0.1;
+        float dy = -0.1;
+        float dz = -0.2;
+        while (self.animating == YES) {
+            [NSThread sleepForTimeInterval:0.1];
+            [nodes enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
+                n.node.position = SCNVector3Make(n.node.position.x + dx, n.node.position.y + dy, n.node.position.z + dz);
+                n.node.rotation = SCNVector4Make(n.node.rotation.x, n.node.rotation.y, n.node.rotation.z, n.node.rotation.w + GLKMathDegreesToRadians(10));
+            }];
+
+            if ([left jsonPositionX] < -3) dx = +0.1;
+            if ([left jsonPositionX] > 3) dx = -0.1;
+            if ([left jsonPositionY] < 0) dy = +0.1;
+            if ([left jsonPositionY] > 3) dy = -0.1;
+            if ([left jsonPositionZ] < 0) dz = -0.1;
+            if ([left jsonPositionZ] > 3) dz = +0.1;
+        }
+    }];
 }
 
 

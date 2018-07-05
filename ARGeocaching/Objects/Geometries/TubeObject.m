@@ -18,8 +18,8 @@
 {
     [super finish];
 
-    self.innerRadius = [[self.sRadius objectAtIndex:0] floatValue];
-    self.outerRadius = [[self.sRadius objectAtIndex:1] floatValue];
+    self.innerRadius = [self.sInnerRadius floatValue];
+    self.outerRadius = [self.sOuterRadius floatValue];
 
     self.geometry = [SCNTube tubeWithInnerRadius:self.innerRadius outerRadius:self.outerRadius height:1];
 

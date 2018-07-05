@@ -88,7 +88,8 @@
         TubeObject *to = [[TubeObject alloc] init];
         to.name = [tube objectForKey:@"name"];
         to.sMaterial = [tube objectForKey:@"material"];
-        to.sRadius = [tube objectForKey:@"radius"];
+        to.sInnerRadius = [tube objectForKey:@"radius-inner"];
+        to.sOuterRadius = [tube objectForKey:@"radius-outer"];
         [to finish];
         [all addObject:to];
     }];

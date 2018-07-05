@@ -54,10 +54,16 @@
      "name": "Colourfull box",
      "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"]
      }
-     ],
+    ],
 
     "tubes":
     [
+     {
+     "name": "Colourfull tube",
+     "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"],
+     "radius-inner": 0.25,
+     "radius-outer": 1
+     }
     ],
 
     "capsules":
@@ -112,6 +118,30 @@
       "rotation": [[0, 0, 1, 90], [1, 0, 1, 180]]
       }
       ]
+     },{
+
+     "group": "tubes",
+     "origin": [-3, 0, 2],
+
+     "objects":
+     [
+      {
+      "name": "Large Tube",
+      "geometry": "Colourfull tube",
+      "id": ["large tube #1", "large tube #2"],
+      "position": [[0, 0, 0], [4.5, 0, 0]],
+      "size": [[1, 1, 1], [1, 1, 1]],
+      "rotation": [[1, 0, 0, 90], [1, 0, 0, 180]]
+      }, {
+      "name": "Small tube",
+      "geometry": "Colourfull tube",
+      "id": ["small tube #1", "small tube #2"],
+      "position": [[2, 0, 0], [3, 0, 0]],
+      "size": [[0.5, 0.5, 0.5], [0.5, 0.5, 0.5]],
+      "rotation": [[0, 0, 1, 90], [1, 0, 1, 180]]
+      }
+      ]
      }
+
      ]
 }
