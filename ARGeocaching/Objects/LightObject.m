@@ -27,7 +27,7 @@
     self.node = [SCNNode node];
     self.node.light = self.light;
     SCNVector3 v = [self.position SCNVector3Value];
-    [ObjectManager position:self.node x:v.x y:v.y z:v.z];
+    [self nodePositionX:v.x y:v.y z:v.z];
 }
 
 @end

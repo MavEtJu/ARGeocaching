@@ -29,4 +29,12 @@
 
 - (void)finish;
 
+// Adjust the JSON coordinates into the SCNNode coordinates.
+- (void)nodePositionX:(float)x y:(float)y z:(float)z;
+
+// Returns the bottom left front JSON coordinates of the object.
+- (float)jsonPositionX;
+- (float)jsonPositionY;
+- (float)jsonPositionZ;
+
 @end

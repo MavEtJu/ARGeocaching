@@ -1,0 +1,115 @@
+{
+    "origin": [0, 2, -5],
+
+    "materials":
+    [
+     {
+     "name": "Red",
+     "image": "Red colour"
+     }, {
+     "name": "Red semi-transpart",
+     "image": "Red colour",
+     "transparency": 0.5
+     }, {
+     "name": "Blue",
+     "image": "Blue colour"
+     }, {
+     "name": "Blue semi-transparent",
+     "image": "Blue colour",
+     "transparency": 0.5
+     }, {
+     "name": "Green",
+     "image": "Green colour"
+     }, {
+     "name": "Green semi-transparent",
+     "image": "Green colour",
+     "transparency": 0.5
+     }, {
+     "name": "Cyan",
+     "image": "Cyan colour"
+     }, {
+     "name": "Cyan semi-transpart",
+     "image": "Cyan colour",
+     "transparency": 0.5
+     }, {
+     "name": "Yellow",
+     "image": "Yellow colour"
+     }, {
+     "name": "Yellow semi-transparent",
+     "image": "Yellow colour",
+     "transparency": 0.5
+     }, {
+     "name": "Magenta",
+     "image": "Magenta colour"
+     }, {
+     "name": "Magenta semi-transparent",
+     "image": "Magenta colour",
+     "transparency": 0.5
+     }
+    ],
+
+    "boxes":
+    [
+     {
+     "name": "Colourfull box",
+     "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"]
+     }
+     ],
+
+    "tubes":
+    [
+    ],
+
+    "capsules":
+    [
+    ],
+
+    "spheres":
+    [
+    ],
+
+    "cylinders":
+    [
+    ],
+
+    "pyramids":
+    [
+    ],
+
+    "toruses":
+    [
+    ],
+
+    "cones":
+    [
+    ],
+
+    "planes":
+    [
+    ],
+
+    "nodes":
+    [
+     {
+     "group": "boxes",
+     "origin": [-3, 0, 2],
+
+     "objects":
+     [
+      {
+      "name": "Large Colourfull box",
+      "geometry": "Colourfull box",
+      "id": ["large box #1", "large box #2"],
+      "position": [[0, 0, 0], [4.5, 0, 0]],
+      "size": [[1, 1, 1], [1, 1, 1]]
+      }, {
+      "name": "Small Colourfull boxes",
+      "geometry": "Colourfull box",
+      "id": ["small box #1", "small box #2"],
+      "position": [[2, 0, 0], [3, 0, 0]],
+      "size": [[0.5, 0.5, 0.5], [0.5, 0.5, 0.5]]
+      }
+      ]
+     }
+     ]
+}

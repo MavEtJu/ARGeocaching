@@ -22,6 +22,10 @@
 		E805CF9820ECB41200AC4A04 /* TorusObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CF9720ECB41200AC4A04 /* TorusObject.m */; };
 		E805CF9C20ECD53B00AC4A04 /* GA12490.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E805CF9B20ECD53B00AC4A04 /* GA12490.storyboard */; };
 		E805CF9E20ECD5EC00AC4A04 /* GAxxxxx.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E805CF9D20ECD5EB00AC4A04 /* GAxxxxx.storyboard */; };
+		E805CFA020ED8FDA00AC4A04 /* Demo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E805CF9F20ED8FDA00AC4A04 /* Demo.storyboard */; };
+		E805CFA220ED900D00AC4A04 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E805CFA120ED900D00AC4A04 /* Media.xcassets */; };
+		E805CFA420ED902E00AC4A04 /* Demo.json in Resources */ = {isa = PBXBuildFile; fileRef = E805CFA320ED902E00AC4A04 /* Demo.json */; };
+		E805CFA720ED906900AC4A04 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E805CFA520ED906900AC4A04 /* DemoViewController.m */; };
 		E809B96820EB5B2C0004E7ED /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E809B96720EB5B2C0004E7ED /* Media.xcassets */; };
 		E867AE5720DDDF39004C0544 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E867AE5620DDDF39004C0544 /* AppDelegate.m */; };
 		E867AE5920DDDF39004C0544 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E867AE5820DDDF39004C0544 /* art.scnassets */; };
@@ -68,6 +72,11 @@
 		E805CF9720ECB41200AC4A04 /* TorusObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TorusObject.m; sourceTree = "<group>"; };
 		E805CF9B20ECD53B00AC4A04 /* GA12490.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GA12490.storyboard; sourceTree = "<group>"; };
 		E805CF9D20ECD5EB00AC4A04 /* GAxxxxx.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = GAxxxxx.storyboard; path = ARGeocaching/GA12490/GAxxxxx.storyboard; sourceTree = SOURCE_ROOT; };
+		E805CF9F20ED8FDA00AC4A04 /* Demo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Demo.storyboard; sourceTree = "<group>"; };
+		E805CFA120ED900D00AC4A04 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		E805CFA320ED902E00AC4A04 /* Demo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Demo.json; sourceTree = "<group>"; };
+		E805CFA520ED906900AC4A04 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
+		E805CFA620ED906900AC4A04 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
 		E809B96720EB5B2C0004E7ED /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E867AE5220DDDF39004C0544 /* ARGeocaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGeocaching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E867AE5520DDDF39004C0544 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -119,9 +128,9 @@
 			children = (
 				E805CF7820EC59F700AC4A04 /* GAxxxxxViewController.h */,
 				E805CF7920EC59F700AC4A04 /* GAxxxxxViewController.m */,
-				E805CF9D20ECD5EB00AC4A04 /* GAxxxxx.storyboard */,
 				E805CF7B20EC5D4300AC4A04 /* Totem Pole.json */,
 				E805CF7D20EC61A800AC4A04 /* Media.xcassets */,
+				E805CF9D20ECD5EB00AC4A04 /* GAxxxxx.storyboard */,
 			);
 			name = GAxxxxx;
 			path = "New Group";
@@ -159,6 +168,11 @@
 		E805CF9A20ECD4E100AC4A04 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				E805CFA620ED906900AC4A04 /* DemoViewController.h */,
+				E805CFA520ED906900AC4A04 /* DemoViewController.m */,
+				E805CFA320ED902E00AC4A04 /* Demo.json */,
+				E805CFA120ED900D00AC4A04 /* Media.xcassets */,
+				E805CF9F20ED8FDA00AC4A04 /* Demo.storyboard */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -170,8 +184,8 @@
 				E867AE5B20DDDF39004C0544 /* GA12490ViewController.m */,
 				E8A8D7C320E5A659000595E9 /* Mineshaft.json */,
 				E8C389C220E7A81B00C13379 /* Underground.json */,
-				E805CF9B20ECD53B00AC4A04 /* GA12490.storyboard */,
 				E809B96720EB5B2C0004E7ED /* Media.xcassets */,
+				E805CF9B20ECD53B00AC4A04 /* GA12490.storyboard */,
 				E805CF7320EC586F00AC4A04 /* Top Floor.jpg */,
 				E805CF7420EC586F00AC4A04 /* Underground.jpg */,
 			);
@@ -297,13 +311,16 @@
 				E809B96820EB5B2C0004E7ED /* Media.xcassets in Resources */,
 				E805CF7C20EC5D4300AC4A04 /* Totem Pole.json in Resources */,
 				E805CF9C20ECD53B00AC4A04 /* GA12490.storyboard in Resources */,
+				E805CFA420ED902E00AC4A04 /* Demo.json in Resources */,
 				E805CF7E20EC61A800AC4A04 /* Media.xcassets in Resources */,
 				E805CF7620EC586F00AC4A04 /* Underground.jpg in Resources */,
 				E867AE6120DDDF3D004C0544 /* Assets.xcassets in Resources */,
 				E8A8D7C420E5A65A000595E9 /* Mineshaft.json in Resources */,
+				E805CFA220ED900D00AC4A04 /* Media.xcassets in Resources */,
 				E867AE5F20DDDF3A004C0544 /* Main.storyboard in Resources */,
 				E805CF9E20ECD5EC00AC4A04 /* GAxxxxx.storyboard in Resources */,
 				E8C389C320E7A81B00C13379 /* Underground.json in Resources */,
+				E805CFA020ED8FDA00AC4A04 /* Demo.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +342,7 @@
 				E805CF9820ECB41200AC4A04 /* TorusObject.m in Sources */,
 				E8C389C120E61D8A00C13379 /* GroupObject.m in Sources */,
 				E805CF7A20EC59F700AC4A04 /* GAxxxxxViewController.m in Sources */,
+				E805CFA720ED906900AC4A04 /* DemoViewController.m in Sources */,
 				E805CF9120ECB3E600AC4A04 /* PyramidObject.m in Sources */,
 				E867AE6720DDDF3D004C0544 /* main.m in Sources */,
 				E8C389C620E9EBF200C13379 /* TableViewController.m in Sources */,

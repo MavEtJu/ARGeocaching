@@ -90,7 +90,103 @@
     self.node.hidden = !self.visisble;
     self.node.scale = [self.scale SCNVector3Value];
     SCNVector3 v = [self.position SCNVector3Value];
-    [ObjectManager position:self.node x:v.x y:v.y z:v.z];
+    [self nodePositionX:v.x y:v.y z:v.z];
+}
+
+// Adjust the JSON coordinates into the SCNNode coordinates.
+- (void)nodePositionX:(float)x y:(float)y z:(float)z
+{
+    if (self.node.geometry == nil) {
+        self.node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY), -(z - objectManager.originZ));
+    } else if ([self.node.geometry isKindOfClass:[SCNCone class]] == YES) {
+        SCNCone *g = (SCNCone *)self.node.geometry;
+        self.node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY + self.node.scale.y * g.height / 2), -(z - objectManager.originZ));
+    } else if ([self.node.geometry isKindOfClass:[SCNBox class]] == YES) {
+        SCNBox *g = (SCNBox *)self.node.geometry;
+        self.node.position = SCNVector3Make((x - objectManager.originX + self.node.scale.x * g.width / 2), (y - objectManager.originY + self.node.scale.y * g.height / 2), -(z - objectManager.originZ + self.node.scale.z * g.length / 2));
+    } else if ([self.node.geometry isKindOfClass:[SCNPyramid class]] == YES) {
+        SCNPyramid *g = (SCNPyramid *)self.node.geometry;
+        self.node.position = SCNVector3Make((x - objectManager.originX + self.node.scale.x * g.width / 2), (y - objectManager.originY + self.node.scale.y * g.height / 2), -(z - objectManager.originZ + self.node.scale.z * g.length / 2));
+    } else if ([self.node.geometry isKindOfClass:[SCNPlane class]] == YES) {
+        SCNPlane *g = (SCNPlane *)self.node.geometry;
+        self.node.position = SCNVector3Make((x - objectManager.originX + self.node.scale.x * g.width / 2), (y - objectManager.originY + self.node.scale.y * g.height / 2), -(z - objectManager.originZ));
+    } else if ([self.node.geometry isKindOfClass:[SCNTube class]] == YES) {
+        SCNTube *g = (SCNTube *)self.node.geometry;
+        self.node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY + self.node.scale.y * g.height / 2), -(z - objectManager.originZ));
+    } else if ([self.node.geometry isKindOfClass:[SCNCapsule class]] == YES) {
+        SCNCapsule *g = (SCNCapsule *)self.node.geometry;
+        self.node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY + self.node.scale.y * g.height / 2), -(z - objectManager.originZ));
+    } else if ([self.node.geometry isKindOfClass:[SCNSphere class]] == YES) {
+        SCNSphere *g = (SCNSphere *)self.node.geometry;
+        self.node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY + self.node.scale.y * g.radius / 2), -(z - objectManager.originZ));
+    } else if ([self.node.geometry isKindOfClass:[SCNCylinder class]] == YES) {
+        SCNCylinder *g = (SCNCylinder *)self.node.geometry;
+        self.node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY + self.node.scale.y * g.radius / 2), -(z - objectManager.originZ));
+    } else if ([self.node.geometry isKindOfClass:[SCNTorus class]] == YES) {
+        SCNTorus *g = (SCNTorus *)self.node.geometry;
+        self.node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY), -(z - objectManager.originZ));
+    } else {
+        NSAssert1(NO, @"Unknown class: %@", [self.node.geometry class]);
+    }
+}
+
+// Returns the bottom left front JSON coordinates of the object.
+- (float)jsonPositionX
+{
+    if (self.node.geometry == nil) {
+        return (self.node.position.x + objectManager.originX);
+    } else if ([self.node.geometry isKindOfClass:[SCNBox class]] == YES) {
+        SCNBox *g = (SCNBox *)self.node.geometry;
+        return (self.node.position.x + objectManager.originX - self.node.scale.x * g.width / 2);
+    } else if ([self.node.geometry isKindOfClass:[SCNTube class]] == YES) {
+        SCNTube *g = (SCNTube *)self.node.geometry;
+        return (self.node.position.x + objectManager.originX - self.node.scale.x * g.height / 2);
+    } else if ([self.node.geometry isKindOfClass:[SCNSphere class]] == YES) {
+        SCNSphere *g = (SCNSphere *)self.node.geometry;
+        return (self.node.position.x + objectManager.originX - self.node.scale.x * g.radius / 2);
+    } else {
+        NSAssert1(NO, @"Unknown class: %@", [self.node.geometry class]);
+    }
+    // NOT REACHED
+    return -1;
+}
+
+- (float)jsonPositionY
+{
+    if (self.node.geometry == nil) {
+        return (self.node.position.y + objectManager.originY);
+    } else if ([self.node.geometry isKindOfClass:[SCNBox class]] == YES) {
+        SCNBox *g = (SCNBox *)self.node.geometry;
+        return (self.node.position.y + objectManager.originY - self.node.scale.y * g.height / 2);
+    } else if ([self.node.geometry isKindOfClass:[SCNTube class]] == YES) {
+        SCNTube *g = (SCNTube *)self.node.geometry;
+        return (self.node.position.y + objectManager.originY - self.node.scale.y * g.height / 2);
+    } else if ([self.node.geometry isKindOfClass:[SCNSphere class]] == YES) {
+        SCNSphere *g = (SCNSphere *)self.node.geometry;
+        return (self.node.position.y + objectManager.originY - self.node.scale.y * g.radius / 2);
+    } else {
+        NSAssert1(NO, @"Unknown class: %@", [self.node.geometry class]);
+    }
+    return -1;
+}
+
+- (float)jsonPositionZ
+{
+    if (self.node.geometry == nil) {
+        return (- (self.node.position.z - objectManager.originZ));
+    } else if ([self.node.geometry isKindOfClass:[SCNBox class]] == YES) {
+        SCNBox *g = (SCNBox *)self.node.geometry;
+        return (- (self.node.position.z - objectManager.originZ + self.node.scale.z * g.length / 2));
+    } else if ([self.node.geometry isKindOfClass:[SCNTube class]] == YES) {
+        SCNTube *g = (SCNTube *)self.node.geometry;
+        return (- (self.node.position.z - objectManager.originZ + self.node.scale.z * g.height / 2));
+    } else if ([self.node.geometry isKindOfClass:[SCNSphere class]] == YES) {
+        SCNSphere *g = (SCNSphere *)self.node.geometry;
+        return (- (self.node.position.z - objectManager.originZ + self.node.scale.z * g.radius / 2));
+    } else {
+        NSAssert1(NO, @"Unknown class: %@", [self.node.geometry class]);
+    }
+    return -1;
 }
 
 @end

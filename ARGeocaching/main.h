@@ -36,4 +36,5 @@
 #import "AppDelegate.h"
 #import "GA12490ViewController.h"
 #import "GAxxxxxViewController.h"
+#import "DemoViewController.h"
 #import "TableViewController.h"

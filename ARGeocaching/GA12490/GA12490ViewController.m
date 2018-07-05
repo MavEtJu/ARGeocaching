@@ -222,7 +222,7 @@ typedef NS_ENUM(NSInteger, GameStage) {
 
             self.stage = STAGE_CAGE_GOING_TO_INITIAL;
             [self.queue addOperationWithBlock:^{
-                while (roof.node.position.y > [ObjectManager positionY:roof.node y:0]) {
+                while ([roof jsonPositionY] > 0) {
                     [NSThread sleepForTimeInterval:0.1];
                     [[objectManager nodesByGroupName:@"cage"] enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
                         n.node.position = SCNVector3Make(n.node.position.x, n.node.position.y - 0.1, n.node.position.z);
@@ -240,7 +240,7 @@ typedef NS_ENUM(NSInteger, GameStage) {
         case STAGE_CAGE_AT_INITIAL: {
             self.stage = STAGE_CAGE_GOING_UP;
             [self.queue addOperationWithBlock:^{
-                while (floor.node.position.y < [ObjectManager positionY:floor.node y:0]) {
+                while ([floor jsonPositionY] < 0) {
                     [NSThread sleepForTimeInterval:0.1];
                     [[objectManager nodesByGroupName:@"cage"] enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
                         n.node.position = SCNVector3Make(n.node.position.x, n.node.position.y + 0.1, n.node.position.z);
@@ -259,7 +259,7 @@ typedef NS_ENUM(NSInteger, GameStage) {
         case STAGE_CAGE_AT_TOP: {
             self.stage = STAGE_CAGE_GOING_DOWN;
             [self.queue addOperationWithBlock:^{
-                while (bottom.node.position.y < [ObjectManager positionY:bottom.node y:0.0]) {
+                while ([bottom jsonPositionY] < 0.0) {
                     [NSThread sleepForTimeInterval:0.1];
                     [objectManager.nodes enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
                         if ([n.group.name isEqualToString:@"cage"] == YES)

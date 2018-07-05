@@ -30,8 +30,6 @@
 - (void)loadFile:(NSString *)filename;
 - (NSArray<NodeObject *> *)nodesByGroupName:(NSString *)name;
 - (NodeObject *)nodeByID:(NSString *)name;
-+ (void)position:(SCNNode *)node x:(float)x y:(float)y z:(float)z;
-+ (float)positionY:(SCNNode *)node y:(float)y;
 
 @end
 
