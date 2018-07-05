@@ -10,6 +10,12 @@
 
 typedef NS_ENUM(NSInteger, GameStage) {
     STAGE_BOXES = 0,
+    STAGE_PLANES,
+    STAGE_CONES,
+    STAGE_TORUSES,
+    STAGE_PYRAMIDS,
+    STAGE_CYLINDERS,
+    STAGE_SPHERES,
     STAGE_TUBES,
     STAGE_CAPSULES,
 
@@ -141,9 +147,28 @@ typedef NS_ENUM(NSInteger, GameStage) {
             case STAGE_CAPSULES:
                 nodes = [objectManager nodesByGroupName:@"capsules"];
                 break;
+            case STAGE_SPHERES:
+                nodes = [objectManager nodesByGroupName:@"spheres"];
+                break;
+            case STAGE_CYLINDERS:
+                nodes = [objectManager nodesByGroupName:@"cylinders"];
+                break;
+            case STAGE_PYRAMIDS:
+                nodes = [objectManager nodesByGroupName:@"pyramids"];
+                break;
+            case STAGE_TORUSES:
+                nodes = [objectManager nodesByGroupName:@"toruses"];
+                break;
+            case STAGE_CONES:
+                nodes = [objectManager nodesByGroupName:@"cones"];
+                break;
+            case STAGE_PLANES:
+            nodes = [objectManager nodesByGroupName:@"planes"];
+            break;
             case STAGE_MAX:
                 break;
         }
+        NSAssert(nodes != nil, @"No nodes found");
         [nodes enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
             n.node.hidden = NO;
         }];
@@ -175,10 +200,43 @@ typedef NS_ENUM(NSInteger, GameStage) {
             left = [objectManager nodeByID:@"large capsule #1"];
             break;
         }
+        case STAGE_SPHERES: {
+            nodes = [objectManager nodesByGroupName:@"spheres"];
+            left = [objectManager nodeByID:@"large sphere #1"];
+            break;
+        }
+        case STAGE_CYLINDERS: {
+            nodes = [objectManager nodesByGroupName:@"cylinders"];
+            left = [objectManager nodeByID:@"large cylinder #1"];
+            break;
+        }
+        case STAGE_PYRAMIDS: {
+            nodes = [objectManager nodesByGroupName:@"pyramids"];
+            left = [objectManager nodeByID:@"large pyramid #1"];
+            break;
+        }
+        case STAGE_TORUSES: {
+            nodes = [objectManager nodesByGroupName:@"toruses"];
+            left = [objectManager nodeByID:@"large torus #1"];
+            break;
+        }
+        case STAGE_CONES: {
+            nodes = [objectManager nodesByGroupName:@"cones"];
+            left = [objectManager nodeByID:@"large cone #1"];
+            break;
+        }
+        case STAGE_PLANES: {
+            nodes = [objectManager nodesByGroupName:@"planes"];
+            left = [objectManager nodeByID:@"large plane #1"];
+            break;
+        }
 
         case STAGE_MAX:
-        break       ;
+        break;
     }
+
+    NSAssert(nodes != nil, @"No nodes");
+    NSAssert(left != nil, @"No left-hand object");
 
     [self.queue addOperationWithBlock:^{
         float dx = -0.1;

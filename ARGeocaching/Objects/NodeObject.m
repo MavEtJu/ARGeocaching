@@ -143,6 +143,12 @@
 {
     if (self.node.geometry == nil) {
         return (self.node.position.x + objectManager.originX);
+    } else if ([self.node.geometry isKindOfClass:[SCNPyramid class]] == YES) {
+        SCNPyramid *g = (SCNPyramid *)self.node.geometry;
+        return (self.node.position.x + objectManager.originX - self.node.scale.x * g.width / 2);
+    } else if ([self.node.geometry isKindOfClass:[SCNPlane class]] == YES) {
+        SCNPlane *g = (SCNPlane *)self.node.geometry;
+        return (self.node.position.x + objectManager.originX - self.node.scale.x * g.width / 2);
     } else if ([self.node.geometry isKindOfClass:[SCNBox class]] == YES) {
         SCNBox *g = (SCNBox *)self.node.geometry;
         return (self.node.position.x + objectManager.originX - self.node.scale.x * g.width / 2);
@@ -155,6 +161,15 @@
     } else if ([self.node.geometry isKindOfClass:[SCNCapsule class]] == YES) {
         SCNCapsule *g = (SCNCapsule *)self.node.geometry;
         return (self.node.position.x + objectManager.originX - self.node.scale.x * g.capRadius / 2);
+    } else if ([self.node.geometry isKindOfClass:[SCNCylinder class]] == YES) {
+        SCNCylinder *g = (SCNCylinder *)self.node.geometry;
+        return (self.node.position.x + objectManager.originX - self.node.scale.x * g.radius / 2);
+    } else if ([self.node.geometry isKindOfClass:[SCNTorus class]] == YES) {
+        SCNTorus *g = (SCNTorus *)self.node.geometry;
+        return (self.node.position.x + objectManager.originX - self.node.scale.x * g.ringRadius / 2);
+    } else if ([self.node.geometry isKindOfClass:[SCNCone class]] == YES) {
+        SCNCone *g = (SCNCone *)self.node.geometry;
+        return (self.node.position.x + objectManager.originX - self.node.scale.x * g.topRadius / 2);
     } else {
         NSAssert1(NO, @"Unknown class: %@", [self.node.geometry class]);
     }
@@ -166,6 +181,12 @@
 {
     if (self.node.geometry == nil) {
         return (self.node.position.y + objectManager.originY);
+    } else if ([self.node.geometry isKindOfClass:[SCNPyramid class]] == YES) {
+        SCNPyramid *g = (SCNPyramid *)self.node.geometry;
+        return (self.node.position.y + objectManager.originY - self.node.scale.y * g.height / 2);
+    } else if ([self.node.geometry isKindOfClass:[SCNPlane class]] == YES) {
+        SCNPlane *g = (SCNPlane *)self.node.geometry;
+        return (self.node.position.y + objectManager.originY - self.node.scale.y * g.height / 2);
     } else if ([self.node.geometry isKindOfClass:[SCNBox class]] == YES) {
         SCNBox *g = (SCNBox *)self.node.geometry;
         return (self.node.position.y + objectManager.originY - self.node.scale.y * g.height / 2);
@@ -178,6 +199,15 @@
     } else if ([self.node.geometry isKindOfClass:[SCNCapsule class]] == YES) {
         SCNCapsule *g = (SCNCapsule *)self.node.geometry;
         return (self.node.position.y + objectManager.originY - self.node.scale.y * g.capRadius / 2);
+    } else if ([self.node.geometry isKindOfClass:[SCNCylinder class]] == YES) {
+        SCNCylinder *g = (SCNCylinder *)self.node.geometry;
+        return (self.node.position.y + objectManager.originY - self.node.scale.y * g.radius / 2);
+    } else if ([self.node.geometry isKindOfClass:[SCNTorus class]] == YES) {
+        SCNTorus *g = (SCNTorus *)self.node.geometry;
+        return (self.node.position.y + objectManager.originY - self.node.scale.y * g.ringRadius / 2);
+    } else if ([self.node.geometry isKindOfClass:[SCNCone class]] == YES) {
+        SCNCone *g = (SCNCone *)self.node.geometry;
+        return (self.node.position.y + objectManager.originY - self.node.scale.y * g.topRadius / 2);
     } else {
         NSAssert1(NO, @"Unknown class: %@", [self.node.geometry class]);
     }
@@ -187,6 +217,12 @@
 - (float)jsonPositionZ
 {
     if (self.node.geometry == nil) {
+        return (- (self.node.position.z - objectManager.originZ));
+    } else if ([self.node.geometry isKindOfClass:[SCNPyramid class]] == YES) {
+        SCNPyramid *g = (SCNPyramid *)self.node.geometry;
+        return (- (self.node.position.z - objectManager.originZ + self.node.scale.z * g.length / 2));
+    } else if ([self.node.geometry isKindOfClass:[SCNPlane class]] == YES) {
+        SCNPlane *g = (SCNPlane *)self.node.geometry;
         return (- (self.node.position.z - objectManager.originZ));
     } else if ([self.node.geometry isKindOfClass:[SCNBox class]] == YES) {
         SCNBox *g = (SCNBox *)self.node.geometry;
@@ -200,6 +236,15 @@
     } else if ([self.node.geometry isKindOfClass:[SCNCapsule class]] == YES) {
         SCNCapsule *g = (SCNCapsule *)self.node.geometry;
         return (- (self.node.position.z - objectManager.originZ + self.node.scale.z * g.capRadius / 2));
+    } else if ([self.node.geometry isKindOfClass:[SCNCylinder class]] == YES) {
+        SCNCylinder *g = (SCNCylinder *)self.node.geometry;
+        return (- (self.node.position.z - objectManager.originZ + self.node.scale.z * g.radius / 2));
+    } else if ([self.node.geometry isKindOfClass:[SCNTorus class]] == YES) {
+        SCNTorus *g = (SCNTorus *)self.node.geometry;
+        return (- (self.node.position.z - objectManager.originZ + self.node.scale.z * g.ringRadius / 2));
+    } else if ([self.node.geometry isKindOfClass:[SCNCone class]] == YES) {
+        SCNCone *g = (SCNCone *)self.node.geometry;
+        return (- (self.node.position.z - objectManager.originZ + self.node.scale.z * g.topRadius / 2));
     } else {
         NSAssert1(NO, @"Unknown class: %@", [self.node.geometry class]);
     }

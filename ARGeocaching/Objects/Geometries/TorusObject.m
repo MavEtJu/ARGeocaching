@@ -18,8 +18,8 @@
 {
     [super finish];
 
-    self.ringRadius = [[self.sRadius objectAtIndex:0] floatValue];
-    self.pipeRadius = [[self.sRadius objectAtIndex:1] floatValue];
+    self.ringRadius = [self.sRingRadius floatValue];
+    self.pipeRadius = [self.sPipeRadius floatValue];
 
     self.geometry = [SCNTorus torusWithRingRadius:self.ringRadius pipeRadius:self.pipeRadius];
 

@@ -77,26 +77,56 @@
 
     "spheres":
     [
+     {
+     "name": "Demo sphere",
+     "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"],
+     "radius": 0.50,
+     }
     ],
 
     "cylinders":
     [
+     {
+     "name": "Demo cylinder",
+     "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"],
+     "radius": 0.50,
+     }
     ],
 
     "pyramids":
     [
+     {
+     "name": "Demo pyramid",
+     "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"],
+     }
     ],
 
     "toruses":
     [
+     {
+     "name": "Demo torus",
+     "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"],
+     "radius-ring": 1,
+     "radius-pipe": 0.25,
+     }
     ],
 
     "cones":
     [
+     {
+     "name": "Demo cone",
+     "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"],
+     "radius-top": 1,
+     "radius-bottom": 0.25,
+     }
     ],
 
     "planes":
     [
+     {
+     "name": "Demo plane",
+     "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"],
+     }
     ],
 
     "nodes":
@@ -164,6 +194,144 @@
       "name": "Small capsule",
       "geometry": "Demo capsule",
       "id": ["small capsule #1", "small capsule #2"],
+      "position": [[2, 0, 0], [3, 0, 0]],
+      "size": [[0.5, 0.5, 0.5], [0.5, 0.5, 0.5]],
+      "rotation": [[0, 0, 1, 90], [1, 0, 1, 180]]
+      }
+      ]
+     },{
+
+     "group": "spheres",
+     "origin": [-3, 0, 2],
+
+     "objects":
+     [
+      {
+      "name": "Large sphere",
+      "geometry": "Demo sphere",
+      "id": ["large sphere #1", "large sphere #2"],
+      "position": [[0, 0, 0], [4.5, 0, 0]],
+      "size": [[1, 1, 1], [1, 1, 1]],
+      "rotation": [[1, 0, 0, 90], [1, 0, 0, 180]]
+      }, {
+      "name": "Small sphere",
+      "geometry": "Demo sphere",
+      "id": ["small sphere #1", "small sphere #2"],
+      "position": [[2, 0, 0], [3, 0, 0]],
+      "size": [[0.5, 0.5, 0.5], [0.5, 0.5, 0.5]],
+      "rotation": [[0, 0, 1, 90], [1, 0, 1, 180]]
+      }
+      ]
+     },{
+
+     "group": "cylinders",
+     "origin": [-3, 0, 2],
+
+     "objects":
+     [
+      {
+      "name": "Large cylinder",
+      "geometry": "Demo cylinder",
+      "id": ["large cylinder #1", "large cylinder #2"],
+      "position": [[0, 0, 0], [4.5, 0, 0]],
+      "size": [[1, 1, 1], [1, 1, 1]],
+      "rotation": [[1, 0, 0, 90], [1, 0, 0, 180]]
+      }, {
+      "name": "Small cylinder",
+      "geometry": "Demo cylinder",
+      "id": ["small cylinder #1", "small cylinder #2"],
+      "position": [[2, 0, 0], [3, 0, 0]],
+      "size": [[0.5, 0.5, 0.5], [0.5, 0.5, 0.5]],
+      "rotation": [[0, 0, 1, 90], [1, 0, 1, 180]]
+      }
+      ]
+     },{
+
+     "group": "pyramids",
+     "origin": [-3, 0, 2],
+
+     "objects":
+     [
+      {
+      "name": "Large pyramid",
+      "geometry": "Demo pyramid",
+      "id": ["large pyramid #1", "large pyramid #2"],
+      "position": [[0, 0, 0], [4.5, 0, 0]],
+      "size": [[1, 1, 1], [1, 1, 1]],
+      "rotation": [[1, 0, 0, 90], [1, 0, 0, 180]]
+      }, {
+      "name": "Small pyramid",
+      "geometry": "Demo pyramid",
+      "id": ["small pyramid #1", "small pyramid #2"],
+      "position": [[2, 0, 0], [3, 0, 0]],
+      "size": [[0.5, 0.5, 0.5], [0.5, 0.5, 0.5]],
+      "rotation": [[0, 0, 1, 90], [1, 0, 1, 180]]
+      }
+      ]
+     },{
+
+     "group": "toruses",
+     "origin": [-3, 0, 2],
+
+     "objects":
+     [
+      {
+      "name": "Large torus",
+      "geometry": "Demo torus",
+      "id": ["large torus #1", "large torus #2"],
+      "position": [[0, 0, 0], [4.5, 0, 0]],
+      "size": [[1, 1, 1], [1, 1, 1]],
+      "rotation": [[1, 0, 0, 90], [1, 0, 0, 180]]
+      }, {
+      "name": "Small torus",
+      "geometry": "Demo torus",
+      "id": ["small torus #1", "small torus #2"],
+      "position": [[2, 0, 0], [3, 0, 0]],
+      "size": [[0.5, 0.5, 0.5], [0.5, 0.5, 0.5]],
+      "rotation": [[0, 0, 1, 90], [1, 0, 1, 180]]
+      }
+      ]
+     },{
+
+     "group": "cones",
+     "origin": [-3, 0, 2],
+
+     "objects":
+     [
+      {
+      "name": "Large cone",
+      "geometry": "Demo cone",
+      "id": ["large cone #1", "large cone #2"],
+      "position": [[0, 0, 0], [4.5, 0, 0]],
+      "size": [[1, 1, 1], [1, 1, 1]],
+      "rotation": [[1, 0, 0, 90], [1, 0, 0, 180]]
+      }, {
+      "name": "Small cone",
+      "geometry": "Demo cone",
+      "id": ["small cone #1", "small cone #2"],
+      "position": [[2, 0, 0], [3, 0, 0]],
+      "size": [[0.5, 0.5, 0.5], [0.5, 0.5, 0.5]],
+      "rotation": [[0, 0, 1, 90], [1, 0, 1, 180]]
+      }
+      ]
+     },{
+
+     "group": "planes",
+     "origin": [-3, 0, 2],
+
+     "objects":
+     [
+      {
+      "name": "Large plane",
+      "geometry": "Demo plane",
+      "id": ["large plane #1", "large plane #2"],
+      "position": [[0, 0, 0], [4.5, 0, 0]],
+      "size": [[1, 1, 1], [1, 1, 1]],
+      "rotation": [[1, 0, 0, 90], [1, 0, 0, 180]]
+      }, {
+      "name": "Small plane",
+      "geometry": "Demo plane",
+      "id": ["small plane #1", "small plane #2"],
       "position": [[2, 0, 0], [3, 0, 0]],
       "size": [[0.5, 0.5, 0.5], [0.5, 0.5, 0.5]],
       "rotation": [[0, 0, 1, 90], [1, 0, 1, 180]]

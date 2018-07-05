@@ -165,7 +165,8 @@
         TorusObject *to = [[TorusObject alloc] init];
         to.name = [torus objectForKey:@"name"];
         to.sMaterial = [torus objectForKey:@"material"];
-        to.sRadius = [torus objectForKey:@"radius"];
+        to.sRingRadius = [torus objectForKey:@"radius-ring"];
+        to.sPipeRadius = [torus objectForKey:@"radius-pipe"];
         [to finish];
         [all addObject:to];
     }];
@@ -178,7 +179,8 @@
         ConeObject *co = [[ConeObject alloc] init];
         co.name = [cone objectForKey:@"name"];
         co.sMaterial = [cone objectForKey:@"material"];
-        co.sRadius = [cone objectForKey:@"radius"];
+        co.sTopRadius = [cone objectForKey:@"radius-top"];
+        co.sBottomRadius = [cone objectForKey:@"radius-bottom"];
         [co finish];
         [all addObject:co];
     }];

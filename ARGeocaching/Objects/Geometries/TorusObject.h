@@ -15,7 +15,8 @@
 @property (nonatomic        ) float pipeRadius;
 
 // Read from the configuration
-@property (nonatomic, retain) NSArray<NSNumber *> *sRadius;
+@property (nonatomic, retain) NSNumber *sRingRadius;
+@property (nonatomic, retain) NSNumber *sPipeRadius;
 
 - (void)finish;
 

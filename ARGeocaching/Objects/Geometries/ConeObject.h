@@ -15,7 +15,8 @@
 @property (nonatomic        ) float bottomRadius;
 
 // Read from the configuration
-@property (nonatomic, retain) NSArray<NSNumber *> *sRadius;
+@property (nonatomic, retain) NSNumber *sTopRadius;
+@property (nonatomic, retain) NSNumber *sBottomRadius;
 
 - (void)finish;
 

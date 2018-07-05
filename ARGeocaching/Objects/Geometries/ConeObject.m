@@ -18,8 +18,8 @@
 {
     [super finish];
 
-    self.topRadius = [[self.sRadius objectAtIndex:0] floatValue];
-    self.bottomRadius = [[self.sRadius objectAtIndex:1] floatValue];
+    self.topRadius = [self.sTopRadius floatValue];
+    self.bottomRadius = [self.sBottomRadius floatValue];
 
     self.geometry = [SCNCone coneWithTopRadius:self.topRadius bottomRadius:self.bottomRadius height:1];
 
