@@ -18,6 +18,7 @@
 {
     [super finish];
 
+    NSAssert(self.sRadius != nil, @"radius should be defined");
     self.radius = [self.sRadius floatValue];
 
     self.geometry = [SCNSphere sphereWithRadius:self.radius];

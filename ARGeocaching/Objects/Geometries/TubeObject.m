@@ -18,6 +18,8 @@
 {
     [super finish];
 
+    NSAssert(self.sInnerRadius != nil, @"radius-innner should be defined");
+    NSAssert(self.sOuterRadius != nil, @"radius-outer should be defined");
     self.innerRadius = [self.sInnerRadius floatValue];
     self.outerRadius = [self.sOuterRadius floatValue];
 

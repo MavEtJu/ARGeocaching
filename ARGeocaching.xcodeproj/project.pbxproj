@@ -30,7 +30,6 @@
 		E867AE5720DDDF39004C0544 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E867AE5620DDDF39004C0544 /* AppDelegate.m */; };
 		E867AE5920DDDF39004C0544 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E867AE5820DDDF39004C0544 /* art.scnassets */; };
 		E867AE5C20DDDF3A004C0544 /* GA12490ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E867AE5B20DDDF39004C0544 /* GA12490ViewController.m */; };
-		E867AE5F20DDDF3A004C0544 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E867AE5D20DDDF3A004C0544 /* Main.storyboard */; };
 		E867AE6120DDDF3D004C0544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E867AE6020DDDF3D004C0544 /* Assets.xcassets */; };
 		E867AE6420DDDF3D004C0544 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E867AE6220DDDF3D004C0544 /* LaunchScreen.storyboard */; };
 		E867AE6720DDDF3D004C0544 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E867AE6620DDDF3D004C0544 /* main.m */; };
@@ -84,7 +83,6 @@
 		E867AE5820DDDF39004C0544 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		E867AE5A20DDDF39004C0544 /* GA12490ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GA12490ViewController.h; sourceTree = "<group>"; };
 		E867AE5B20DDDF39004C0544 /* GA12490ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GA12490ViewController.m; sourceTree = "<group>"; };
-		E867AE5E20DDDF3A004C0544 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E867AE6020DDDF3D004C0544 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E867AE6320DDDF3D004C0544 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E867AE6520DDDF3D004C0544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -219,7 +217,6 @@
 				E805CF7720EC59D600AC4A04 /* GAxxxxx */,
 				E809B96620EB5AEF0004E7ED /* GA12490 */,
 				E8A8D7C520E5AEFB000595E9 /* Objects */,
-				E867AE5D20DDDF3A004C0544 /* Main.storyboard */,
 				E867AE6020DDDF3D004C0544 /* Assets.xcassets */,
 				E867AE5820DDDF39004C0544 /* art.scnassets */,
 				E867AE6220DDDF3D004C0544 /* LaunchScreen.storyboard */,
@@ -317,7 +314,6 @@
 				E867AE6120DDDF3D004C0544 /* Assets.xcassets in Resources */,
 				E8A8D7C420E5A65A000595E9 /* Mineshaft.json in Resources */,
 				E805CFA220ED900D00AC4A04 /* Media.xcassets in Resources */,
-				E867AE5F20DDDF3A004C0544 /* Main.storyboard in Resources */,
 				E805CF9E20ECD5EC00AC4A04 /* GAxxxxx.storyboard in Resources */,
 				E8C389C320E7A81B00C13379 /* Underground.json in Resources */,
 				E805CFA020ED8FDA00AC4A04 /* Demo.storyboard in Resources */,
@@ -359,14 +355,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		E867AE5D20DDDF3A004C0544 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E867AE5E20DDDF3A004C0544 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E867AE6220DDDF3D004C0544 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -495,7 +483,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NRQ2A5FE8M;
 				INFOPLIST_FILE = ARGeocaching/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -513,7 +501,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NRQ2A5FE8M;
 				INFOPLIST_FILE = ARGeocaching/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

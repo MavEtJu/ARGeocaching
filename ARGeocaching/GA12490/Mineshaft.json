@@ -114,12 +114,12 @@
      "material": ["Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover", "Metal box cover"]
      }],
 
-    "tubes":
+    "cylinders":
     [
      {
      "name": "Metal pole",
      "material": "Metal",
-     "radius": [0, 1]
+     "radius": 1
      }],
 
     "nodes":

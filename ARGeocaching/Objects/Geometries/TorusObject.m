@@ -18,6 +18,8 @@
 {
     [super finish];
 
+    NSAssert(self.sRingRadius != nil, @"radius-ring should be defined");
+    NSAssert(self.sPipeRadius != nil, @"radius-pipe should be defined");
     self.ringRadius = [self.sRingRadius floatValue];
     self.pipeRadius = [self.sPipeRadius floatValue];
 

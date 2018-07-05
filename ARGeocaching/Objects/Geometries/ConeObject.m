@@ -18,6 +18,8 @@
 {
     [super finish];
 
+    NSAssert(self.sBottomRadius != nil, @"radius-bottom should be defined");
+    NSAssert(self.sTopRadius != nil, @"radius-top should be defined");
     self.topRadius = [self.sTopRadius floatValue];
     self.bottomRadius = [self.sBottomRadius floatValue];
 

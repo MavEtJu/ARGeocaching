@@ -18,6 +18,7 @@
 {
     [super finish];
 
+    NSAssert(self.sRadiusCap != nil, @"radius-cap should be defined");
     self.radiusCap = [self.sRadiusCap floatValue];
 
     self.geometry = [SCNCapsule capsuleWithCapRadius:self.radiusCap height:1];

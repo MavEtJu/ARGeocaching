@@ -18,6 +18,7 @@
 {
     [super finish];
 
+    NSAssert(self.sRadius != nil, @"radius should be defined");
     self.radius = [self.sRadius floatValue];
 
     self.geometry = [SCNCylinder cylinderWithRadius:self.radius height:1];
