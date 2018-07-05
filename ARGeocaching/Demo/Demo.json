@@ -60,7 +60,7 @@
     [
      {
      "name": "Demo tube",
-     "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"],
+     "material": ["Red", "Green", "Blue", "Yellow"],
      "radius-inner": 0.25,
      "radius-outer": 1
      }
@@ -70,7 +70,7 @@
     [
      {
      "name": "Demo capsule",
-     "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"],
+     "material": ["Red"],
      "radius-cap": 0.25,
      }
     ],
@@ -79,7 +79,7 @@
     [
      {
      "name": "Demo sphere",
-     "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"],
+     "material": ["Red"],
      "radius": 0.50,
      }
     ],
@@ -88,7 +88,7 @@
     [
      {
      "name": "Demo cylinder",
-     "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"],
+     "material": ["Red", "Green", "Blue"],
      "radius": 0.50,
      }
     ],
@@ -97,7 +97,7 @@
     [
      {
      "name": "Demo pyramid",
-     "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"],
+     "material": ["Red", "Green", "Blue", "Yellow", "Cyan"],
      }
     ],
 
@@ -105,7 +105,7 @@
     [
      {
      "name": "Demo torus",
-     "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"],
+     "material": ["Red"],
      "radius-ring": 1,
      "radius-pipe": 0.25,
      }
@@ -115,7 +115,7 @@
     [
      {
      "name": "Demo cone",
-     "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"],
+     "material": ["Red", "Green", "Blue"],
      "radius-top": 1,
      "radius-bottom": 0.25,
      }
@@ -125,7 +125,7 @@
     [
      {
      "name": "Demo plane",
-     "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"],
+     "material": ["Red"]
      }
     ],
 
