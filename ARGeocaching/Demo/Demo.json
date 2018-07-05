@@ -51,7 +51,7 @@
     "boxes":
     [
      {
-     "name": "Colourfull box",
+     "name": "Demo box",
      "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"]
      }
     ],
@@ -59,7 +59,7 @@
     "tubes":
     [
      {
-     "name": "Colourfull tube",
+     "name": "Demo tube",
      "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"],
      "radius-inner": 0.25,
      "radius-outer": 1
@@ -68,6 +68,11 @@
 
     "capsules":
     [
+     {
+     "name": "Demo capsule",
+     "material": ["Red", "Green", "Blue", "Yellow", "Cyan", "Magenta"],
+     "radius-cap": 0.25,
+     }
     ],
 
     "spheres":
@@ -104,14 +109,14 @@
      [
       {
       "name": "Large Colourfull box",
-      "geometry": "Colourfull box",
+      "geometry": "Demo box",
       "id": ["large box #1", "large box #2"],
       "position": [[0, 0, 0], [4.5, 0, 0]],
       "size": [[1, 1, 1], [1, 1, 1]],
       "rotation": [[1, 0, 0, 90], [1, 0, 0, 180]]
       }, {
       "name": "Small Colourfull boxes",
-      "geometry": "Colourfull box",
+      "geometry": "Demo box",
       "id": ["small box #1", "small box #2"],
       "position": [[2, 0, 0], [3, 0, 0]],
       "size": [[0.5, 0.5, 0.5], [0.5, 0.5, 0.5]],
@@ -127,20 +132,44 @@
      [
       {
       "name": "Large Tube",
-      "geometry": "Colourfull tube",
+      "geometry": "Demo tube",
       "id": ["large tube #1", "large tube #2"],
       "position": [[0, 0, 0], [4.5, 0, 0]],
       "size": [[1, 1, 1], [1, 1, 1]],
       "rotation": [[1, 0, 0, 90], [1, 0, 0, 180]]
       }, {
       "name": "Small tube",
-      "geometry": "Colourfull tube",
+      "geometry": "Demo tube",
       "id": ["small tube #1", "small tube #2"],
       "position": [[2, 0, 0], [3, 0, 0]],
       "size": [[0.5, 0.5, 0.5], [0.5, 0.5, 0.5]],
       "rotation": [[0, 0, 1, 90], [1, 0, 1, 180]]
       }
       ]
+     },{
+
+     "group": "capsules",
+     "origin": [-3, 0, 2],
+
+     "objects":
+     [
+      {
+      "name": "Large Capsule",
+      "geometry": "Demo capsule",
+      "id": ["large capsule #1", "large capsule #2"],
+      "position": [[0, 0, 0], [4.5, 0, 0]],
+      "size": [[1, 1, 1], [1, 1, 1]],
+      "rotation": [[1, 0, 0, 90], [1, 0, 0, 180]]
+      }, {
+      "name": "Small capsule",
+      "geometry": "Demo capsule",
+      "id": ["small capsule #1", "small capsule #2"],
+      "position": [[2, 0, 0], [3, 0, 0]],
+      "size": [[0.5, 0.5, 0.5], [0.5, 0.5, 0.5]],
+      "rotation": [[0, 0, 1, 90], [1, 0, 1, 180]]
+      }
+      ]
+
      }
 
      ]

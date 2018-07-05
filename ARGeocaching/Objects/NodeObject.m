@@ -152,6 +152,9 @@
     } else if ([self.node.geometry isKindOfClass:[SCNSphere class]] == YES) {
         SCNSphere *g = (SCNSphere *)self.node.geometry;
         return (self.node.position.x + objectManager.originX - self.node.scale.x * g.radius / 2);
+    } else if ([self.node.geometry isKindOfClass:[SCNCapsule class]] == YES) {
+        SCNCapsule *g = (SCNCapsule *)self.node.geometry;
+        return (self.node.position.x + objectManager.originX - self.node.scale.x * g.capRadius / 2);
     } else {
         NSAssert1(NO, @"Unknown class: %@", [self.node.geometry class]);
     }
@@ -172,6 +175,9 @@
     } else if ([self.node.geometry isKindOfClass:[SCNSphere class]] == YES) {
         SCNSphere *g = (SCNSphere *)self.node.geometry;
         return (self.node.position.y + objectManager.originY - self.node.scale.y * g.radius / 2);
+    } else if ([self.node.geometry isKindOfClass:[SCNCapsule class]] == YES) {
+        SCNCapsule *g = (SCNCapsule *)self.node.geometry;
+        return (self.node.position.y + objectManager.originY - self.node.scale.y * g.capRadius / 2);
     } else {
         NSAssert1(NO, @"Unknown class: %@", [self.node.geometry class]);
     }
@@ -191,6 +197,9 @@
     } else if ([self.node.geometry isKindOfClass:[SCNSphere class]] == YES) {
         SCNSphere *g = (SCNSphere *)self.node.geometry;
         return (- (self.node.position.z - objectManager.originZ + self.node.scale.z * g.radius / 2));
+    } else if ([self.node.geometry isKindOfClass:[SCNCapsule class]] == YES) {
+        SCNCapsule *g = (SCNCapsule *)self.node.geometry;
+        return (- (self.node.position.z - objectManager.originZ + self.node.scale.z * g.capRadius / 2));
     } else {
         NSAssert1(NO, @"Unknown class: %@", [self.node.geometry class]);
     }

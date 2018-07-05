@@ -115,7 +115,7 @@
         CapsuleObject *co = [[CapsuleObject alloc] init];
         co.name = [capsule objectForKey:@"name"];
         co.sMaterial = [capsule objectForKey:@"material"];
-        co.sRadius = [capsule objectForKey:@"radius"];
+        co.sRadiusCap = [capsule objectForKey:@"radius-cap"];
         [co finish];
         [all addObject:co];
     }];

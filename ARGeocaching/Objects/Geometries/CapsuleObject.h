@@ -11,10 +11,10 @@
 // References to the real object
 
 // References to the resolved objects
-@property (nonatomic        ) float radius;
+@property (nonatomic        ) float radiusCap;
 
 // Read from the configuration
-@property (nonatomic, retain) NSString *sRadius;
+@property (nonatomic, retain) NSNumber *sRadiusCap;
 
 - (void)finish;
 

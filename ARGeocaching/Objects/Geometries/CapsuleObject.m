@@ -18,9 +18,9 @@
 {
     [super finish];
 
-    self.radius = [self.sRadius floatValue];
+    self.radiusCap = [self.sRadiusCap floatValue];
 
-    self.geometry = [SCNCapsule capsuleWithCapRadius:self.radius height:1];
+    self.geometry = [SCNCapsule capsuleWithCapRadius:self.radiusCap height:1];
 
     [self finished];
 }
