@@ -28,6 +28,7 @@
 #import "PlaneObject.h"
 #import "TorusObject.h"
 #import "ConeObject.h"
+#import "TextObject.h"
 #import "NodeObject.h"
 #import "LightObject.h"
 #import "GroupObject.h"

@@ -119,6 +119,16 @@
      "radius-top": 1,
      "radius-bottom": 0.25,
      }
+     ],
+
+    "texts":
+    [
+     {
+     "name": "Demo text",
+     "material": ["Red", "Green", "Blue"],
+     "text": "Foo bar quux",
+     "depth": 0.0001
+     }
     ],
 
     "planes":
@@ -332,6 +342,29 @@
       "name": "Small plane",
       "geometry": "Demo plane",
       "id": ["small plane #1", "small plane #2"],
+      "position": [[2, 0, 0], [3, 0, 0]],
+      "size": [[0.5, 0.5, 0.5], [0.5, 0.5, 0.5]],
+      "rotation": [[0, 0, 1, 90], [1, 0, 1, 180]]
+      }
+      ]
+     },{
+
+     "group": "texts",
+     "origin": [-3, 0, 2],
+
+     "objects":
+     [
+      {
+      "name": "Large text",
+      "geometry": "Demo text",
+      "id": ["large text #1", "large text #2"],
+      "position": [[0, 0, 0], [4.5, 0, 0]],
+      "size": [[1, 1, 1], [1, 1, 1]],
+      "rotation": [[1, 0, 0, 90], [1, 0, 0, 180]]
+      }, {
+      "name": "Small text",
+      "geometry": "Demo text",
+      "id": ["small text #1", "small text #2"],
       "position": [[2, 0, 0], [3, 0, 0]],
       "size": [[0.5, 0.5, 0.5], [0.5, 0.5, 0.5]],
       "rotation": [[0, 0, 1, 90], [1, 0, 1, 180]]

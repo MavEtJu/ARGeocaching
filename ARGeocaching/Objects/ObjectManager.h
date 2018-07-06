@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSArray<ConeObject *> *cones;
 @property (nonatomic, retain) NSArray<TorusObject *> *toruses;
 @property (nonatomic, retain) NSArray<PyramidObject *> *pyramids;
+@property (nonatomic, retain) NSArray<TextObject *> *texts;
 @property (nonatomic, retain) NSArray<LightObject *> *lights;
 @property (nonatomic, retain) NSArray<NodeObject *> *nodes;
 @property (nonatomic, retain) NSArray<GroupObject *> *groups;

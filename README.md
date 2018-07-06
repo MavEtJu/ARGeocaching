@@ -65,7 +65,12 @@ fields. The `name` is used to label the specific shape while the
 on the shape.
 
 Some shapes have radius related values to specify the various
-properties  of the shape.
+properties of the shape.
+
+The value of the depth of the text could be set to a small value
+to make it appear like a 2D text, or to something less small to
+make it appear like a 3D text object.
+
 
 ```
 {
@@ -148,7 +153,18 @@ properties  of the shape.
      "name": "Demo plane",
      "material": ["Red"]
      }
-    ]
+    ],
+
+    "texts":
+    [
+     {
+     "name": "Demo text",
+     "material": ["Red", "Green", "Blue"],
+     "text": "Foo bar quux",
+     "depth": 0.0001
+     }
+    ],
+
 
 }
 ```

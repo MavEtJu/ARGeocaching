@@ -77,6 +77,12 @@
             geometry = go;
         }
     }];
+    [objectManager.texts enumerateObjectsUsingBlock:^(GeometryObject * _Nonnull go, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([go.name isEqualToString:self.sGeometry] == YES) {
+            *stop = YES;
+            geometry = go;
+        }
+    }];
 
     NSAssert1(geometry != nil, @"Unknown geometry: %@", self.sGeometry);
 
@@ -133,6 +139,9 @@
     } else if ([self.node.geometry isKindOfClass:[SCNTorus class]] == YES) {
         SCNTorus *g = (SCNTorus *)self.node.geometry;
         self.node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY), -(z - objectManager.originZ));
+    } else if ([self.node.geometry isKindOfClass:[SCNText class]] == YES) {
+        SCNText *g = (SCNText *)self.node.geometry;
+        self.node.position = SCNVector3Make((x - objectManager.originX), (y - objectManager.originY), -(z - objectManager.originZ));
     } else {
         NSAssert1(NO, @"Unknown class: %@", [self.node.geometry class]);
     }
@@ -170,6 +179,9 @@
     } else if ([self.node.geometry isKindOfClass:[SCNCone class]] == YES) {
         SCNCone *g = (SCNCone *)self.node.geometry;
         return (self.node.position.x + objectManager.originX - self.node.scale.x * g.topRadius / 2);
+    } else if ([self.node.geometry isKindOfClass:[SCNText class]] == YES) {
+        SCNText *g = (SCNText *)self.node.geometry;
+        return (self.node.position.x + objectManager.originX);
     } else {
         NSAssert1(NO, @"Unknown class: %@", [self.node.geometry class]);
     }
@@ -208,9 +220,13 @@
     } else if ([self.node.geometry isKindOfClass:[SCNCone class]] == YES) {
         SCNCone *g = (SCNCone *)self.node.geometry;
         return (self.node.position.y + objectManager.originY - self.node.scale.y * g.topRadius / 2);
+    } else if ([self.node.geometry isKindOfClass:[SCNText class]] == YES) {
+        SCNText *g = (SCNText *)self.node.geometry;
+        return (self.node.position.y + objectManager.originY);
     } else {
         NSAssert1(NO, @"Unknown class: %@", [self.node.geometry class]);
     }
+    // NOT REACHED
     return -1;
 }
 
@@ -245,9 +261,13 @@
     } else if ([self.node.geometry isKindOfClass:[SCNCone class]] == YES) {
         SCNCone *g = (SCNCone *)self.node.geometry;
         return (- (self.node.position.z - objectManager.originZ + self.node.scale.z * g.topRadius / 2));
+    } else if ([self.node.geometry isKindOfClass:[SCNText class]] == YES) {
+        SCNText *g = (SCNText *)self.node.geometry;
+        return (- (self.node.position.z - objectManager.originZ));
     } else {
         NSAssert1(NO, @"Unknown class: %@", [self.node.geometry class]);
     }
+    // NOT REACHED
     return -1;
 }
 

@@ -32,6 +32,7 @@
     self.floors = [NSArray array];
     self.toruses = [NSArray array];
     self.cones = [NSArray array];
+    self.texts = [NSArray array];
 
     return self;
 }
@@ -197,6 +198,20 @@
         [all addObject:fo];
     }];
     self.floors = [self.floors arrayByAddingObjectsFromArray:all];
+
+    [all removeAllObjects];
+    [[json objectForKey:@"texts"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull text, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([[text objectForKey:@"disabled"] boolValue] == YES)
+            return;
+        TextObject *to = [[TextObject alloc] init];
+        to.name = [text objectForKey:@"name"];
+        to.sMaterial = [text objectForKey:@"material"];
+        to.text = [text objectForKey:@"text"];
+        to.sDepth = [text objectForKey:@"depth"];
+        [to finish];
+        [all addObject:to];
+    }];
+    self.texts = [self.texts arrayByAddingObjectsFromArray:all];
 
     [all removeAllObjects];
     [[json objectForKey:@"nodes"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull groupdata, NSUInteger idx, BOOL * _Nonnull stop) {

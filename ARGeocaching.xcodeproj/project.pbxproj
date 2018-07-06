@@ -33,6 +33,7 @@
 		E867AE6120DDDF3D004C0544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E867AE6020DDDF3D004C0544 /* Assets.xcassets */; };
 		E867AE6420DDDF3D004C0544 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E867AE6220DDDF3D004C0544 /* LaunchScreen.storyboard */; };
 		E867AE6720DDDF3D004C0544 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E867AE6620DDDF3D004C0544 /* main.m */; };
+		E898F33F20EF8CA900FB19CA /* TextObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E898F33E20EF8CA900FB19CA /* TextObject.m */; };
 		E8A8D7C420E5A65A000595E9 /* Mineshaft.json in Resources */ = {isa = PBXBuildFile; fileRef = E8A8D7C320E5A659000595E9 /* Mineshaft.json */; };
 		E8A8D7C820E5AF36000595E9 /* ObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7C720E5AF36000595E9 /* ObjectManager.m */; };
 		E8A8D7CB20E5AF49000595E9 /* MaterialObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A8D7CA20E5AF49000595E9 /* MaterialObject.m */; };
@@ -87,6 +88,8 @@
 		E867AE6320DDDF3D004C0544 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E867AE6520DDDF3D004C0544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E867AE6620DDDF3D004C0544 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E898F33D20EF8CA900FB19CA /* TextObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextObject.h; sourceTree = "<group>"; };
+		E898F33E20EF8CA900FB19CA /* TextObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextObject.m; sourceTree = "<group>"; };
 		E8A8D7BC20E0CE03000595E9 /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		E8A8D7C320E5A659000595E9 /* Mineshaft.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Mineshaft.json; sourceTree = "<group>"; };
 		E8A8D7C620E5AF36000595E9 /* ObjectManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectManager.h; sourceTree = "<group>"; };
@@ -155,6 +158,8 @@
 				E805CF9020ECB3E600AC4A04 /* PyramidObject.m */,
 				E805CF8020EC77EA00AC4A04 /* SphereObject.h */,
 				E805CF8120EC77EA00AC4A04 /* SphereObject.m */,
+				E898F33D20EF8CA900FB19CA /* TextObject.h */,
+				E898F33E20EF8CA900FB19CA /* TextObject.m */,
 				E805CF9620ECB41200AC4A04 /* TorusObject.h */,
 				E805CF9720ECB41200AC4A04 /* TorusObject.m */,
 				E8A8D7D320E5FFD0000595E9 /* TubeObject.h */,
@@ -347,6 +352,7 @@
 				E805CF8820EC860100AC4A04 /* CylinderObject.m in Sources */,
 				E8A8D7D820E6010A000595E9 /* GeometryObject.m in Sources */,
 				E8A8D7DB20E609B5000595E9 /* LightObject.m in Sources */,
+				E898F33F20EF8CA900FB19CA /* TextObject.m in Sources */,
 				E805CF8220EC77EA00AC4A04 /* SphereObject.m in Sources */,
 				E805CF9520ECB40700AC4A04 /* ConeObject.m in Sources */,
 			);

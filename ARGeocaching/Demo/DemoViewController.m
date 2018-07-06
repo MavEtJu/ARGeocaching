@@ -10,6 +10,7 @@
 
 typedef NS_ENUM(NSInteger, GameStage) {
     STAGE_BOXES = 0,
+    STAGE_TEXTS,
     STAGE_PLANES,
     STAGE_CONES,
     STAGE_TORUSES,
@@ -163,8 +164,11 @@ typedef NS_ENUM(NSInteger, GameStage) {
                 nodes = [objectManager nodesByGroupName:@"cones"];
                 break;
             case STAGE_PLANES:
-            nodes = [objectManager nodesByGroupName:@"planes"];
-            break;
+                nodes = [objectManager nodesByGroupName:@"planes"];
+                break;
+            case STAGE_TEXTS:
+                nodes = [objectManager nodesByGroupName:@"texts"];
+                break;
             case STAGE_MAX:
                 break;
         }
@@ -228,6 +232,11 @@ typedef NS_ENUM(NSInteger, GameStage) {
         case STAGE_PLANES: {
             nodes = [objectManager nodesByGroupName:@"planes"];
             left = [objectManager nodeByID:@"large plane #1"];
+            break;
+        }
+        case STAGE_TEXTS: {
+            nodes = [objectManager nodesByGroupName:@"texts"];
+            left = [objectManager nodeByID:@"large text #1"];
             break;
         }
 
