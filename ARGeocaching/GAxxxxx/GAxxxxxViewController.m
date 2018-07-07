@@ -140,27 +140,26 @@ typedef NS_ENUM(NSInteger, GameStage) {
 //    NodeObject *paperWithCodeword = [objectManager nodeByID:@"paper with codeword"];
 //    NSAssert(paperWithCodeword != nil, @"No paper with codeword");
 
+#define ACTION_NONE                             @"None"
+#define ACTION_REPEAT_CIRCLING_AROUND_Y         @"Action repeat circling around y"
+
+    SCNAction *rotateOneAroundYInFiveSeconds = [SCNAction rotateByX:0 y:0 z:M_PI duration:5];
+    SCNAction *repeatCirclingAroundYInFiveSections = [SCNAction repeatActionForever:rotateOneAroundYInFiveSeconds];
+
     switch (self.stage) {
         case STAGE_START: {
-//            chestTopOpen.node.hidden = YES;
-//            chestTopClosed.node.hidden = NO;
-//            paperUnreadable.node.hidden = NO;
-//            paperWithCodeword.node.hidden = YES;
-//
-//            self.stage = STAGE_GOING_TO_INITIAL;
-//            [self.queue addOperationWithBlock:^{
-//                while (roof.node.position.y > [ObjectManager positionY:roof.node y:0]) {
-//                    [NSThread sleepForTimeInterval:0.1];
-//                    [[objectManager nodesByGroupName:@"cage"] enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
-//                        n.node.position = SCNVector3Make(n.node.position.x, n.node.position.y - 0.1, n.node.position.z);
-//                    }];
-//                }
-//                self.stage = STAGE_AT_INITIAL;
-//                outsideUp.node.hidden = NO;
-//                outsideDown.node.hidden = YES;
-//                insideUp.node.hidden = NO;
-//                insideDown.node.hidden = YES;
-//            }];
+
+            NodeObject *firstLayer = [objectManager nodeByID:@"First layer"];
+            NSAssert(firstLayer != nil, @"No firstLayer");
+
+            NodeObject *topSphere = [objectManager nodeByID:@"Top sphere"];
+            NSAssert(topSphere != nil, @"No top sphere");
+
+            NodeObject *redStripedCage = [objectManager nodeByID:@"left plane"];
+            NSAssert(redStripedCage != nil, @"No red striped cage");
+
+            [firstLayer.node runAction:repeatCirclingAroundYInFiveSections forKey:ACTION_REPEAT_CIRCLING_AROUND_Y];
+            [redStripedCage.node runAction:repeatCirclingAroundYInFiveSections forKey:ACTION_REPEAT_CIRCLING_AROUND_Y];
             break;
         }
 

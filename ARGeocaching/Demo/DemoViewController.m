@@ -126,8 +126,8 @@ typedef NS_ENUM(NSInteger, GameStage) {
     NSArray <SCNHitTestResult *> *res = [self.sceneView hitTest:[[touches anyObject] locationInView:self.sceneView] options:@{SCNHitTestFirstFoundOnlyKey:@YES}];
     if (res.count != 0) {
 
-        SCNHitTestResult *result = res.lastObject;
-        SCNNode *block = result.node;
+        // SCNHitTestResult *result = res.lastObject;
+        // SCNNode *block = result.node;
 
         self.animating = !self.animating;
         if (self.animating == YES)

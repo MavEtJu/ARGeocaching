@@ -1,67 +1,34 @@
 {
-    "origin": [0, 2, -6],
+    "origin": [0, 2, 0],
 
     "materials":
     [
      {
-     "name": "Rust",
-     "image": "Rust"
-     },
-     {
+     "name": "Black",
+     "image": "Black colour"
+     }, {
+     "name": "White",
+     "image": "White colour"
+     }, {
      "name": "Red",
      "image": "Red colour"
      }, {
-     "name": "Red semi-transpart",
-     "image": "Red colour",
-     "transparency": 0.5
+     "name": "White with stripes",
+     "image": "White with stripes"
      }, {
-     "name": "Blue",
-     "image": "Blue colour"
+     "name": "Asphalt with Strip",
+     "image": "AsphaltWithStrip"
      }, {
-     "name": "Blue semi-transparent",
-     "image": "Blue colour",
-     "transparency": 0.5
-     }, {
-     "name": "Green",
-     "image": "Green colour"
-     }, {
-     "name": "Green semi-transparent",
-     "image": "Green colour",
-     "transparency": 0.5
-     }
-    ],
-
-    "boxes":
-    [
-    ],
-
-    "tubes":
-    [
-     {
-     "name": "Red tube",
-     "material": ["Red", "Red", "Green semi-transparent", "Green semi-transparent", "Blue", "Blue"],
-     "radius": [0, 1]
-     }
-    ],
-
-    "capsules":
-    [
-     {
-     "name": "Blue capsule .1",
-     "material": "Rust",
-     "radius": 0.1
-     }, {
-     "name": "Blue capsule .4",
-     "material": "Rust",
-     "radius": 0.4
+     "name": "Red striped cage",
+     "image": "Red striped cage"
      }
     ],
 
     "spheres":
     [
      {
-     "name": "Blue circle",
-     "material": "Blue",
+     "name": "Sphere",
+     "material": ["White with stripes"],
      "radius": 1
      }
      ],
@@ -69,59 +36,55 @@
     "cylinders":
     [
      {
-     "name": "Blue cylinder",
-     "material": "Blue",
+     "name": "Asphalt cylinder",
+     "material": ["Asphalt with Strip", "Black", "Black"],
      "radius": 1
-     }
-     ],
-
-    "pyramids":
-    [
-     {
-     "name": "Blue pyramid",
-     "material": ["Blue", "Red", "Green", "Blue", "Red", "Green"]
-     }
-     ],
-
-    "toruses":
-    [
-     {
-     "name": "Red torus",
-     "radius": [1, 0.1],
-     "material": ["Blue", "Red", "Green", "Blue", "Red", "Green"]
-     }
-     ],
-
-    "cones":
-    [
-     {
-     "name": "Red cone",
-     "radius": [1, 0.1],
-     "material": ["Rust", "Rust", "Rust", "Rust", "Rust", "Rust"]
      }
      ],
 
     "planes":
     [
      {
-     "name": "Blue plane",
-     "material": "Rust"
+     "name": "Red striped cage",
+     "material": ["Red"]
      }
     ],
 
     "nodes":
     [
      {
-     "group": "Top",
+     "group": "Cage",
      "origin": [0, 0, 0],
 
      "objects":
      [
       {
-      "name": "P",
-      "geometry": "Blue plane",
-      "position": [-2, 0.5, 0],
-      "size": [1, 1, 0]
+      "name": "Cage planes",
+      "geometry": "Red striped cage",
+      "id": ["left plane"],
+      "position": [[-2, 0, 10]],
+      "size":     [[4, 10, 0]],
+      "rotation": [[0, 0, 0, 0]],
+      }]
+     }, {
+
+     "group": "Layers",
+     "origin": [-6, 0, 0],
+
+     "objects":
+     [
+      {
+      "name": "Top",
+      "geometry": "Sphere",
+      "id": "Top sphere",
+      "position": [-1, 1.5, 0],
+      "size": [1, 1, 1]
+      }, {
+      "name": "First Layer",
+      "geometry": "Asphalt cylinder",
+      "id": "First layer",
+      "position": [-1, 1, 0],
+      "size": [1, 1, 1]
       }
       ]
      }
