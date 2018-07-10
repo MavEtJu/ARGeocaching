@@ -12,6 +12,12 @@ typedef NS_ENUM(NSInteger, GameStage) {
     STAGE_START = 0,
     STAGE_GOING_TO_INITIAL,
     STAGE_AT_INITIAL,
+    STAGE_GOING_TO_GAME_1,
+    STAGE_AT_GAME_1,
+    STAGE_FINISHED_GAME_1,
+    STAGE_GOING_TO_GAME_2,
+    STAGE_AT_GAME_2,
+    STAGE_FINISHED_GAME_2,
 };
 
 
@@ -82,6 +88,11 @@ typedef NS_ENUM(NSInteger, GameStage) {
     [self.sceneView.session pause];
 }
 
+
+#define FIND(__var__, __name__) \
+    NodeObject *__var__ = [objectManager nodeByID:__name__]; \
+    NSAssert1(__var__ != nil, @"No '%@'", __name__);
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
 
@@ -113,16 +124,50 @@ typedef NS_ENUM(NSInteger, GameStage) {
 
         switch (self.stage) {
             case STAGE_AT_INITIAL: {
-                NodeObject *n = [objectManager nodeByID:@"outside button up"];
-                NSAssert(n != nil, @"No outside button up");
+                NSLog(@"STAGE_AT_INITIAL");
+                FIND(n, @"Layer 0")
                 if (n.node != block)
-                break;
+                    break;
+                self.stage = STAGE_GOING_TO_GAME_1;
                 [self performAction];
                 break;
             }
 
+            case STAGE_AT_GAME_1: {
+                NSLog(@"STAGE_AT_GAME_1");
+                FIND(ball1, @"game 1 - 1")
+                FIND(ball2, @"game 1 - 2")
+                FIND(ball3, @"game 1 - 3")
+                FIND(ball4, @"game 1 - 4")
+
+                NodeObject *n = nil;
+                if (ball1.node == block) n = ball1;
+                if (ball2.node == block) n = ball2;
+                if (ball3.node == block) n = ball3;
+                if (ball4.node == block) n = ball4;
+                if (n == nil)
+                    break;
+
+                SCNAction *dropOne = [SCNAction moveBy:SCNVector3Make(0, -0.3, 0) duration:2];
+                [n.node runAction:dropOne completionHandler:^{
+                    if ([ball1 jsonPositionY] <= -1.2 &&
+                        [ball2 jsonPositionY] <= -1.2 &&
+                        [ball3 jsonPositionY] <= -1.2 &&
+                        [ball4 jsonPositionY] <= -1.2) {
+                        self.stage = STAGE_FINISHED_GAME_1;
+                        [self performAction];
+                    }
+                }];
+                break;
+            }
+
             case STAGE_GOING_TO_INITIAL:
+            case STAGE_GOING_TO_GAME_1:
             case STAGE_START:
+            case STAGE_GOING_TO_GAME_2:
+            case STAGE_FINISHED_GAME_2:
+            case STAGE_AT_GAME_2:
+            case STAGE_FINISHED_GAME_1:
             break;
         }
 
@@ -140,31 +185,63 @@ typedef NS_ENUM(NSInteger, GameStage) {
 //    NodeObject *paperWithCodeword = [objectManager nodeByID:@"paper with codeword"];
 //    NSAssert(paperWithCodeword != nil, @"No paper with codeword");
 
-#define ACTION_NONE                             @"None"
-#define ACTION_REPEAT_CIRCLING_AROUND_Y         @"Action repeat circling around y"
-
-    SCNAction *rotateOneAroundYInFiveSeconds = [SCNAction rotateByX:0 y:0 z:M_PI duration:5];
-    SCNAction *repeatCirclingAroundYInFiveSections = [SCNAction repeatActionForever:rotateOneAroundYInFiveSeconds];
+#define ACTION_LAYER_0  @"Action layer 0"
+#define ACTION_LAYER_1  @"Action layer 1"
 
     switch (self.stage) {
         case STAGE_START: {
+            NSLog(@"STAGE_START");
+            SCNAction *rotateOneAroundYInFifteenSeconds = [SCNAction rotateByX:0 y:M_PI z:0 duration:15];
+            SCNAction *rotateForever = [SCNAction repeatActionForever:rotateOneAroundYInFifteenSeconds];
+            SCNAction *raiseOne = [SCNAction moveBy:SCNVector3Make(0, 1, 0) duration:5];
 
-            NodeObject *firstLayer = [objectManager nodeByID:@"First layer"];
-            NSAssert(firstLayer != nil, @"No firstLayer");
+            FIND(topSphere, @"Layer 0")
 
-            NodeObject *topSphere = [objectManager nodeByID:@"Top sphere"];
-            NSAssert(topSphere != nil, @"No top sphere");
+            self.stage = STAGE_GOING_TO_INITIAL;
+            [topSphere.node runAction:raiseOne completionHandler:^{
+                [topSphere.node runAction:rotateForever];
+                self.stage = STAGE_AT_INITIAL;
+            }];
+            break;
+        }
 
-            NodeObject *redStripedCage = [objectManager nodeByID:@"left plane"];
-            NSAssert(redStripedCage != nil, @"No red striped cage");
+        case STAGE_GOING_TO_GAME_1: {
+            NSLog(@"STAGE_GOING_TO_GAME_1");
+            FIND(ball1, @"game 1 - 1")
+            FIND(ball2, @"game 1 - 2")
+            FIND(ball3, @"game 1 - 3")
+            FIND(ball4, @"game 1 - 4")
 
-            [firstLayer.node runAction:repeatCirclingAroundYInFiveSections forKey:ACTION_REPEAT_CIRCLING_AROUND_Y];
-            [redStripedCage.node runAction:repeatCirclingAroundYInFiveSections forKey:ACTION_REPEAT_CIRCLING_AROUND_Y];
+            SCNAction *raiseOne = [SCNAction moveBy:SCNVector3Make(0, 0.30, 0) duration:5];
+            [ball1.node runAction:raiseOne];
+            [ball2.node runAction:raiseOne];
+            [ball3.node runAction:raiseOne];
+            [ball4.node runAction:raiseOne completionHandler:^{
+                self.stage = STAGE_AT_GAME_1;
+            }];
+
+            break;
+        }
+
+        case STAGE_FINISHED_GAME_1: {
+            NSLog(@"STAGE_FINISHED_GAME_1");
+            SCNAction *raiseOne = [SCNAction moveBy:SCNVector3Make(0, 1, 0) duration:5];
+            FIND(sphere, @"Layer 0")
+            FIND(layer1, @"Layer 1")
+            self.stage = STAGE_GOING_TO_GAME_2;
+            [layer1.node runAction:raiseOne];
+            [sphere.node runAction:raiseOne completionHandler:^{
+                self.stage = STAGE_AT_GAME_2;
+            }];
             break;
         }
 
         case STAGE_GOING_TO_INITIAL:
         case STAGE_AT_INITIAL:
+        case STAGE_AT_GAME_1:
+        case STAGE_AT_GAME_2:
+        case STAGE_FINISHED_GAME_2:
+        case STAGE_GOING_TO_GAME_2:
         break;
     }
 }
