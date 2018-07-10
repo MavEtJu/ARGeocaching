@@ -1,5 +1,5 @@
 {
-    "origin": [0, 2, -5],
+    "origin": [0, 2, 6],
 
     "materials":
     [
@@ -139,13 +139,13 @@
      }
     ],
 
-    "nodes":
+    "groups":
     [
      {
-     "group": "boxes",
-     "origin": [-3, 0, 2],
+     "name": "boxes",
+     "origin": [-3, 0, -2],
 
-     "objects":
+     "nodes":
      [
       {
       "name": "Large Colourfull box",
@@ -165,10 +165,10 @@
       ]
      },{
 
-     "group": "tubes",
-     "origin": [-3, 0, 2],
+     "name": "tubes",
+     "origin": [-3, 0, -2],
 
-     "objects":
+     "nodes":
      [
       {
       "name": "Large Tube",
@@ -188,10 +188,10 @@
       ]
      },{
 
-     "group": "capsules",
-     "origin": [-3, 0, 2],
+     "name": "capsules",
+     "origin": [-3, 0, -2],
 
-     "objects":
+     "nodes":
      [
       {
       "name": "Large Capsule",
@@ -211,10 +211,10 @@
       ]
      },{
 
-     "group": "spheres",
-     "origin": [-3, 0, 2],
+     "name": "spheres",
+     "origin": [-3, 0, -2],
 
-     "objects":
+     "nodes":
      [
       {
       "name": "Large sphere",
@@ -234,10 +234,10 @@
       ]
      },{
 
-     "group": "cylinders",
-     "origin": [-3, 0, 2],
+     "name": "cylinders",
+     "origin": [-3, 0, -2],
 
-     "objects":
+     "nodes":
      [
       {
       "name": "Large cylinder",
@@ -257,10 +257,10 @@
       ]
      },{
 
-     "group": "pyramids",
-     "origin": [-3, 0, 2],
+     "name": "pyramids",
+     "origin": [-3, 0, -2],
 
-     "objects":
+     "nodes":
      [
       {
       "name": "Large pyramid",
@@ -280,10 +280,10 @@
       ]
      },{
 
-     "group": "toruses",
-     "origin": [-3, 0, 2],
+     "name": "toruses",
+     "origin": [-3, 0, -2],
 
-     "objects":
+     "nodes":
      [
       {
       "name": "Large torus",
@@ -303,10 +303,10 @@
       ]
      },{
 
-     "group": "cones",
-     "origin": [-3, 0, 2],
+     "name": "cones",
+     "origin": [-3, 0, -2],
 
-     "objects":
+     "nodes":
      [
       {
       "name": "Large cone",
@@ -326,10 +326,10 @@
       ]
      },{
 
-     "group": "planes",
-     "origin": [-3, 0, 2],
+     "name": "planes",
+     "origin": [-3, 0, -2],
 
-     "objects":
+     "nodes":
      [
       {
       "name": "Large plane",
@@ -349,10 +349,10 @@
       ]
      },{
 
-     "group": "texts",
-     "origin": [-3, 0, 2],
+     "name": "texts",
+     "origin": [-3, 0, -2],
 
-     "objects":
+     "nodes":
      [
       {
       "name": "Large text",
