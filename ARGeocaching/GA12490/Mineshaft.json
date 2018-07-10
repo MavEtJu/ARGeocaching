@@ -1,6 +1,7 @@
 {
 
-    "origin": [5, 2, -6],
+    "origin": [1, 3, 11],
+    "origin1": [3, -14, 5],
 
     "materials":
     [
@@ -66,17 +67,22 @@
      }, {
      "name": "Metal box cover - arrow up",
      "image": "Metal box cover - arrow up"
+     }, {
+     "name": "Red",
+     "image": "Red colour"
      }],
 
-    "boxes":
+    "planes":
     [
      {
      "name": "Grass patch",
      "material": "Grass"
-     }, {
-     "name": "Grass patch",
-     "material": "Grass"
-     }, {
+     }
+     ],
+
+    "boxes":
+     [
+     {
      "name": "Floor tile",
      "material": "Granite"
      }, {
@@ -122,38 +128,39 @@
      "radius": 1
      }],
 
-    "nodes":
+    "groups":
     [
      {
-     "group": "Floor around cage (top)",
-     "origin": [-6, -0.1, -6],
-     "objects":
+     "name": "Floor around cage (top)",
+     "origin": [-6, 0, -6],
+     "nodes":
      [
       {
       "name": "Floor around cage (top)",
       "geometry": "Grass patch",
-      "position": [[0, 0, 0],   [0, 0, 6],   [0, 0, 12],  [6, 0, 0],   [6, 0, 12],  [12, 0, 0],  [12, 0, 6],  [12, 0, 12]],
-      "size":     [[6, 0.1, 6], [6, 0.1, 6], [6, 0.1, 6], [6, 0.1, 6], [6, 0.1, 6], [6, 0.1, 6], [6, 0.1, 6],  [6, 0.1, 6]]
+      "position": [[3, 0, 3],      [9, 0, 3],      [15, 0, 3],     [3, 0, 9],      [15, 0, 9],    [3, 0, 15],      [9, 0, 15],      [15, 0, 15]],
+      "size":     [[6, 6, 1],      [6, 6, 1],      [6, 6, 1],      [6, 6, 1],      [6, 6, 1],      [6, 6, 1],      [6, 6, 1],      [6, 6, 1]],
+      "rotation": [[1, 0, 0, -90], [1, 0, 0, -90], [1, 0, 0, -90], [1, 0, 0, -90], [1, 0, 0, -90], [1, 0, 0, -90], [1, 0, 0, -90], [1, 0, 0, -90]]
       }
       ]},
      {
-     "group": "push button",
-     "origin": [6, 1, -1],
-     "objects":
+     "name": "push button",
+     "origin": [7, 0, 7],
+     "nodes":
      [
       {
       "name": "Outside push button box - down",
       "geometry": "Arrow down box - backward",
       "id": "outside button down",
       "visible": "yes",
-      "position": [0, 0, 0],
+      "position": [0, 1.25, 0],
       "size":     [0.3, 0.5, 0.3]
       }, {
       "name": "Outside push button box - up",
       "geometry": "Arrow up box - backward",
       "id": "outside button up",
       "visible": "no",
-      "position": [0, 0, 0],
+      "position": [0, 1.25, 0],
       "size":     [0.3, 0.5, 0.3]
       }, {
       "name": "Outside push button box - none",
@@ -161,88 +168,91 @@
       "id": "outside button none",
       "visible": "no",
       "group": "push button",
-      "position": [0, 0, 0],
+      "position": [0, 1.25, 0],
       "size":     [0.3, 0.5, 0.3]
       }, {
       "name": "Outside push button box - metal pole",
       "geometry": "Metal pole",
       "group": "push button",
-      "position": [0.1, -1, 0.1],
+      "position": [0, 0.5, 0],
       "size":     [0.1, 1, 0.1]
       }
       ]},
 
      {
-     "group": "Shaft",
+     "name": "Shaft",
      "origin": [0, 0, 0],
-     "objects":
+     "nodes":
      [
       {
       "name": "Shaft #4",
       "geometry": "Rusty wall",
-      "position": [[0, -12, 0], [0, -12, 0], [0, -12, 5.9], [5.9, -12, 0]],
-      "size":     [[6, 6, 0.1], [0.1, 6, 6], [6, 6, 0.1],   [0.1, 6, 6]]
+      "position-corner": [[0.2, -12, 0], [0, -12, 0], [0.2, -12, 5.8], [5.8, -12, 0]],
+      "size":            [[5.6, 6, 0.2], [0.2, 6, 6], [5.6, 6, 0.2],   [0.2, 6, 6]]
       }, {
       "name": "Shaft #5",
       "geometry": "Rusty wall",
-      "position": [[0, -6, 0], [0, -6, 0], [0, -6, 5.9], [5.9, -6, 0]],
-      "size":     [[6, 6, 0.1], [0.1, 6, 6], [6, 6, 0.1],   [0.1, 6, 6]]
+      "position-corner": [[0.2, -6, 0],  [0, -6, 0],  [0.2, -6, 5.8], [5.8, -6, 0]],
+      "size":            [[5.6, 6, 0.2], [0.2, 6, 6], [5.6, 6, 0.2],  [0.2, 6, 6]]
       }, {
       "name": "Outside of the cage #1",
       "geometry": "Rusty wall",
-      "position": [0, 0, 5.9],
-      "size":     [6, 4, 0.1]
+      "position-corner": [0.2, 0, 0],
+      "size":            [5.6, 4, 0.2]
       }, {
       "name": "Outside of the cage #2",
       "geometry": "Red metal wall with down arrow",
-      "position": [[0, 0, 0],   [5.9, 0, 0]],
-      "size":     [[0.1, 4, 6], [0.1, 4, 6]]
+      "position-corner": [[0.0, 0, 0], [5.8, 0, 0]],
+      "size":            [[0.2, 4, 6], [0.2, 4, 6]]
       }
       ]},
 
      {
-     "group": "cage",
-     "origin": [0.2, 0.2, 0.3],
-     "objects":
+     "name": "cage",
+     "origin": [0, 0, 0],
+     "nodes":
      [
      {
       "name": "The cage - sides",
       "geometry": "Metal fence",
-      "position": [[0, 0, 0],       [0, 0, 5.3],     [5.4, 0, 0]],
-      "size":     [[0.1, 3.6, 5.4], [5.4, 3.6, 0.1], [0.1, 3.6, 5.4]]
+      "position-corner": [[0.49, 0, 0.5],   [0.5, 0, 0.49],   [5.55, 0, 0.5]],
+      "size":            [[0.01, 3.5, 5.0], [5.0, 3.5, 0.01], [0.01, 3.5, 5.0]]
       }, {
       "name": "The cage #2 - floor/roof",
       "geometry": "Metal floor",
       "id": ["cage floor", "cage roof"],
-      "position": [[-0.1, -0.1, -0.2], [-0.1, 3.6, -0.2]],
-      "size":     [[5.6, 0.1, 5.6],    [5.6, 0.1, 5.6]]
+      "position-corner": [[0.4, -0.1, 0.4], [0.4, 3.6, 0.4]],
+      "size":            [[5.2, 0, 5.2],    [5.2, 0.1, 5.2]]
       }, {
       "name": "Cage strut",
       "geometry": "Metal pole",
-      "position": [[0.2, -0.2, 0.1], [5.3, -0.2, 0.1], [0.2, -0.2, 5.2], [5.3, -0.2, 5.2]],
-      "size":     [[0.1, 4.0, 0.1],  [0.1, 4.0, 0.1],  [0.1, 4.0, 0.1],  [0.1, 4.0, 0.1]]
+      "position": [[0.65, 1.8, 0.65], [5.35, 1.8, 0.65], [0.65, 1.8, 5.35], [5.35, 1.8, 5.35]],
+      "size":     [[0.1, 4.0, 0.1],   [0.1, 4.0, 0.1],   [0.1, 4.0, 0.1],   [0.1, 4.0, 0.1]]
       }, {
       "name": "Cage button up",
       "geometry": "Arrow up box - right",
       "visible": "no",
       "id": "cage button up",
-      "position": [0.1, 0.8, 1.1],
-      "size":     [0.1, 0.3, 0.1]
+      "position-corner": [0.80, 1.5, 0.80],
+      "size":            [0.1, 0.3, 0.1],
+      "rotation":        [0, 1, 0, -45]
       }, {
       "name": "Cage button down",
       "geometry": "Arrow down box - right",
       "visible": "yes",
       "id": "cage button down",
-      "position": [0.1, 0.8, 1.1],
-      "size":     [0.1, 0.3, 0.1]
+      "position-corner": [0.80, 1.5, 0.80],
+      "size":            [0.1, 0.3, 0.1],
+      "rotation":        [0, 1, 0, -45]
       }, {
       "name": "Cage button none",
       "geometry": "No arrow box",
       "group": "cage",
       "visible": "no",
       "id": "cage button none",
-      "position": [0.1, 0.8, 1.1],
-      "size":     [0.1, 0.3, 0.1]
+      "position-corner": [0.80, 1.5, 0.80],
+      "size":            [0.1, 0.3, 0.1],
+      "rotation":        [0, 1, 0, -45]
       }
       ]
      }],

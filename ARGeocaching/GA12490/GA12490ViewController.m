@@ -101,7 +101,7 @@ typedef NS_ENUM(NSInteger, GameStage) {
     NSValue *v = [NSValue valueWithCGPoint:p];
     NSLog(@"%@", v);
 
-    // Touch at top right
+//    // Touch at top right
 //    if (p.x > 550 && p.y < 120) {
 //        CGFloat dx, dz;
 //
@@ -259,7 +259,7 @@ typedef NS_ENUM(NSInteger, GameStage) {
         case STAGE_CAGE_AT_TOP: {
             self.stage = STAGE_CAGE_GOING_DOWN;
             [self.queue addOperationWithBlock:^{
-                while ([bottom jsonPositionY] < 0.0) {
+                while ([bottom jsonPositionY] < 0.11) {
                     [NSThread sleepForTimeInterval:0.1];
                     [objectManager.nodes enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
                         if ([n.group.name isEqualToString:@"cage"] == YES)

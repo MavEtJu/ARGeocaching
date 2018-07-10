@@ -70,7 +70,7 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
 
-    NSDictionary *dict = [self.caches objectAtIndex:1];
+    NSDictionary *dict = [self.caches objectAtIndex:0];
     UIStoryboard *sb = [UIStoryboard storyboardWithName:[dict objectForKey:@"title"] bundle:nil];
     UIViewController *viewController = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
     [self presentViewController:viewController animated:FALSE completion:nil];

@@ -13,7 +13,7 @@
 // References to the resolved objects
 
 // Read from the configuration
-
+    
 - (void)finish;
 
 @end

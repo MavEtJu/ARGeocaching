@@ -85,7 +85,7 @@
     [all removeAllObjects];
     [[json objectForKey:@"tubes"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull tube, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[tube objectForKey:@"disabled"] boolValue] == YES)
-        return;
+            return;
         TubeObject *to = [[TubeObject alloc] init];
         to.name = [tube objectForKey:@"name"];
         to.sMaterial = [tube objectForKey:@"material"];
@@ -112,7 +112,7 @@
     [all removeAllObjects];
     [[json objectForKey:@"capsules"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull capsule, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[capsule objectForKey:@"disabled"] boolValue] == YES)
-        return;
+            return;
         CapsuleObject *co = [[CapsuleObject alloc] init];
         co.name = [capsule objectForKey:@"name"];
         co.sMaterial = [capsule objectForKey:@"material"];
@@ -125,7 +125,7 @@
     [all removeAllObjects];
     [[json objectForKey:@"cylinders"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull cylinder, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[cylinder objectForKey:@"disabled"] boolValue] == YES)
-        return;
+            return;
         CylinderObject *co = [[CylinderObject alloc] init];
         co.name = [cylinder objectForKey:@"name"];
         co.sMaterial = [cylinder objectForKey:@"material"];
@@ -138,7 +138,7 @@
     [all removeAllObjects];
     [[json objectForKey:@"planes"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull plane, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[plane objectForKey:@"disabled"] boolValue] == YES)
-        return;
+            return;
         PlaneObject *po = [[PlaneObject alloc] init];
         po.name = [plane objectForKey:@"name"];
         po.sMaterial = [plane objectForKey:@"material"];
@@ -150,7 +150,7 @@
     [all removeAllObjects];
     [[json objectForKey:@"pyramids"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull pyramid, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[pyramid objectForKey:@"disabled"] boolValue] == YES)
-        return;
+            return;
         PyramidObject *po = [[PyramidObject alloc] init];
         po.name = [pyramid objectForKey:@"name"];
         po.sMaterial = [pyramid objectForKey:@"material"];
@@ -162,7 +162,7 @@
     [all removeAllObjects];
     [[json objectForKey:@"toruses"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull torus, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[torus objectForKey:@"disabled"] boolValue] == YES)
-        return;
+            return;
         TorusObject *to = [[TorusObject alloc] init];
         to.name = [torus objectForKey:@"name"];
         to.sMaterial = [torus objectForKey:@"material"];
@@ -176,7 +176,7 @@
     [all removeAllObjects];
     [[json objectForKey:@"cones"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull cone, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[cone objectForKey:@"disabled"] boolValue] == YES)
-        return;
+            return;
         ConeObject *co = [[ConeObject alloc] init];
         co.name = [cone objectForKey:@"name"];
         co.sMaterial = [cone objectForKey:@"material"];
@@ -214,27 +214,51 @@
     self.texts = [self.texts arrayByAddingObjectsFromArray:all];
 
     [all removeAllObjects];
-    [[json objectForKey:@"nodes"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull groupdata, NSUInteger idx, BOOL * _Nonnull stop) {
+    [[json objectForKey:@"groups"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull groupdata, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[groupdata objectForKey:@"disabled"] boolValue] == YES)
             return;
         GroupObject *group = [[GroupObject alloc] init];
-        group.name = [groupdata objectForKey:@"group"];
+        group.name = [groupdata objectForKey:@"name"];
         group.aOrigin = [groupdata objectForKey:@"origin"];
         [group finish];
         [allGroups addObject:group];
 
         NSMutableArray<NodeObject *> *groupNodes = [NSMutableArray array];
 
-        [[groupdata objectForKey:@"objects"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull node, NSUInteger idx, BOOL * _Nonnull stop) {
+        [[groupdata objectForKey:@"nodes"] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull node, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([[node objectForKey:@"disabled"] boolValue] == YES)
                 return;
-            NSObject *sPosition = [[node objectForKey:@"position"] objectAtIndex:0];
-            if ([sPosition isKindOfClass:[NSNumber class]] == YES) {
+
+            NSInteger positionsCount = 0;
+            if ([[[node objectForKey:@"position"] objectAtIndex:0] isKindOfClass:[NSArray class]] == YES) {
+                positionsCount = [[node objectForKey:@"position"] count];
+                NSAssert(positionsCount != 0, @"No positions");
+            }
+            if ([[[node objectForKey:@"position-corner"] objectAtIndex:0] isKindOfClass:[NSArray class]] == YES) {
+                positionsCount = [[node objectForKey:@"position-corner"] count];
+                NSAssert(positionsCount != 0, @"No positions");
+            }
+
+            if (positionsCount == 0) {
                 NodeObject *no = [[NodeObject alloc] init];
                 no.name = [node objectForKey:@"name"];
                 no.sGeometry = [node objectForKey:@"geometry"];
                 no.sScale = [node objectForKey:@"size"];
-                no.sPosition = [node objectForKey:@"position"];
+
+                NSArray<NSNumber *> *cPosition = [node objectForKey:@"position-corner"];
+                NSArray<NSNumber *> *sPosition = [node objectForKey:@"position"];
+                if (sPosition != nil) {
+                    no.sPosition = sPosition;
+                } else if (cPosition != nil) {
+                    no.sPosition = @[
+                        [NSNumber numberWithFloat:[[cPosition objectAtIndex:0] floatValue] + [[no.sScale objectAtIndex:0] floatValue] / 2],
+                        [NSNumber numberWithFloat:[[cPosition objectAtIndex:1] floatValue] + [[no.sScale objectAtIndex:1] floatValue] / 2],
+                        [NSNumber numberWithFloat:[[cPosition objectAtIndex:2] floatValue] + [[no.sScale objectAtIndex:2] floatValue] / 2]
+                        ];
+                } else {
+                    NSAssert(NO, @"'position' and 'position-corner' are both nil");
+                }
+
                 no.sRotation = [node objectForKey:@"rotation"];
                 no.sID = [node objectForKey:@"id"];
                 no.group = group;
@@ -242,20 +266,34 @@
                 [all addObject:no];
                 [groupNodes addObject:no];
             }
-            if ([sPosition isKindOfClass:[NSArray class]] == YES) {
-                [[node objectForKey:@"position"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (positionsCount > 0) {
+                for (NSInteger idx = 0; idx < positionsCount; idx++) {
                     NodeObject *no = [[NodeObject alloc] init];
                     no.name = [node objectForKey:@"name"];
                     no.sGeometry = [node objectForKey:@"geometry"];
                     no.sScale = [[node objectForKey:@"size"] objectAtIndex:idx];
-                    no.sPosition = [[node objectForKey:@"position"] objectAtIndex:idx];
+
+                    NSArray<NSNumber *> *cPosition = [[node objectForKey:@"position-corner"] objectAtIndex:idx];
+                    NSArray<NSNumber *> *sPosition = [[node objectForKey:@"position"] objectAtIndex:idx];
+                    if (sPosition != nil) {
+                        no.sPosition = sPosition;
+                    } else if (cPosition != nil) {
+                        no.sPosition = @[
+                            [NSNumber numberWithFloat:[[cPosition objectAtIndex:0] floatValue] + [[no.sScale objectAtIndex:0] floatValue] / 2],
+                            [NSNumber numberWithFloat:[[cPosition objectAtIndex:1] floatValue] + [[no.sScale objectAtIndex:1] floatValue] / 2],
+                            [NSNumber numberWithFloat:[[cPosition objectAtIndex:2] floatValue] + [[no.sScale objectAtIndex:2] floatValue] / 2]
+                            ];
+                    } else {
+                        NSAssert(NO, @"'position' and 'position-corner' are both nil");
+                    }
+
                     no.sRotation = [[node objectForKey:@"rotation"] objectAtIndex:idx];
                     no.sID = [[node objectForKey:@"id"] objectAtIndex:idx];
                     no.group = group;
                     [no finish];
                     [all addObject:no];
                     [groupNodes addObject:no];
-                }];
+                }
             }
         }];
         group.nodes = groupNodes;
