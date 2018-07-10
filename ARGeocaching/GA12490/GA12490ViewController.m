@@ -95,10 +95,8 @@ typedef NS_ENUM(NSInteger, GameStage) {
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-
-    UITouch *touch = [touches anyObject];
-
 //    // Touch at top right
+//    UITouch *touch = [touches anyObject];
 //    CGPoint p = [touch locationInView:self.view];
 //    NSValue *v = [NSValue valueWithCGPoint:p];
 //    NSLog(@"%@", v);
