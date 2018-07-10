@@ -257,7 +257,7 @@ typedef NS_ENUM(NSInteger, GameStage) {
         case STAGE_CAGE_AT_TOP: {
             self.stage = STAGE_CAGE_GOING_DOWN;
             [self.queue addOperationWithBlock:^{
-                while ([bottom jsonPositionY] < 0.11) {
+                while ([bottom jsonPositionY] < -0.2) {
                     [NSThread sleepForTimeInterval:0.1];
                     [objectManager.nodes enumerateObjectsUsingBlock:^(NodeObject * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
                         if ([n.group.name isEqualToString:@"cage"] == YES)
