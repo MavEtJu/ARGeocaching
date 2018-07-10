@@ -99,9 +99,9 @@ typedef NS_ENUM(NSInteger, GameStage) {
     UITouch *touch = [touches anyObject];
     CGPoint p = [touch locationInView:self.view];
     NSValue *v = [NSValue valueWithCGPoint:p];
-    NSLog(@"%@", v);
 
 //    // Touch at top right
+//    NSLog(@"%@", v);
 //    if (p.x > 550 && p.y < 120) {
 //        CGFloat dx, dz;
 //
