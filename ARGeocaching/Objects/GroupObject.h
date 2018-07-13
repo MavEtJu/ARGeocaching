@@ -12,6 +12,7 @@
 
 @property (nonatomic, retain) NSMutableArray<NodeObject *> *nodes;
 @property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSDictionary *properties;
 @property (nonatomic, retain) NSArray<NSNumber *> *aOrigin;
 
 - (void)finish;

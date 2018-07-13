@@ -1,9 +1,8 @@
 {
-    "origin": [0, 2, 10],
+    "origin": [0, 2, 6],
 
     "materials":
-    [
-     {
+    [{
      "name": "Black",
      "image": "Black colour"
      }, {
@@ -25,8 +24,7 @@
     ],
 
     "spheres":
-    [
-     {
+    [{
      "name": "Sphere",
      "material": ["White with stripes"],
      "radius": 1
@@ -34,8 +32,7 @@
      ],
 
     "cylinders":
-    [
-     {
+    [{
      "name": "Asphalt cylinder",
      "material": ["Asphalt with Strip", "Black", "Black"],
      "radius": 1
@@ -51,77 +48,72 @@
      ],
 
     "planes":
-    [
-     {
+    [{
      "name": "Black floor",
-     "material": ["Black"]
+     "material": ["Red"]
      }
-    ],
+     ],
 
     "groups":
-    [
-     {
+    [{
      "name": "Floor",
      "origin": [0, 0, 0],
 
      "nodes":
-     [
-      {
+     [{
       "name": "Floor planes",
       "geometry": "Black floor",
-      "position": [[0, -1, 0]],
-      "size":     [[10, 10, 1]],
+      "position": [[0, 0, 0]],
+      "size":     [[10, 10, 0.0001]],
       "rotation": [[1, 0, 0, -90]],
-      }]
-     }, {
-
-     "name": "Layers",
-     "origin": [0, -1, 0],
-
-     "nodes":
-     [
-      {
-      "name": "Top",
-      "geometry": "Sphere",
-      "id": "Layer 0",
-      "position": [0, -1, 0],
-      "size": [1, 0.99, 1]
-      }, {
-      "name": "First Layer",
-      "geometry": "Asphalt cylinder",
-      "id": "Layer 1",
-      "position": [0, -1, 0],
-      "size": [1, 1, 1]
-      }, {
-      "name": "Second Layer",
-      "geometry": "Red cylinder",
-      "id": "Layer 2",
-      "position": [0, -1, 0],
-      "size": [1, 1, 1]
-      }, {
-      "name": "Third Layer",
-      "geometry": "White cylinder",
-      "id": "Layer 3",
-      "position": [0, -1, 0],
-      "size": [1, 1, 1]
       }
       ]
      }, {
 
      "name": "Game 1",
-     "origin": [0, -1, 0],
+     "origin": [0, 0, 0],
+
+     "properties":
+     {
+     "rise-initial": 0.98,
+     "rise-level": 1.0,
+     },
 
      "nodes":
-     [
-      {
+     [{
       "name": "Balls",
       "geometry": "Sphere",
       "id": ["game 1 - 1", "game 1 - 2", "game 1 - 3", "game 1 - 4"],
-      "position": [[-2, -0.30, -2], [2, -0.30, 2], [2, -0.30, -2], [-2, -0.30, 2]],
+      "position": [[-2, -1.30, -2], [2, -1.30, 2], [2, -1.30, -2], [-2, -1.30, 2]],
       "size": [[0.25, 0.25, 0.25], [0.25, 0.25, 0.25], [0.25, 0.25, 0.25], [0.25, 0.25, 0.25]],
+      }, {
+      "name": "Top",
+      "geometry": "Sphere",
+      "id": "game 1 - 0",
+      "position": [0, -1.02, 0],
+      "size": [0.96, 0.96, 0.96]
+      }
+      ]
+     }, {
 
-     }]
+     "name": "Game 2",
+     "origin": [0, -0.1, 0],
 
+     "properties":
+     {
+      "rise-initial": 1.60,
+     },
+
+     "nodes":
+     [{
+      "name": "Rings",
+      "geometry": "Asphalt cylinder",
+      "id": ["game 2 - 1", "game 2 - 2", "game 2 - 3"],
+      "position": [[0, -0.25, 0], [0, -0.75, 0], [0, -1.25, 0]],
+      "size": [[1.0, 0.5, 1.0], [1.0, 0.5, 1.0], [1.0, 0.5, 1.0]],
+      "rotation": [[0, 1, 0, -65], [0, 1, 0, -65], [0, 1, 0, -65]],
+      }
+      ]
      }
      ]
 }

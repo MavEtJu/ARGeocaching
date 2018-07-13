@@ -29,8 +29,10 @@
 @property (nonatomic        ) float originZ;
 
 - (void)loadFile:(NSString *)filename;
+
 - (NSArray<NodeObject *> *)nodesByGroupName:(NSString *)name;
 - (NodeObject *)nodeByID:(NSString *)name;
+- (GroupObject *)groupByName:(NSString *)name;
 
 @end
 

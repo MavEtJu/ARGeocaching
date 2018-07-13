@@ -220,6 +220,7 @@
         GroupObject *group = [[GroupObject alloc] init];
         group.name = [groupdata objectForKey:@"name"];
         group.aOrigin = [groupdata objectForKey:@"origin"];
+        group.properties = [groupdata objectForKey:@"properties"];
         [group finish];
         [allGroups addObject:group];
 
@@ -364,6 +365,18 @@
         }
     }];
     return node;
+}
+
+- (GroupObject *)groupByName:(NSString *)name
+{
+    __block GroupObject *group = nil;
+    [self.groups enumerateObjectsUsingBlock:^(GroupObject * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([g.name isEqualToString:name] == YES) {
+            *stop = YES;
+            group = g;
+        }
+    }];
+    return group;
 }
 
 @end
